@@ -200,13 +200,19 @@
       
       <div class=>
         <label for="user" class="text-white">Password</label>
-        <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
+        <input type="password" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
         <h1 class="text-white font-medium text-sm">*Minimal 7 Huruf</h1>
       </div>
   
+
+      <div>
+        <button class="bg-red-600">LOGIN</button>
+      </div>
       <div class="text-center mt-20">
         <h1 class="text-white">Sudah punya akun? <a href="" class="underline">Login</a></h1>
       </div>
+
+      <
     </div>
   </form>
 
