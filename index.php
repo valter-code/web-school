@@ -1,3 +1,17 @@
+<?php 
+  require("koneksi.php");
+
+  //cek
+  if(isset($_POST["daftar"])){
+    if(daftar($_POST) > 0){
+      echo "<script>alert('berhasil');</script>";
+    }else{
+      echo mysqli_error($koneksi);
+
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,7 +189,7 @@
 <div class="fixed w-full top-0 bg-red-950">
 
 
-  <form id="maba" class=" fixed flex  justify-center top-10 w-full bg-slate-40 ">
+  <form action="" method="post" id="maba" class=" fixed flex  justify-center top-10 w-full bg-slate-40 ">
     <div class="p-10 w-1/2 bg-zinc-600  rounded-md ">
       <div class="text-white text-center mb-10 font-bold">
         <h1>DAFTAR🚀</h1>
@@ -185,13 +199,13 @@
   
       <div class="mb-5">
         <label for="user" class="text-white">Nama Siswa</label>
-        <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105">
+        <input id="user" name="username" type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105">
       </div>
       
       <div class="mb-5">
-        <label for="user" class="text-white">Jurusan</label>
+        <label for="jurusan" class="text-white">Jurusan</label>
         
-        <select class="w-full bg-sky-950 p-2 rounded-md focus:outline-none focus:scale-105 hover:scale-105 transition duration-500">
+        <select id="jurusan" name="jurusan" class="w-full bg-sky-950 p-2 rounded-md focus:outline-none focus:scale-105 hover:scale-105 transition duration-500">
           <option>TKJ</option>
           <option>MP</option>
           <option>BD</option>
@@ -199,14 +213,18 @@
       </div>
       
       <div class=>
-        <label for="user" class="text-white">Password</label>
-        <input type="password" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
-        <h1 class="text-white font-medium text-sm">*Minimal 7 Huruf</h1>
+        <label for="password" class="text-white">Password</label>
+        <input name="password" id="password" type="password" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
       </div>
-  
+
+      <div class=>
+        <label for="password" class="text-white">Konfirmasi Password</label>
+        <input name="password2" type="password" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
+           <h1 class="text-white font-medium text-sm">*Minimal 7 Huruf</h1>
+      </div>
 
       <div>
-        <button class="bg-red-600">LOGIN</button>
+        <button name="daftar" class="bg-red-600">DAFTAR</button>
       </div>
       <div class="text-center mt-20">
         <h1 class="text-white">Sudah punya akun? <a href="" class="underline">Login</a></h1>
