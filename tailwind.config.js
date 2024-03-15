@@ -1,6 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.php", 'node_modules/preline/dist/*.js', "./node_modules/flowbite/**/*.js"],
+  content: [
+    "./index.php", 
+    'node_modules/preline/dist/*.js', 
+    "./node_modules/flowbite/**/*.js",
+    "./admin/login.php",
+    "./admin/logout.php",
+    "./admin/dashboard.php"
+  ],
   theme: {
     extend: {},
   },
