@@ -181,7 +181,7 @@
     </section>
 
     <!-- LOGIN -->
-    <div id="login" class="fixed w-full h-screen  top-20  scale-100 hidden">
+    <div id="login" class="fixed w-full h-screen  top-20 bottom-5  scale-100 hidden">
         <form id="maba" class="w-full bg-slate-40 flex justify-center ">
             <div class="p-10 w-1/2 bg-zinc-600 rounded-md ">
                 <div class="text-white text-center mb-10 font-bold">
@@ -198,10 +198,14 @@
 
 
 
-                <div class=>
+                <div class="mb-5 ">
                     <label for="user" class="text-white">Password</label>
                     <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
                     <h1 class="text-white font-medium text-sm">*Minimal 7 Huruf</h1>
+                </div>
+
+                <div class="flex justify-center">
+                    <button class=" w-1/2 shadow-md hover:scale-95 bg-sky-950 rounded-lg py-2 font-bold">LOGIN</button>
                 </div>
 
                 <div class="text-center mt-20">
@@ -243,6 +247,11 @@
                     <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
                     <h1 class="text-white font-medium text-sm">*Minimal 7 Huruf</h1>
                 </div>
+
+                <div class="flex justify-center">
+                    <button class=" w-1/2 shadow-md hover:scale-95 bg-sky-950 rounded-lg py-2 font-bold">LOGIN</button>
+                </div>
+
 
                 <div class="text-center mt-20">
                     <h1 class="text-white">Sudah punya akun? <a onclick="popLogin()" href="#" class="underline">Login</a></h1>
