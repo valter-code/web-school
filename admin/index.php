@@ -1,15 +1,15 @@
 <?php
-    require("../koneksi.php");
-    session_start();
+require("../koneksi.php");
+session_start();
 
-    //kick jika belum login
-    if(!isset($_SESSION["admin-session"])){
-        header("Location: login.php");
-        exit();
-    }
+//kick jika belum login
+if (!isset($_SESSION["admin-session"])) {
+    header("Location: login.php");
+    exit();
+}
 
-    //query
-    $siswa = query("SELECT * FROM siswa");
+//query
+$siswa = query("SELECT * FROM siswa");
 
 ?>
 
@@ -30,25 +30,25 @@
         <aside class="sidebar-sticky sidebar justify-start">
             <section class="sidebar-title items-center p-4">
                 <div class="w-12 mr-2">
-                <div class="avatar rounded-sm bg-transparent bg-tra avatar-md">
-                <div class="dropdown-container">
-                    <div class="dropdown">
-                        <label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
-                            <img src="../assets/logo.png" alt="avatar" />
-                        </label>
-                        <div class="dropdown-menu dropdown-menu-bottom-right">
-                            <a class="dropdown-item text-sm">Profile</a>
-                            <a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
-                            <a tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
+                    <div class="avatar rounded-sm bg-transparent bg-tra avatar-md">
+                        <div class="dropdown-container">
+                            <div class="dropdown">
+                                <label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
+                                    <img src="../assets/logo.png" alt="avatar" />
+                                </label>
+                                <div class="dropdown-menu dropdown-menu-bottom-right">
+                                    <a class="dropdown-item text-sm">Profile</a>
+                                    <a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
+                                    <a tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
                 </div>
                 <div class="flex flex-col">
                     <span>Namamu</span>
                     <span class="text-xs font-normal text-content2">Admin</span>
-                    
+
                 </div>
             </section>
             <section class="sidebar-content min-h-[20rem]">
@@ -56,26 +56,32 @@
                     <section class="menu-section px-4">
                         <span class="menu-title">Main menu</span>
                         <ul class="menu-items">
-                            <a href="index.php"><li class="menu-item menu-active">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                <span>Home</span>
-                            </li></a>
+                            <a href="index.php">
+                                <li class="menu-item menu-active">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    <span>Home</span>
+                                </li>
+                            </a>
 
-                            <a href="data-siswa.php"><li class="menu-item ">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                <span>Data SIswa</span>
-                            </li></a>
+                            <a href="data-siswa.php">
+                                <li class="menu-item ">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    <span>Data SIswa</span>
+                                </li>
+                            </a>
 
-                            <a href="berita.php"><li class="menu-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                                <span>Berita</span>
-                            </li></a>
+                            <a href="berita.php">
+                                <li class="menu-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                    </svg>
+                                    <span>Berita</span>
+                                </li>
+                            </a>
 
                         </ul>
                     </section>
@@ -110,7 +116,7 @@
 
             <div class="my-4 w-full gap-4">
 
-               <!-- Content -->
+                <!-- Content -->
 
                 <div class="flex  gap-3 mx-5">
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">

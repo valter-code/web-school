@@ -56,12 +56,24 @@
         <aside class="sidebar-sticky sidebar justify-start">
             <section class="sidebar-title items-center p-4">
                 <div class="w-12 mr-2">
-                    <img src="../assets/logo.png" alt="avatar" />
+                <div class="avatar avatar-ring avatar-md">
+	<div class="dropdown-container">
+		<div class="dropdown">
+			<label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
+				<img src="../assets/logo.png" alt="avatar" />
+			</label>
+			<div class="dropdown-menu dropdown-menu-bottom-right">
+				<a class="dropdown-item text-sm">Profile</a>
+				<a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
+				<a tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
+			</div>
+		</div>
+	</div>
+</div>
                 </div>
                 <div class="flex flex-col">
                     <span>Namamu</span>
                     <span class="text-xs font-normal text-content2">Admin</span>
-                    <a href="logout.php" style="color:red;"><span>logout</span></a>
                 </div>
             </section>
             <section class="sidebar-content min-h-[20rem]">
@@ -124,8 +136,12 @@
             <div class="my-4 grid w-full  gap-4">
 
             <form action="" method="get">
-                    <input type="text" name="keyword">
-                    <button style="background-color:grey;width:40px;border-radius:10px;" type="submit" name="cari">cari</button>
+            <input type="text" name="keyword" placeholder="Search" class="p-2 border-white focus:outline-none shadow-sm border-b-2 bg-transparent">
+            <button class="" type="submit" name="cari">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" class="bi bi-search ml-2" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                        </svg>
+                    </button>
                 </form>
 
                 <!-- Jika menampilkan data -->

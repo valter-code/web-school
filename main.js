@@ -5,7 +5,6 @@ const popUp = () => {
   const parent = document.getElementById("parent");
   formLogin.classList.toggle("hidden");
   formDaftar.classList.add("hidden");
-  
 };
 
 // tombol daftar
