@@ -11,4 +11,13 @@
         }
         return $rows;
     }
+
+    //fitur hapus
+    function delete($id_siswa){
+        global $koneksi;
+        $query = "DELETE FROM siswa WHERE id_siswa = $id_siswa";
+        mysqli_query( $koneksi, $query);
+        return mysqli_affected_rows( $koneksi );
+    }
+    
 ?>
