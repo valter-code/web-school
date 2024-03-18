@@ -1,7 +1,7 @@
 <?php
-    require("koneksi.php");
+require("koneksi.php");
 
-    $berita = query("SELECT * FROM berita");
+$berita = query("SELECT * FROM berita");
 
 ?>
 
@@ -18,7 +18,7 @@
 <body class="bg-white  ">
     <!-- NAV START -->
     <section class="" id="parent">
-        <header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-gradient-to-r from-emerald-400 to-cyan-400 text-sm py-4 shadow-lg fixed z-50 ">
+        <header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-zinc-800 text-sm py-4 shadow-lg fixed z-50 ">
             <nav class="max-w-[85rem] w-full mx-auto px-4 flex flex-wrap basis-full items-center justify-between" aria-label="Global">
                 <div class="flex items-center gap-2">
                     <div class="w-10">
@@ -39,16 +39,16 @@
                             <path d="m6 6 12 12" />
                         </svg>
                     </button>
-                    <button onclick="popUp(); scroll();" type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg  border-white bg-gradient-to-r from-rose-100 to-teal-100  text-gray-800 shadow-sm hover:bg-blue-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-blue-400  dark:text-white dark:hover:bg-blue-500 hover:shadow-lg transition duration-500 hover:scale-105 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                    <button onclick="popUp()" type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg  border-white bg-gradient-to-r from-rose-100 to-teal-100  text-gray-800 shadow-sm hover:bg-blue-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-blue-400  dark:text-white dark:hover:bg-blue-500 hover:shadow-lg transition duration-500 hover:scale-105 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                         LOGIN / DAFTAR
                     </button>
                 </div>
                 <div id="navbar-alignment" class="mr-36 hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:grow-0 sm:basis-auto sm:block sm:order-2 ">
                     <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:mt-0 sm:ps-5">
-                        <a class="font-medium text-zinc-800 text-lg dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#" aria-current="page">Home</a>
-                        <a class="font-medium text-white hover:text-sky-950 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Home</a>
-                        <a class="font-medium text-white hover:text-sky-950 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Work</a>
-                        <a class="font-medium text-white hover:text-sky-950 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Blog</a>
+                        <a class="font-medium text-cyan-500  text-lg dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#" aria-current="page">Home</a>
+                        <a class="font-medium text-white hover:text-cyan-400 hover:shadow-cyan-400 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Page2</a>
+                        <a class="font-medium text-white hover:text-cyan-400 hover:shadow-cyan-400 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Page3</a>
+                        <a class="font-medium text-white hover:text-cyan-400 hover:shadow-cyan-400 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Page4</a>
                     </div>
                 </div>
             </nav>
@@ -108,21 +108,21 @@
             <h1 class="text-center font-sans font-extrabold text-4xl text-black">EVENT SEKOLAH</h1>
         </div>
         <div class="flex flex-wrap gap-3 justify-start mx-5 mb-36">
-            <?php foreach( $berita as $berita): ?>
-            <div class="card w-96 bg-gray-200 bg-opacity-45 ">
-                <figure>
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-                </figure>
+            <?php foreach ($berita as $berita) : ?>
+                <div class="card w-96 bg-gray-200 bg-opacity-45 ">
+                    <figure>
+                        <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
+                    </figure>
 
-                <div class="card-body">
-                    <h2 class="card-title text-slate-900"><?php echo $berita["judul_berita"] ?></h2>
-                    <p class="text-slate-800 line-clamp-5"><?php echo $berita["isi_berita"] ?></p>
+                    <div class="card-body">
+                        <h2 class="card-title text-slate-900"><?php echo $berita["judul_berita"] ?></h2>
+                        <p class="text-slate-800 line-clamp-5"><?php echo $berita["isi_berita"] ?></p>
 
-                    <div class="card-actions mt-6">
-                        <button class="btn btn-primary">TOMBOL </button>
+                        <div class="card-actions mt-6">
+                            <button class="btn btn-primary">TOMBOL </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php endforeach; ?>
         </div>
         <!-- EVENT END -->
@@ -134,36 +134,38 @@
     </section>
 
     <!-- LOGIN -->
-    <div id="login" class="fixed w-full h-screen  top-20 bottom-5  scale-100 hidden">
-        <form id="maba" class="w-full bg-slate-40 flex justify-center ">
-            <div class="p-10 w-1/2 bg-zinc-600 rounded-md ">
-                <div class="text-white text-center mb-10 font-bold">
-                    <h1>LOGIN🚀</h1>
-                </div>
+    <div id="login" class="fixed flex justify-center items-center bg-black bg-opacity-75 z-50 top-0 w-screen h-screen hidden">
+        <form action="" class="bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 border border-gray-100  p-12 h-[400px] flex flex-col items-center justify-center">
+            <div class="mb-10">
+                <h1 class="text-white text-center font-bold">SMK TRIMULIA JAKARTA</h1>
 
+                <a href="" class="absolute right-1 top-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                    </svg>
+                </a>
 
+                <h2 class="text-white text-center text-sm font-light">LOGIN SISWA</h2>
+            </div>
 
-                <div class="mb-5">
-                    <label for="user" class="text-white">Nama Siswa</label>
-                    <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105">
-                </div>
+            <div class="border-b-2 mb-10">
+                <label for="siswa" class="text-white">Nama Siswa</label>
+                <input type="text" id="siswa" class="w-full bg-transparent border-none focus:ring-0 text-white">
+            </div>
 
+            <div class="border-b-2 mb-10 w-full">
+                <label for="pass" class="text-white">Password </label>
+                <input type="password" id="pass" class="w-full bg-transparent border-none focus:ring-0 text-white">
+            </div>
 
+            <button class="w-full mb-5 bg-violet-800 py-2 rounded-full font-bold text-white shadow-sm hover:scale-95 transition duration-150 hover:bg-violet-900">
+                LOGIN
+            </button>
 
+            <h1 class="text-white">Belum Punya Akun? <a onclick="popDaftar()" href="#" class="underline font-semibold">Daftar</a></h1>
 
-                <div class="mb-5 ">
-                    <label for="user" class="text-white">Password</label>
-                    <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
-                    <h1 class="text-white font-medium text-sm">*Minimal 7 Huruf</h1>
-                </div>
-
-                <div class="flex justify-center">
-                    <button class=" w-1/2 shadow-md hover:scale-95 bg-sky-950 rounded-lg py-2 font-bold">LOGIN</button>
-                </div>
-
-                <div class="text-center mt-20">
-                    <h1 class="text-white">Belum punya akun? <a onclick="popDaftar()" href="#" class="underline">Daftar</a></h1>
-                </div>
+            <div class="w-60 absolute -z-50 brightness-50 opacity-15 top-20">
+                <img src="./assets/logo.png" alt="">
             </div>
         </form>
     </div>
@@ -171,44 +173,48 @@
 
 
     <!-- DAFTAR -->
-    <div id="daftar" class="fixed  top-0 bg-red-950 z-50 hidden">
-        <form id="maba" class=" fixed flex  justify-center top-7 w-full bg-slate-40 ">
-            <div class="p-10 w-1/2 bg-zinc-600  rounded-md ">
-                <div class="text-white text-center mb-10 font-bold">
-                    <h1>DAFTAR🚀</h1>
-                </div>
+    <div id="daftar" class="fixed flex justify-center items-center bg-black bg-opacity-75 z-50 top-0 w-screen h-screen hidden">
+        <form action="" class="bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 border border-gray-100  p-12 h-[510px] flex flex-col items-center justify-center">
+            <div class="mb-10">
+                <h1 class="text-white text-center font-bold">SMK TRIMULIA JAKARTA</h1>
 
+                <a href="" class="absolute right-1 top-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                    </svg>
+                </a>
 
+                <h2 class="text-white text-center text-sm font-light">DAFTAR SISWA</h2>
+            </div>
 
-                <div class="mb-5">
-                    <label for="user" class="text-white">Nama Siswa</label>
-                    <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105">
-                </div>
+            <div class="border-b-2 mb-10">
+                <label for="siswa" class="text-white font-semibold  ">Nama Siswa</label>
+                <input type="text" id="siswa" class="w-full bg-transparent border-none focus:ring-0 text-white">
+            </div>
 
-                <div class="mb-5">
-                    <label for="user" class="text-white">Jurusan</label>
+            <div class="w-full mb-10 border-b-2">
+                <label for="jurusan" class="text-white font-semibold">Jurusan</label>
+                <select name="" id="jurusan" class="w-full bg-transparent border-none focus:ring-0 ">
+                    <option value="" disabled class="bg-neutral-800 text-white font-semibold">Daftar Jurusan</option>
+                    <option value="" class="bg-neutral-800 text-white font-semibold">TKJ</option>
+                    <option value="" class="bg-neutral-800 text-white font-semibold">MP</option>
+                    <option value="" class="bg-neutral-800 text-white font-semibold">BD</option>
+                </select>
+            </div>
 
-                    <select class="w-full bg-sky-950 p-2 rounded-md focus:outline-none focus:scale-105 hover:scale-105 transition duration-500">
-                        <option>TKJ</option>
-                        <option>MP</option>
-                        <option>BD</option>
-                    </select>
-                </div>
+            <div class="border-b-2 mb-10 w-full">
+                <label for="pass" class="text-white font-semibold">Password </label>
+                <input type="password" id="pass" class="w-full bg-transparent border-none focus:ring-0 text-white">
+            </div>
 
-                <div class=>
-                    <label for="user" class="text-white">Password</label>
-                    <input type="text" class="w-full bg-sky-950 rounded-md p-2 focus:outline-none focus:scale-105 shadow-md transition duration-500 hover:scale-105 mb-1">
-                    <h1 class="text-white font-medium text-sm">*Minimal 7 Huruf</h1>
-                </div>
+            <button class="w-full mb-5 bg-violet-800 py-2 rounded-full font-bold text-white shadow-sm hover:scale-95 transition duration-150 hover:bg-violet-900">
+                DAFTAR
+            </button>
 
-                <div class="flex justify-center">
-                    <button class=" w-1/2 shadow-md hover:scale-95 bg-sky-950 rounded-lg py-2 font-bold">LOGIN</button>
-                </div>
+            <h1 class="text-white">Sudah Punya Akun? <a onclick="popLogin()" href="#" class="underline font-semibold">Login</a></h1>
 
-
-                <div class="text-center mt-20">
-                    <h1 class="text-white">Sudah punya akun? <a onclick="popLogin()" href="#" class="underline">Login</a></h1>
-                </div>
+            <div class="w-64 absolute -z-50 brightness-50 opacity-15 top-50">
+                <img src="./assets/logo.png" alt="">
             </div>
         </form>
     </div>

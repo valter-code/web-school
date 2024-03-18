@@ -1,22 +1,25 @@
 // tombol pop up
 const popUp = () => {
   const formLogin = document.getElementById("login");
-  const formDaftar = document.getElementById("daftar");
-  const parent = document.getElementById("parent");
-  formLogin.classList.toggle("hidden");
-  formDaftar.classList.add("hidden");
+  formLogin.classList.remove("hidden");
+  scroll();
 };
 
 // tombol daftar
 const popDaftar = () => {
   const formDaftar = document.getElementById("daftar");
+  const formLogin = document.getElementById("login");
+
   formDaftar.classList.remove("hidden");
+  formLogin.classList.add("hidden");
 };
 
 // tombol login
 const popLogin = () => {
   const formDaftar = document.getElementById("daftar");
-  formDaftar.classList.add("hidden");
+  const formLogin = document.getElementById("login");
+  formDaftar.classList.toggle("hidden");
+  formLogin.classList.toggle("hidden");
 };
 
 //scroll

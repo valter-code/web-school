@@ -13,4 +13,5 @@ module.exports = {
     extend: {},
   },
   plugins: [require("rippleui"), require('preline/plugin'), require("daisyui"), require('flowbite/plugin')],
+  darkMode: 'class',
 };
