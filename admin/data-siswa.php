@@ -11,6 +11,33 @@
     //query
     $siswa = query("SELECT * FROM siswa");
 
+    //fungsi pencarian siswa
+    if(isset($_GET["cari"])){
+        $query = "SELECT * FROM siswa WHERE nama_siswa LIKE ? OR jurusan_siswa LIKE ?";
+        $statement = mysqli_prepare( $koneksi, $query);
+        $keyword = htmlspecialchars($_GET["keyword"]);
+
+        //bind
+        $keyword = "%" . $keyword ."%";
+        mysqli_stmt_bind_param( $statement,"ss", $keyword, $keyword);
+
+        //execute
+        mysqli_stmt_execute($statement);
+
+        //result
+        $result = mysqli_stmt_get_result($statement);
+
+        //simpan data kedalam array
+        $siswa = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if(mysqli_num_rows( $result ) === 0){
+            $nothing = "Pencarian Anda : " . htmlspecialchars($_GET["keyword"]) . " tidak ada";
+        }else{
+            $some = "Pecarian Anda : " . htmlspecialchars($_GET["keyword"]);
+        }
+        
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -96,7 +123,22 @@
             </div>
 
             <div class="my-4 grid w-full  gap-4">
+                <form action="" method="get">
+                    <input type="text" name="keyword">
+                    <button style="background-color:grey;width:40px;border-radius:10px;" type="submit" name="cari">cari</button>
+                </form>
 
+                <!-- Jika menampilkan data -->
+                <?php if(isset($some)): ?>
+                    <?php echo $some ?>
+                <?php endif; ?>
+                <!-- Akhir jika menampilkan data -->
+                
+                <!-- Jika tidak menampilkan data -->
+                <?php if(isset($nothing)): ?>
+                    <?php echo $nothing ?>
+                <?php endif; ?>
+                <!-- Akhir Jika tidak menampilkan data -->
                 <!-- TABLE -->
                 <div class="flex w-full overflow-x-auto">
                     <table class="table-zebra table">
@@ -115,7 +157,7 @@
                                 <th><?php echo $no ?></th>
                                 <th><?php echo $siswa["nama_siswa"] ?></th>
                                 <th><?php echo $siswa["jurusan_siswa"] ?></th>
-                                <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="hapus-siswa.php">Delete</a></th>
+                                <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
                             </tr>
                             <?php $no++ ?>
                             <?php endforeach; ?>
