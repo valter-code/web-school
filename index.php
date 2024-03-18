@@ -116,7 +116,7 @@
 
                 <div class="card-body">
                     <h2 class="card-title text-slate-900"><?php echo $berita["judul_berita"] ?></h2>
-                    <p class="text-slate-800"><?php echo $berita["isi_berita"] ?></p>
+                    <p class="text-slate-800 line-clamp-5"><?php echo $berita["isi_berita"] ?></p>
 
                     <div class="card-actions mt-6">
                         <button class="btn btn-primary">TOMBOL </button>

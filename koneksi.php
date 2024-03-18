@@ -1,5 +1,5 @@
 <?php
-    $koneksi = mysqli_connect("localhost","root","","sekolah_db");
+    $koneksi = mysqli_connect("localhost","root","","projekSekolah");
 
     //function query
     function query($query) {

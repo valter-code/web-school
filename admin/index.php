@@ -19,23 +19,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui@1.12.1/dist/css/styles.css" />
 </head>
 
 <body>
 
 
-    <div class="sticky flex h-screen flex-row gap-4 overflow-y-auto rounded-lg sm:overflow-x-hidden">
+    <div class="sticky flex h-screen flex-row gap- overflow-y-auto rounded-lg sm:overflow-x-hidden">
         <aside class="sidebar-sticky sidebar justify-start">
             <section class="sidebar-title items-center p-4">
                 <div class="w-12 mr-2">
-                    <img src="../assets/logo.png" alt="avatar" />
+                <div class="avatar rounded-sm bg-transparent bg-tra avatar-md">
+                <div class="dropdown-container">
+                    <div class="dropdown">
+                        <label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
+                            <img src="../assets/logo.png" alt="avatar" />
+                        </label>
+                        <div class="dropdown-menu dropdown-menu-bottom-right">
+                            <a class="dropdown-item text-sm">Profile</a>
+                            <a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
+                            <a tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
                 </div>
                 <div class="flex flex-col">
                     <span>Namamu</span>
                     <span class="text-xs font-normal text-content2">Admin</span>
-                    <a href="logout.php" style="color:red;"><span>logout</span></a>
+                    
                 </div>
             </section>
             <section class="sidebar-content min-h-[20rem]">
@@ -86,7 +99,7 @@
                 </div>
             </section>
         </aside>
-        <div class="flex w-full flex-row flex-wrap gap-4 p-6 justify-center">
+        <div class="flex w-full flex-row flex-wrap   justify-center">
 
 
             <div class="text-center">
@@ -95,18 +108,39 @@
                 <h2 class="font-bold text-lg">SMK Trimulia Jakarta</h2>
             </div>
 
-            <div class="my-4 grid w-full  gap-4">
+            <div class="my-4 w-full gap-4">
 
-               
+               <!-- Content -->
+
+                <div class="flex  gap-3 mx-5">
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                        <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/4f/a9/f9/4fa9f9916731730fa5530958d3082548.jpg" alt="">
+                        <span class="badge bg-zinc-700 border-none mt-3">Guru</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
+                    </div>
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                        <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/f5/3d/3f/f53d3f0e5624f46450dc2ee4c0025092.jpg" alt="">
+                        <span class="badge bg-zinc-700 border-none mt-3">Murid</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
+                    </div>
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                        <img class="w-20 rounded-full" src="../assets/berita.svg" alt="">
+                        <span class="badge bg-zinc-700 border-none mt-3">Berita</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
+                    </div>
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                        <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/5d/04/14/5d04141fdc10b958ca9e43d21e350b45.jpg" alt="">
+                        <span class="badge bg-zinc-700 border-none mt-3">....</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
+                    </div>
+                </div>
 
 
 
 
 
 
-
-
-
+                <!-- Content END -->
 
             </div>
         </div>
