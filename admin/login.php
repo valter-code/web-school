@@ -1,5 +1,6 @@
 <?php
     require("../koneksi.php");
+    session_start();
 
     if(isset($_POST["login"])){
         $username = $_POST["username"];
@@ -13,7 +14,7 @@
             
             //check password
             if(password_verify( $password, $row["password_admin"])){
-                $_SESSION["session_admin"] = true;
+                $_SESSION["admin-session"] = true;
                 header("Location: index.php");
                 exit;
             }

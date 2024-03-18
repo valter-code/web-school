@@ -6,7 +6,7 @@ module.exports = {
     "./node_modules/flowbite/**/*.js",
     "./admin/login.php",
     "./admin/logout.php",
-    "./admin/dashboard.php"
+    "./admin/index.php"
   ],
   theme: {
     extend: {},

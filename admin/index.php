@@ -1,3 +1,18 @@
+<?php
+    require("../koneksi.php");
+    session_start();
+
+    //kick jika belum login
+    if(!isset($_SESSION["admin-session"])){
+        header("Location: login.php");
+        exit();
+    }
+
+    //query
+    $siswa = query("SELECT * FROM siswa");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,6 +35,7 @@
                 <div class="flex flex-col">
                     <span>Namamu</span>
                     <span class="text-xs font-normal text-content2">Admin</span>
+                    <a href="logout.php" style="color:red;"><span>logout</span></a>
                 </div>
             </section>
             <section class="sidebar-content min-h-[20rem]">
@@ -92,13 +108,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $no = 1 ?>
+                            <?php foreach($siswa as $siswa): ?>
                             <tr>
-                                <th>1</th>
-                                <th>nama</th>
-                                <th>jurusan</th>
-                                <th><a class="text-sky-500" href="#">Edit</a> | <a class="text-red-600" href="#">Delete</a></th>
+                                <th><?php echo $no ?></th>
+                                <th><?php echo $siswa["nama_siswa"] ?></th>
+                                <th><?php echo $siswa["jurusan_siswa"] ?></th>
+                                <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="hapus-siswa.php">Delete</a></th>
                             </tr>
-
+                            <?php $no++ ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
