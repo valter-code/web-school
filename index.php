@@ -1,3 +1,10 @@
+<?php
+    require("koneksi.php");
+
+    $berita = query("SELECT * FROM berita");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -101,76 +108,22 @@
             <h1 class="text-center font-sans font-extrabold text-4xl text-black">EVENT SEKOLAH</h1>
         </div>
         <div class="flex flex-wrap gap-3 justify-start mx-5 mb-36">
+            <?php foreach( $berita as $berita): ?>
             <div class="card w-96 bg-gray-200 bg-opacity-45 ">
                 <figure>
                     <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
                 </figure>
 
                 <div class="card-body">
-                    <h2 class="card-title text-slate-900">Life hack</h2>
-                    <p class="text-slate-800">How to park your car at your garage?</p>
+                    <h2 class="card-title text-slate-900"><?php echo $berita["judul_berita"] ?></h2>
+                    <p class="text-slate-800"><?php echo $berita["isi_berita"] ?></p>
 
                     <div class="card-actions mt-6">
                         <button class="btn btn-primary">TOMBOL </button>
                     </div>
                 </div>
             </div>
-            <div class="card w-96 bg-gray-200 bg-opacity-45 ">
-                <figure>
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-                </figure>
-
-                <div class="card-body">
-                    <h2 class="card-title text-slate-900">Life hack</h2>
-                    <p class="text-slate-800">How to park your car at your garage?</p>
-
-                    <div class="card-actions mt-6">
-                        <button class="btn btn-primary">TOMBOL </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card w-96 bg-gray-200 bg-opacity-45 ">
-                <figure>
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-                </figure>
-
-                <div class="card-body">
-                    <h2 class="card-title text-slate-900">Life hack</h2>
-                    <p class="text-slate-800">How to park your car at your garage?</p>
-
-                    <div class="card-actions mt-6">
-                        <button class="btn btn-primary">TOMBOL </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card w-96 bg-gray-200 bg-opacity-45 ">
-                <figure>
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-                </figure>
-
-                <div class="card-body">
-                    <h2 class="card-title text-slate-900">Life hack</h2>
-                    <p class="text-slate-800">How to park your car at your garage?</p>
-
-                    <div class="card-actions mt-6">
-                        <button class="btn btn-primary">TOMBOL </button>
-                    </div>
-                </div>
-            </div>
-            <div class="card w-96 bg-gray-200 bg-opacity-45 ">
-                <figure>
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-                </figure>
-
-                <div class="card-body">
-                    <h2 class="card-title text-slate-900">Life hack</h2>
-                    <p class="text-slate-800">How to park your car at your garage?</p>
-
-                    <div class="card-actions mt-6">
-                        <button class="btn btn-primary">TOMBOL </button>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
         <!-- EVENT END -->
 
