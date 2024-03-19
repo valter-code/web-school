@@ -28,3 +28,11 @@ const scroll = () => {
     window.scrollTo(0, 0);
   });
 };
+// scroll y , c
+{
+  const scroll = () => {
+    window.addEventListener("scroll", function () {
+      window.scrollTo(0, 0);
+    });
+  };
+}

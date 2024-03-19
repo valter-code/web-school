@@ -1,42 +1,41 @@
 <?php
-    require("../koneksi.php");
-    session_start();
+require("../koneksi.php");
+session_start();
 
-    //kick jika belum login
-    if(!isset($_SESSION["admin-session"])){
-        header("Location: login.php");
-        exit();
+//kick jika belum login
+if (!isset($_SESSION["admin-session"])) {
+    header("Location: login.php");
+    exit();
+}
+
+//query
+$berita = query("SELECT * FROM berita");
+
+//fungsi pencarian siswa
+if (isset($_GET["cari"])) {
+    $query = "SELECT * FROM berita WHERE judul_berita LIKE ? OR penulis LIKE ?";
+    $statement = mysqli_prepare($koneksi, $query);
+    $keyword = htmlspecialchars($_GET["keyword"]);
+
+    //bind
+    $keyword = "%" . $keyword . "%";
+    mysqli_stmt_bind_param($statement, "ss", $keyword, $keyword);
+
+    //execute
+    mysqli_stmt_execute($statement);
+
+    //result
+    $result = mysqli_stmt_get_result($statement);
+
+    //simpan data kedalam array
+    $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if (mysqli_num_rows($result) === 0) {
+        $nothing = "Pencarian Anda : " . htmlspecialchars($_GET["keyword"]) . " tidak ada";
+    } else {
+        $some = "Pecarian Anda : " . htmlspecialchars($_GET["keyword"]);
     }
-
-    //query
-    $berita = query("SELECT * FROM berita");
-
-    //fungsi pencarian siswa
-    if(isset($_GET["cari"])){
-        $query = "SELECT * FROM berita WHERE judul_berita LIKE ? OR penulis LIKE ?";
-        $statement = mysqli_prepare( $koneksi, $query);
-        $keyword = htmlspecialchars($_GET["keyword"]);
-
-        //bind
-        $keyword = "%" . $keyword ."%";
-        mysqli_stmt_bind_param( $statement,"ss", $keyword, $keyword);
-
-        //execute
-        mysqli_stmt_execute($statement);
-
-        //result
-        $result = mysqli_stmt_get_result($statement);
-
-        //simpan data kedalam array
-        $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if(mysqli_num_rows( $result ) === 0){
-            $nothing = "Pencarian Anda : " . htmlspecialchars($_GET["keyword"]) . " tidak ada";
-        }else{
-            $some = "Pecarian Anda : " . htmlspecialchars($_GET["keyword"]);
-        }
-        
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,20 +55,20 @@
         <aside class="sidebar-sticky sidebar justify-start">
             <section class="sidebar-title items-center p-4">
                 <div class="w-12 mr-2">
-                <div class="avatar avatar-ring avatar-md">
-	<div class="dropdown-container">
-		<div class="dropdown">
-			<label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
-				<img src="../assets/logo.png" alt="avatar" />
-			</label>
-			<div class="dropdown-menu dropdown-menu-bottom-right">
-				<a class="dropdown-item text-sm">Profile</a>
-				<a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
-				<a href="logout.php" tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
-			</div>
-		</div>
-	</div>
-</div>
+                    <div class="avatar avatar-ring avatar-md">
+                        <div class="dropdown-container">
+                            <div class="dropdown">
+                                <label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
+                                    <img src="../assets/logo.png" alt="avatar" />
+                                </label>
+                                <div class="dropdown-menu dropdown-menu-bottom-right">
+                                    <a class="dropdown-item text-sm">Profile</a>
+                                    <a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
+                                    <a href="logout.php" tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="flex flex-col">
                     <span>Welcome admin</span>
@@ -80,27 +79,52 @@
                 <nav class="menu rounded-md">
                     <section class="menu-section px-4">
                         <span class="menu-title">Main menu</span>
-                        <a href="index.php"><ul class="menu-items">
-                            <a href="index.php"><li class="menu-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                <span>Home</span>
-                            </li></a>
+                        <ul class="menu-items">
+                            <a href="index.php">
+                                <li class="menu-item">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+                                    </svg>
 
-                            <a href="data-siswa.php"><li class="menu-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                <span>Data Siswa</span>
-                            </li></a>
 
-                            <a href="berita.php"><li class="menu-item menu-active">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                </svg>
-                                <span>Berita</span>
-                            </li></a>
+
+                                    <span>Home</span>
+                                </li>
+                            </a>
+
+                            <a href="data-siswa.php">
+                                <li class="menu-item">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9h3m-3 3h3m-3 3h3m-6 1c-.306-.613-.933-1-1.618-1H7.618c-.685 0-1.312.387-1.618 1M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm7 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
+                                    </svg>
+
+
+
+                                    <span>Data Siswa</span>
+                                </li>
+                            </a>
+
+                            <a href="berita.php ">
+                                <li class="menu-item menu-active">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" d="M9 2.221V7H4.221a2 2 0 0 1 .365-.5L8.5 2.586A2 2 0 0 1 9 2.22ZM11 2v5a2 2 0 0 1-2 2H4v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-7ZM8 16a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm1-5a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2H9Z" clip-rule="evenodd" />
+                                    </svg>
+
+                                    <span>Data Berita</span>
+                                </li>
+                            </a>
+
+
+
+                            <a href="tambah-berita.php">
+                                <li class="menu-item">
+                                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 5V4a1 1 0 0 0-1-1H8.914a1 1 0 0 0-.707.293L4.293 7.207A1 1 0 0 0 4 7.914V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5M9 3v4a1 1 0 0 1-1 1H4m11.383.772 2.745 2.746m1.215-3.906a2.089 2.089 0 0 1 0 2.953l-6.65 6.646L9 17.95l.739-3.692 6.646-6.646a2.087 2.087 0 0 1 2.958 0Z" />
+                                    </svg>
+
+                                    <span>Tambah Berita</span>
+                                </li>
+                            </a>
 
                         </ul>
                     </section>
@@ -134,24 +158,24 @@
             </div>
 
             <div class="my-4 grid w-full  gap-4">
-            <a href="tambah-berita.php">tambah berita</a>
-            <form action="" method="get">
-            <input type="text" name="keyword" placeholder="Search" class="p-2 border-white focus:outline-none shadow-sm border-b-2 bg-transparent">
-            <button class="" type="submit" name="cari">
+                <a href="tambah-berita.php">tambah berita</a>
+                <form action="" method="get">
+                    <input type="text" name="keyword" placeholder="Search" class="p-2 border-white focus:outline-none shadow-sm border-b-2 bg-transparent">
+                    <button class="" type="submit" name="cari">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" class="bi bi-search ml-2" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                         </svg>
                     </button>
                 </form>
 
                 <!-- Jika menampilkan data -->
-                <?php if(isset($some)): ?>
+                <?php if (isset($some)) : ?>
                     <?php echo $some ?>
                 <?php endif; ?>
                 <!-- Akhir jika menampilkan data -->
-                
+
                 <!-- Jika tidak menampilkan data -->
-                <?php if(isset($nothing)): ?>
+                <?php if (isset($nothing)) : ?>
                     <?php echo $nothing ?>
                 <?php endif; ?>
                 <!-- Akhir Jika tidak menampilkan data -->
@@ -170,15 +194,15 @@
                         </thead>
                         <tbody>
                             <?php $no = 1 ?>
-                            <?php foreach($berita as $berita): ?>
-                            <tr>
-                                <th><?php echo $no ?></th>
-                                <th><?php echo $berita["judul_berita"] ?></th>
-                                <th><?php echo $berita["isi_berita"] ?></th>
-                                <th><?php echo $berita["penulis"] ?></th>
-                                <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
-                            </tr>
-                            <?php $no++ ?>
+                            <?php foreach ($berita as $berita) : ?>
+                                <tr>
+                                    <th><?php echo $no ?></th>
+                                    <th><?php echo $berita["judul_berita"] ?></th>
+                                    <th><?php echo $berita["isi_berita"] ?></th>
+                                    <th><?php echo $berita["penulis"] ?></th>
+                                    <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
+                                </tr>
+                                <?php $no++ ?>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
