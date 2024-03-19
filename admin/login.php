@@ -3,8 +3,9 @@
     session_start();
 
     if(isset($_POST["login"])){
-        $username = $_POST["username"];
-        $password = $_POST["password"];
+        $username = mysqli_real_escape_string($koneksi, $_POST["username"]);
+        $_SESSION["username_admin"] = $username;
+        $password = mysqli_real_escape_string($koneksi, $_POST["password"]);
 
         //query 
         $query = "SELECT * FROM admin WHERE username_admin = '$username'";
