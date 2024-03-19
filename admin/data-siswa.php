@@ -179,13 +179,22 @@ if (isset($_GET["cari"])) {
 
                             <section>
 
+                            <?php
+                               if(isset($_POST["tambah"])){
+                                if(tambahSiswa($_POST) > 0){
+                                    echo "<script>alert('Berhasil tambah siswa'); document.location.href = 'data-siswa.php'</script>";
+                                }else{
+                                    echo "<script>alert('Gagal tambah siswa'); document.location.href = 'data-siswa.php'</script>";
+                                }
+                               }
+                            ?>
 
                                 <!-- FORM -->
-                                <form action="">
+                                <form action="" method="post">
                                     <div class="form-group">
                                         <div class="form-field mb-5">
                                             <label class="form-label">Nama Siswa</label>
-                                            <input placeholder="Ketik disini" type="email" class="input max-w-full" />
+                                            <input name="nama_siswa" placeholder="Ketik disini" required type="text" class="input max-w-full" />
                                             <label class="form-label">
                                                 <span class="form-label-alt">Masukkan nama yang sesusai.</span>
                                             </label>
@@ -194,7 +203,7 @@ if (isset($_GET["cari"])) {
 
                                         <div class="mb-5">
                                             <label class="form-label mb-2">Jurusan</label>
-                                            <select class="select select-block mb-2">
+                                            <select name="jurusan_siswa" class="select select-block mb-2">
                                                 <option>TKJ</option>
                                                 <option>MP</option>
                                                 <option>BD</option>
@@ -211,7 +220,7 @@ if (isset($_GET["cari"])) {
                                                 <span>Password</span>
                                             </label>
                                             <div class="form-control">
-                                                <input placeholder="Ketik disini" type="password" class="input max-w-full" />
+                                                <input name="password_siswa" required placeholder="Ketik disini" type="password" class="input max-w-full" />
                                             </div>
                                             <label class="form-label">
                                                 <span class="form-label-alt">Masukkan password yang kuat.</span>
@@ -224,13 +233,14 @@ if (isset($_GET["cari"])) {
 
                                         <div class="form-field pt-5">
                                             <div class="form-control justify-between">
-                                                <button type="button" class="btn btn-primary w-full">Apakah yakin untuk membuat akun?</button>
+                                                <button type="button" class="btn btn-primary w-full">Apakah yakin untuk menambah siswa?</button>
                                             </div>
                                         </div>
 
-                                        <div class="divider divider-horizontal"><a class="text-sky-500" href="">Ya</a> <a class="text-red-600" href="data-siswa.php">Tidak</a></div>
+                                        <div class="divider divider-horizontal"><a class="text-sky-500"><button name="tambah" type="submit">ya</button></a> <a class="text-red-600" href="data-siswa.php">Tidak</a></div>
                                     </div>
                                 </form>
+                                
                                 <!-- FORM -->
 
 
