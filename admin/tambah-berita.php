@@ -8,7 +8,14 @@ if (!isset($_SESSION["admin-session"])) {
     exit();
 }
 
-
+//fungsi tambah berita
+if(isset($_POST["tambah"])){
+    if(tambahBerita($_POST) > 0){
+        echo "<script>alert('Berhasil tambah berita'); document.location.href = 'berita.php' </script>";
+    }else{
+        echo "<script>alert('Gagal tambah berita'); document.location.href = 'berita.php' </script>";
+    }
+}
 
 ?>
 
@@ -138,25 +145,29 @@ if (!isset($_SESSION["admin-session"])) {
 
             <div class="my-10 flex flex-wrap justify-center items-center gap-4 w-full border-neutral-700 border-dashed border-2 rounded-xl p-5">
                 <div class="w-1/3 ">
+                    <form action="" method="post">
                     <h1 class="text-white mb-2 text-center">Judul Berita</h1>
-                    <input type="text" class="input-ghost-secondary input ">
+                    <input name="judul_berita" required type="text" class="input-ghost-secondary input ">
                 </div>
 
                 <div class="w-1/3 ">
-                    <h1 class="text-white mb-2 text-center">Isi Berita</h1>
-                    <input type="text" class="input-ghost-secondary input ">
+                    <h1 class="text-white mb-2 text-center">Author</h1>
+                    <input name="penulis" required type="text" class="input-ghost-secondary input ">
                 </div>
 
                 <div class="w-full">
                     <h1 class="text-white mb-2">Isi Berita</h1>
-                    <textarea class="textarea-ghost-secondary textarea textarea-block" name="" id="" cols="30" rows="20"></textarea>
+                    <textarea name="isi_berita" required class="textarea-ghost-secondary textarea textarea-block" cols="30" rows="20"></textarea>
                 </div>
+
+                <input type="hidden" name="date">
 
                 <div class="flex flex-col justify-center items-center gap-2 w-full">
                     <label for="" class="font-bold mb-2">Thumbnail Berita</label>
-                    <input type="file" class="input-file mb-5 hover:border-violet-500 border-dashed" placeholder="Thumbnail" />
-                    <a href=""><button class="btn btn-solid-secondary px-10">Upload</button></a>
-                </div>
+                    <input name="gambar_berita" type="file" class="input-file mb-5 hover:border-violet-500 border-dashed" placeholder="Thumbnail" />
+                    <button name="tambah" type="submit" class="btn btn-solid-secondary px-10">Upload</button>
+                </form>
+                </div>  
                 <!-- CONTENT END -->
 
 
