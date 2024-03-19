@@ -65,15 +65,15 @@ if (isset($_GET["cari"])) {
                                 <div class="dropdown-menu dropdown-menu-bottom-right">
                                     <a class="dropdown-item text-sm">Profile</a>
                                     <a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
-                                    <a tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
+                                    <a href="logout.php" tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <span>Namamu</span>
-                    <span class="text-xs font-normal text-content2">Admin</span>
+                    <span>Welcome admin</span>
+                    <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username_admin"] ?></span>
 
                 </div>
             </section>
@@ -142,6 +142,7 @@ if (isset($_GET["cari"])) {
             </div>
 
             <div class="my-4 grid w-full  gap-4">
+            <a href="tambah-siswa.php">tambah siswa</a>
                 <form action="" method="get" class="">
                     <input type="text" name="keyword" placeholder="Search" class="p-2 border-white focus:outline-none shadow-sm border-b-2 bg-transparent">
                     <button class="" type="submit" name="cari">
