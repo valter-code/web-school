@@ -1,7 +1,12 @@
 <?php
 require("koneksi.php");
 
-$berita = query("SELECT * FROM berita");
+$id = $_GET["id"];
+$query = "SELECT * FROM berita WHERE id = ?";
+$statement = mysqli_prepare($koneksi, $query);
+mysqli_stmt_bind_param($statement,"i", $id);
+mysqli_stmt_execute( $statement );
+$berita = mysqli_stmt_get_result($statement);
 
 ?>
 
@@ -106,24 +111,12 @@ $berita = query("SELECT * FROM berita");
     
     <!-- BERITA START -->
     <div class="my-24">
-        <h1 class="text-center font-sans font-extrabold text-4xl text-black">BERITA SEKOLAH</h1>
+    <?php foreach ($berita as $berita) : ?>
+        <h1 class="text-center font-sans font-extrabold text-4xl text-black"><?php echo $berita["judul_berita"] ?></h1>
     </div>
     <div class="flex flex-wrap gap-3 justify-start mx-5 mb-36">
-        <?php foreach ($berita as $berita) : ?>
-            <div class="card w-96 bg-gray-200 bg-opacity-45 ">
-                <figure>
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-                </figure>
-
-                <div class="card-body">
-                    <h2 class="card-title text-slate-900"><?php echo $berita["judul_berita"] ?></h2>
-                    <p class="text-slate-800 line-clamp-5"><?php echo $berita["isi_berita"] ?></p>
-
-                    <div class="card-actions mt-6">
-                        <a href="berita.php?id=<?php echo $berita["id"] ?>"><button class="btn btn-primary">TOMBOL </button></a>
-                    </div>
-                </div>
-            </div>
+        <p><?php echo $berita["isi_berita"] ?></p>
+            
         <?php endforeach; ?>
     </div>
     <!-- BERITA END -->
