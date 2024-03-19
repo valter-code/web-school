@@ -77,50 +77,69 @@ if (isset($_GET["cari"])) {
 
                 </div>
             </section>
-            <section class="sidebar-content min-h-[20rem]">
-                <nav class="menu rounded-md">
-                    <section class="menu-section px-4">
-                        <span class="menu-title">Main menu</span>
-                        <a href="index.php">
-                            <ul class="menu-items">
-                                <a href="index.php">
-                                    <li class="menu-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                        </svg>
-                                        <span>Home</span>
-                                    </li>
-                                </a>
+            <section class="menu-section px-4 mt-6">
+                <span class="menu-title">Main menu</span>
+                <ul class="menu-items">
+                    <a href="index.php">
+                        <li class="menu-item">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />
+                            </svg>
 
-                                <a href="data-siswa.php">
-                                    <li class="menu-item menu-active">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                        </svg>
-                                        <span>Data Siswa</span>
-                                    </li>
-                                </a>
 
-                                <a href="berita.php">
-                                    <li class="menu-item">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
-                                        </svg>
-                                        <span>Berita</span>
-                                    </li>
-                                </a>
 
-                            </ul>
-                    </section>
-                </nav>
+                            <span>Home</span>
+                        </li>
+                    </a>
+
+                    <a href="data-siswa.php">
+                        <li class="menu-item menu-active">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M4 4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H4Zm10 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm0 3a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-8-5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm1.942 4a3 3 0 0 0-2.847 2.051l-.044.133-.004.012c-.042.126-.055.167-.042.195.006.013.02.023.038.039.032.025.08.064.146.155A1 1 0 0 0 6 17h6a1 1 0 0 0 .811-.415.713.713 0 0 1 .146-.155c.019-.016.031-.026.038-.04.014-.027 0-.068-.042-.194l-.004-.012-.044-.133A3 3 0 0 0 10.059 14H7.942Z" clip-rule="evenodd" />
+                            </svg>
+
+
+                            <span>Data Siswa</span>
+                        </li>
+                    </a>
+
+                    <a href="berita.php">
+                        <li class="menu-item">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 3v4a1 1 0 0 1-1 1H5m4 8h6m-6-4h6m4-8v16a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7.914a1 1 0 0 1 .293-.707l3.914-3.914A1 1 0 0 1 9.914 3H18a1 1 0 0 1 1 1Z" />
+                            </svg>
+
+
+
+
+
+
+                            <span>Data Berita</span>
+                        </li>
+                    </a>
+
+
+
+                    <a href="tambah-berita.php">
+                        <li class="menu-item">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 5V4a1 1 0 0 0-1-1H8.914a1 1 0 0 0-.707.293L4.293 7.207A1 1 0 0 0 4 7.914V20a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5M9 3v4a1 1 0 0 1-1 1H4m11.383.772 2.745 2.746m1.215-3.906a2.089 2.089 0 0 1 0 2.953l-6.65 6.646L9 17.95l.739-3.692 6.646-6.646a2.087 2.087 0 0 1 2.958 0Z" />
+                            </svg>
+
+                            <span>Tambah Berita</span>
+                        </li>
+                    </a>
+
+                </ul>
             </section>
+
             <section class="sidebar-footer bg-gray-2 pt-2 hidden">
                 <div class="divider my-0"></div>
                 <div class="dropdown z-50 flex h-fit w-full cursor-pointer hover:bg-gray-4">
                     <label class="whites mx-2 flex h-fit w-full cursor-pointer p-0 hover:bg-gray-4" tabindex="0">
                         <div class="flex flex-row gap-4 p-4">
                             <div class="avatar avatar-md">
-                                <img src="" alt="avatar" />
+                                <img src="" altz="avatar" />
                             </div>
 
                             <div class="flex flex-col">
@@ -142,7 +161,87 @@ if (isset($_GET["cari"])) {
             </div>
 
             <div class="my-4 grid w-full  gap-4">
-            <a href="tambah-siswa.php">tambah siswa</a>
+
+
+                <!-- TAMBAH SISWA -->
+                <article>
+                    <label class="btn btn-primary" for="modal-1">TAMBAH SISWA</label>
+
+                    <input class="modal-state" id="modal-1" type="checkbox" />
+                    <div class="modal">
+                        <label class="modal-overlay" for="modal-1"></label>
+                        <div class="modal-content flex w-full flex-col gap-5 p-7">
+                            <label for="modal-1" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+                            <div class="flex flex-col gap-2">
+                                <h2 class="text-center text-2xl font-semibold">Tambah Siswa</h2>
+                                <p class="mx-auto max-w-xs text-sm text-content2">SMK Trimulia Jakarta</p>
+                            </div>
+
+                            <section>
+
+
+                                <!-- FORM -->
+                                <form action="">
+                                    <div class="form-group">
+                                        <div class="form-field mb-5">
+                                            <label class="form-label">Nama Siswa</label>
+                                            <input placeholder="Ketik disini" type="email" class="input max-w-full" />
+                                            <label class="form-label">
+                                                <span class="form-label-alt">Masukkan nama yang sesusai.</span>
+                                            </label>
+                                        </div>
+
+
+                                        <div class="mb-5">
+                                            <label class="form-label mb-2">Jurusan</label>
+                                            <select class="select select-block mb-2">
+                                                <option>TKJ</option>
+                                                <option>MP</option>
+                                                <option>BD</option>
+                                            </select>
+                                            <label class="form-label">
+                                                <span class="form-label-alt">Masukkan jurusan yang sesuai.</span>
+                                            </label>
+                                        </div>
+
+
+
+                                        <div class="form-field">
+                                            <label class="form-label">
+                                                <span>Password</span>
+                                            </label>
+                                            <div class="form-control">
+                                                <input placeholder="Ketik disini" type="password" class="input max-w-full" />
+                                            </div>
+                                            <label class="form-label">
+                                                <span class="form-label-alt">Masukkan password yang kuat.</span>
+                                            </label>
+                                        </div>
+
+
+
+
+
+                                        <div class="form-field pt-5">
+                                            <div class="form-control justify-between">
+                                                <button type="button" class="btn btn-primary w-full">Apakah yakin untuk membuat akun?</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="divider divider-horizontal"><a class="text-sky-500" href="">Ya</a> <a class="text-red-600" href="data-siswa.php">Tidak</a></div>
+                                    </div>
+                                </form>
+                                <!-- FORM -->
+
+
+
+
+                            </section>
+                        </div>
+                    </div>
+                </article>
+                <!-- TAMBAH SISWA END -->
+
                 <form action="" method="get" class="">
                     <input type="text" name="keyword" placeholder="Search" class="p-2 border-white focus:outline-none shadow-sm border-b-2 bg-transparent">
                     <button class="" type="submit" name="cari">

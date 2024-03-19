@@ -53,8 +53,8 @@ $berita = query("SELECT * FROM berita");
         </nav>
     </header>
     <!-- NAV END -->
-    
-    
+
+
     <!-- HERO START -->
     <div data-hs-carousel='{
         "loadingClasses": "opacity-0",
@@ -102,8 +102,8 @@ $berita = query("SELECT * FROM berita");
         </div>
     </div>
     <!-- HERO END -->
-    
-    
+
+
     <!-- BERITA START -->
     <div class="my-24">
         <h1 class="text-center font-sans font-extrabold text-4xl text-black">BERITA SEKOLAH</h1>
@@ -151,12 +151,12 @@ $berita = query("SELECT * FROM berita");
 
             <div class="border-b-2 mb-10">
                 <label for="siswa" class="text-white">Nama Siswa</label>
-                <input type="text" id="siswa" class="w-full bg-transparent border-none focus:ring-0 text-white">
+                <input type="text" id="siswa" class="w-full bg-transparent border-none focus:ring-0 text-white autofill:bg-black">
             </div>
 
             <div class="border-b-2 mb-10 w-full">
                 <label for="pass" class="text-white">Password </label>
-                <input type="password" id="pass" class="w-full bg-transparent border-none focus:ring-0 text-white">
+                <input type="password" id="pass" class="w-full bg-transparent border-none focus:ring-0 text-white autofill:bg-n">
             </div>
 
             <button class="w-full mb-5 bg-violet-800 py-2 rounded-full font-bold text-white shadow-sm hover:scale-95 transition duration-150 hover:bg-violet-900">
