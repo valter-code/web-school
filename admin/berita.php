@@ -189,6 +189,7 @@ if (isset($_GET["cari"])) {
                                 <th>Judul Berita</th>
                                 <th>Isi Berita</th>
                                 <th>penulis</th>
+                                <th>date</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -200,6 +201,7 @@ if (isset($_GET["cari"])) {
                                     <th><?php echo $berita["judul_berita"] ?></th>
                                     <th><?php echo $berita["isi_berita"] ?></th>
                                     <th><?php echo $berita["penulis"] ?></th>
+                                    <th><?php echo $berita["date"] ?></th>
                                     <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>

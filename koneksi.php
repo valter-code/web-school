@@ -1,5 +1,9 @@
 <?php
+    //Untuk koneksi ke DB, harap ganti sesuai kredensial DB kalian
     $koneksi = mysqli_connect("localhost","root","","sekolah_db");
+
+
+    //KODE DIBAWAH INI ADALAH FUNCTION DARI BERBAGAI FITUR, MOHON JANGAN DI UBAH KECUALI ANDA MENGERTI
 
     //function query
     function query($query) {
@@ -49,13 +53,15 @@
         return mysqli_affected_rows( $koneksi );
     }
 
+    //function edit siswa
+
     //function tambah berita
     function tambahBerita($data){
         global $koneksi;
         $judul = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["judul_berita"]));
         $isi = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["isi_berita"]));
         $penulis = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["penulis"]));
-        $date = $_POST["date"];
+        $date = date('d-m-Y');
         $gambar = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["gambar_berita"]));
 
         //query insert
