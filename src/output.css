@@ -3170,6 +3170,19 @@ html:has(.modal-state:checked) {
   width: 2.5rem;
 }
 
+.alert {
+  --tw-bg-opacity: 1;
+  align-items: center;
+  background-color: rgb(var(--gray-4)/var(--tw-bg-opacity));
+  border-radius: .75rem;
+  display: flex;
+  flex-direction: row;
+  gap: .75rem;
+  padding: 1rem;
+  position: relative;
+  width: 100%;
+}
+
 .table {
   --tw-border-spacing-x: 0px;
   --tw-border-spacing-y: 0px;
@@ -4025,6 +4038,36 @@ html:has(.modal-state:checked) {
   outline-color: rgb(var(--gray-6));
   outline-offset: 2px;
   outline-width: 2px;
+}
+
+.alert {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: row;
+  align-content: flex-start;
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  border-radius: var(--rounded-box, 1rem);
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+  padding: 1rem;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-b2,oklch(var(--b2)/1));
+  --alert-bg-mix: var(--fallback-b1,oklch(var(--b1)/1));
+  background-color: var(--alert-bg);
+}
+
+@media (min-width: 640px) {
+  .alert {
+    grid-auto-flow: column;
+    grid-template-columns: auto minmax(auto,1fr);
+    justify-items: start;
+    text-align: start;
+  }
 }
 
 .avatar {
@@ -6760,6 +6803,14 @@ details.collapse summary::-webkit-details-marker {
   top: 100%;
 }
 
+.bottom-4 {
+  bottom: 1rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
 .-z-50 {
   z-index: -50;
 }
@@ -6979,6 +7030,18 @@ details.collapse summary::-webkit-details-marker {
   height: 100vh;
 }
 
+.h-1 {
+  height: 0.25rem;
+}
+
+.h-14 {
+  height: 3.5rem;
+}
+
+.h-10 {
+  height: 2.5rem;
+}
+
 .min-h-\[20rem\] {
   min-height: 20rem;
 }
@@ -7023,10 +7086,6 @@ details.collapse summary::-webkit-details-marker {
   width: 16rem;
 }
 
-.w-96 {
-  width: 24rem;
-}
-
 .w-\[46px\] {
   width: 46px;
 }
@@ -7041,6 +7100,10 @@ details.collapse summary::-webkit-details-marker {
 
 .w-screen {
   width: 100vw;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .max-w-\[85rem\] {
@@ -7240,6 +7303,10 @@ details.collapse summary::-webkit-details-marker {
 
 .overflow-y-auto {
   overflow-y: auto;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
 }
 
 .truncate {
@@ -7445,16 +7512,17 @@ details.collapse summary::-webkit-details-marker {
   background-color: rgb(39 39 42 / var(--tw-bg-opacity));
 }
 
+.bg-cyan-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 211 238 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-0 {
   --tw-bg-opacity: 0;
 }
 
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
-}
-
-.bg-opacity-45 {
-  --tw-bg-opacity: 0.45;
 }
 
 .bg-opacity-50 {
@@ -7732,6 +7800,26 @@ details.collapse summary::-webkit-details-marker {
   color: rgb(227 160 8 / var(--tw-text-opacity));
 }
 
+.text-violet-400 {
+  --tw-text-opacity: 1;
+  color: rgb(167 139 250 / var(--tw-text-opacity));
+}
+
+.text-blue-950 {
+  --tw-text-opacity: 1;
+  color: rgb(23 37 84 / var(--tw-text-opacity));
+}
+
+.text-sky-950 {
+  --tw-text-opacity: 1;
+  color: rgb(8 47 73 / var(--tw-text-opacity));
+}
+
+.text-sky-800 {
+  --tw-text-opacity: 1;
+  color: rgb(7 89 133 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -7881,6 +7969,53 @@ details.collapse summary::-webkit-details-marker {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hover\:animate-spin:hover {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.hover\:animate-ping:hover {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+.hover\:animate-pulse:hover {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
+.hover\:animate-bounce:hover {
+  animation: bounce 1s infinite;
 }
 
 .hover\:cursor-pointer:hover {

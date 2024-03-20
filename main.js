@@ -37,4 +37,20 @@ const scroll = () => {
   };
 }
 
-const toTop = d
+// toTop BUTTON
+
+window.onscroll = () => {
+  const yOffset = window.pageYOffset;
+  const x = Math.round(yOffset);
+  const toTop = document.getElementById("toTop");
+
+  if (x > 0) {
+    toTop.classList.add("fixed");
+    toTop.classList.remove("hidden");
+  } else {
+    toTop.classList.remove("fixed");
+    toTop.classList.add("hidden");
+  }
+
+  console.log("Posisi vertikal saat ini:", x);
+};

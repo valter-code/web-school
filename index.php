@@ -6,7 +6,7 @@ $berita = query("SELECT * FROM berita");
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -110,7 +110,8 @@ $berita = query("SELECT * FROM berita");
     </div>
     <div class="flex flex-wrap gap-3 justify-start mx-5 mb-36">
         <?php foreach ($berita as $berita) : ?>
-            <div class="card w-96 bg-gray-200 bg-opacity-45 ">
+
+            <div class="card w-full bg-violet-200 ">
                 <figure>
                     <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
                 </figure>
@@ -223,6 +224,8 @@ $berita = query("SELECT * FROM berita");
 
 
 
+
+
     <!-- FOOTER START -->
     <footer class="bg-zinc-800 shadow  ">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
@@ -247,10 +250,22 @@ $berita = query("SELECT * FROM berita");
                 </ul>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 Powered by <a href="" class="underline"><span class="font-bold text-white">Kevin</span><span class="font-bold text-yellow-400">Dev</span></a> | All Rights Reserved.</span>
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 Powered by <a href="" class="underline"><span class="font-bold text-white">Kevin</span><span class="font-bold text-yellow-400">Dev</span></a> <a href="" class="underline"><span class="font-bold text-white">Ferdi</span><span class="font-bold text-sky-800">.PHP</span></a> | All Rights Reserved.</span>
         </div>
     </footer>
     <!-- FOOTER END -->
+
+
+    <!-- TO TOP -->
+    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-cyan-400 block z-50 bottom-4 right-4 p-4 fixed rounded-full">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
+        </svg>
+    </a>
+    <!-- TO TOP END -->
+
+
+
     <script src="./node_modules/preline/dist/preline.js"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="./main.js"></script>

@@ -4,8 +4,8 @@ require("koneksi.php");
 $id = $_GET["id"];
 $query = "SELECT * FROM berita WHERE id = ?";
 $statement = mysqli_prepare($koneksi, $query);
-mysqli_stmt_bind_param($statement,"i", $id);
-mysqli_stmt_execute( $statement );
+mysqli_stmt_bind_param($statement, "i", $id);
+mysqli_stmt_execute($statement);
 $berita = mysqli_stmt_get_result($statement);
 
 ?>
@@ -58,8 +58,8 @@ $berita = mysqli_stmt_get_result($statement);
         </nav>
     </header>
     <!-- NAV END -->
-    
-    
+
+
     <!-- HERO START -->
     <div data-hs-carousel='{
         "loadingClasses": "opacity-0",
@@ -107,17 +107,18 @@ $berita = mysqli_stmt_get_result($statement);
         </div>
     </div>
     <!-- HERO END -->
-    
-    
+
+
     <!-- BERITA START -->
     <div class="my-24">
-    <?php foreach ($berita as $berita) : ?>
-        <h1 class="text-center font-sans font-extrabold text-4xl text-black"><?php echo $berita["judul_berita"] ?></h1>
+        <?php foreach ($berita as $berita) : ?>
+            <h1 class="text-center font-sans font-extrabold text-4xl text-black"><?php echo $berita["judul_berita"] ?></h1>
+            <h2 class="text-center mt-3"><?php echo $berita ["penulis"] ?></h2>
     </div>
     <div class="flex flex-wrap gap-3 justify-start mx-5 mb-36">
-        <p><?php echo $berita["isi_berita"] ?></p>
-            
-        <?php endforeach; ?>
+        <p class=""><?php echo $berita["isi_berita"] ?></p>
+
+    <?php endforeach; ?>
     </div>
     <!-- BERITA END -->
 

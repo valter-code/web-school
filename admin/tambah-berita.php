@@ -9,13 +9,13 @@ if (!isset($_SESSION["admin-session"])) {
 }
 
 //fungsi tambah berita
-// if(isset($_POST["tambah"])){
-//     if(tambahBerita($_POST) > 0){
-//         echo "<script>alert('Berhasil tambah berita'); document.location.href = 'berita.php' </script>";
-//     }else{
-//         echo "<script>alert('Gagal tambah berita'); document.location.href = 'berita.php' </script>";
-//     }
-// }
+if(isset($_POST["tambah"])){
+    if(tambahBerita($_POST) > 0){
+        echo "<script>alert('Berhasil tambah berita'); document.location.href = 'berita.php' </script>";
+    }else{
+        echo "<script>alert('Gagal tambah berita'); document.location.href = 'berita.php' </script>";
+    }
+}
 
 ?>
 

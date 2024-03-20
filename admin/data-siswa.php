@@ -180,13 +180,13 @@ if (isset($_GET["cari"])) {
                             <section>
 
                             <?php
-                            //    if(isset($_POST["tambah"])){
-                            //     if(tambahSiswa($_POST) > 0){
-                            //         echo "<script>alert('Berhasil tambah siswa'); document.location.href = 'data-siswa.php'</script>";
-                            //     }else{
-                            //         echo "<script>alert('Gagal tambah siswa'); document.location.href = 'data-siswa.php'</script>";
-                            //     }
-                            //    }
+                               if(isset($_POST["tambah"])){
+                                if(tambahSiswa($_POST) > 0){
+                                    echo "<script>alert('Berhasil tambah siswa'); document.location.href = 'data-siswa.php'</script>";
+                                }else{
+                                    echo "<script>alert('Gagal tambah siswa'); document.location.href = 'data-siswa.php'</script>";
+                                }
+                               }
                             ?>
 
                                 <!-- FORM -->
