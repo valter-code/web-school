@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2024 at 05:21 AM
+-- Generation Time: Mar 20, 2024 at 08:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -52,16 +52,41 @@ CREATE TABLE `berita` (
   `judul_berita` varchar(200) NOT NULL,
   `isi_berita` longtext NOT NULL,
   `penulis` varchar(200) NOT NULL,
-  `date` varchar(200) NOT NULL
+  `date` varchar(200) NOT NULL,
+  `gambar_berita` varchar(355) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `berita`
 --
 
-INSERT INTO `berita` (`id`, `judul_berita`, `isi_berita`, `penulis`, `date`) VALUES
-(1, 'berita LKS Cyber Security', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!', 'ferdi', '2024-03-17'),
-(2, 'Berita Lomba Futsal', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!', 'kevin', '2024-03-17');
+INSERT INTO `berita` (`id`, `judul_berita`, `isi_berita`, `penulis`, `date`, `gambar_berita`) VALUES
+(1, 'berita LKS Cyber Security', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!', 'ferdi', '2024-03-17', NULL),
+(2, 'Berita Lomba Futsal', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!', 'kevin', '2024-03-17', NULL),
+(4, 'kocak', '', 'firdan', '', NULL),
+(16, 'berita geming', 'blablabla', 'firdan', '', ''),
+(17, 'slebew gaming', 'yoyoyo', 'guru A', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guru`
+--
+
+CREATE TABLE `guru` (
+  `id_guru` int(11) NOT NULL,
+  `email_guru` varchar(100) NOT NULL,
+  `username_guru` varchar(100) NOT NULL,
+  `password_guru` varchar(400) NOT NULL,
+  `nama_guru` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guru`
+--
+
+INSERT INTO `guru` (`id_guru`, `email_guru`, `username_guru`, `password_guru`, `nama_guru`) VALUES
+(1, 'guru@gmail.com', 'guru', '$2y$10$cBXO7jT8i4LfVkGmjPxc9efe5tnOc5jbh4Sz0igD8zCtwy/.DIJ9u', 'pak jordan');
 
 -- --------------------------------------------------------
 
@@ -81,10 +106,12 @@ CREATE TABLE `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `nama_siswa`, `jurusan_siswa`, `password_siswa`) VALUES
-(1, 'test', 'TKJ', '$2y$10$GosZtdVWrPShiX7Y.HJtru3odzlupcLYWfbbR88FVY/XN9oTvnY4.'),
-(2, 'test', 'TKJ', '$2y$10$x8VgN.UY8fgkTp4VLF52GuE7Yh.eySs1BfQvB4XkOp272jAyFkDIe'),
 (3, 'ferdi', 'MP', '$2y$10$nCkkuqV3SCLeyqMZ0NH6suCevWnoxR6R7M1QXZzn1Y9C7I0eOUqh6'),
-(7, 'kevin', 'BD', '$2y$10$jew7nZ1rqvzd3kgVdvd/TuHczR.vkEEWyJ.xus8oU3qDyzFNyxneK');
+(7, 'kevin', 'BD', '$2y$10$jew7nZ1rqvzd3kgVdvd/TuHczR.vkEEWyJ.xus8oU3qDyzFNyxneK'),
+(9, 'firdan', 'rpl', '123'),
+(11, 'tets', 'MP', '123'),
+(13, 'rendi', 'MP', '123'),
+(14, 'nada', 'TKJ', '123');
 
 --
 -- Indexes for dumped tables
@@ -101,6 +128,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `berita`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `guru`
+--
+ALTER TABLE `guru`
+  ADD PRIMARY KEY (`id_guru`);
 
 --
 -- Indexes for table `siswa`
@@ -122,13 +155,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `guru`
+--
+ALTER TABLE `guru`
+  MODIFY `id_guru` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_siswa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
