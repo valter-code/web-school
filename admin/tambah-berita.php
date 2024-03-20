@@ -143,7 +143,7 @@ if (!isset($_SESSION["admin-session"])) {
                 </div>
 
                 <div class="w-1/3 ">
-                    <h1 class="text-white mb-2 text-center">Isi Berita</h1>
+                    <h1 class="text-white mb-2 text-center">Nama Penulis</h1>
                     <input type="text" class="input-ghost-secondary input ">
                 </div>
 
