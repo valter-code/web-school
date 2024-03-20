@@ -32,4 +32,36 @@
         return mysqli_affected_rows( $koneksi );
     }
     
+
+    //function tambah siswa
+    function tambahSiswa($data){
+        global $koneksi;
+        $nama = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["nama_siswa"]));
+        $jurusan = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["jurusan_siswa"]));
+        $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["password_siswa"]));
+
+        //enkripsi password
+        // $password = password_hash($password, PASSWORD_DEFAULT);
+
+        //query insert
+        $query = "INSERT INTO siswa VALUES ('', '$nama', '$jurusan', '$password')";
+        mysqli_query($koneksi, $query);
+        return mysqli_affected_rows( $koneksi );
+    }
+
+    //function tambah berita
+    function tambahBerita($data){
+        global $koneksi;
+        $judul = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["judul_berita"]));
+        $isi = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["isi_berita"]));
+        $penulis = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["penulis"]));
+        $date = $_POST["date"];
+        $gambar = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["gambar_berita"]));
+
+        //query insert
+        $query = "INSERT INTO berita VALUES ('', '$judul', '$isi', '$penulis', '$date', '$gambar')";
+        mysqli_query( $koneksi, $query);
+        return mysqli_affected_rows( $koneksi );
+        
+    }
 ?>
