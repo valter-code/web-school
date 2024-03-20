@@ -64,4 +64,36 @@
         return mysqli_affected_rows( $koneksi );
         
     }
+
+    //function total admin
+    function totalAdmin( $data ){
+        global $koneksi;
+        $query = "SELECT * FROM admin";
+        $result = mysqli_query( $koneksi, $query );
+        return mysqli_num_rows( $result );
+    }
+
+    //function total guru
+    function totalGuru( $data ){
+        global $koneksi;
+        $query = "SELECT * FROM guru";
+        $result = mysqli_query( $koneksi, $query );
+        return mysqli_num_rows( $result );
+    }
+
+    //function total siswa
+    function totalSiswa( $data ){
+        global $koneksi;
+        $query = "SELECT * FROM siswa";
+        $result = mysqli_query( $koneksi, $query );
+        return mysqli_num_rows( $result );
+    }
+
+    //function total berita
+    function totalberita( $data ){
+        global $koneksi;
+        $query = "SELECT * FROM berita";
+        $result = mysqli_query( $koneksi, $query );
+        return mysqli_num_rows( $result );
+    }
 ?>

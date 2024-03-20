@@ -3,18 +3,13 @@ require("../koneksi.php");
 session_start();
 
 //kick jika belum login
-if (!isset($_SESSION["admin-session"])) {
-    header("Location: login.php");
+if (!isset($_SESSION["guru-session"])) {
+    header("Location: ../admin/login.php");
     exit();
 }
 
 //query
 $siswa = query("SELECT * FROM siswa");
-
-$totalAdmin = totalAdmin($siswa);
-$totalSiswa = totalSiswa($siswa);
-$totalGuru = totalGuru( $siswa );
-$totalBerita = totalBerita($siswa);
 
 ?>
 
@@ -51,8 +46,8 @@ $totalBerita = totalBerita($siswa);
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <span>Welcome admin</span>
-                    <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username_admin"] ?></span>
+                    <span>Welcome Guru</span>
+                    <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username_guru"] ?></span>
 
                 </div>
             </section>
@@ -129,7 +124,7 @@ $totalBerita = totalBerita($siswa);
 
 
             <div class="text-center">
-                <h1 class="font-bold text-3xl">Welcome Admin</h1>
+                <h1 class="font-bold text-3xl">Welcome Guru</h1>
                 <br>
                 <h2 class="font-bold text-lg">SMK Trimulia Jakarta</h2>
             </div>
@@ -141,23 +136,23 @@ $totalBerita = totalBerita($siswa);
                 <div class="flex  gap-3 mx-5">
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/4f/a9/f9/4fa9f9916731730fa5530958d3082548.jpg" alt="">
-                        <span class="badge bg-zinc-700 border-none mt-3">Admin</span>
-                        <h2 class="mt-2 font-bold text-white"><?php echo $totalAdmin ?></h2>
+                        <span class="badge bg-zinc-700 border-none mt-3">Guru</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
                     </div>
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/f5/3d/3f/f53d3f0e5624f46450dc2ee4c0025092.jpg" alt="">
-                        <span class="badge bg-zinc-700 border-none mt-3">Guru</span>
-                        <h2 class="mt-2 font-bold text-white"><?php echo $totalGuru ?></h2>
+                        <span class="badge bg-zinc-700 border-none mt-3">Murid</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
                     </div>
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="../assets/berita.svg" alt="">
-                        <span class="badge bg-zinc-700 border-none mt-3">Siswa</span>
-                        <h2 class="mt-2 font-bold text-white"><?php echo $totalSiswa ?></h2>
+                        <span class="badge bg-zinc-700 border-none mt-3">Berita</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
                     </div>
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/5d/04/14/5d04141fdc10b958ca9e43d21e350b45.jpg" alt="">
-                        <span class="badge bg-zinc-700 border-none mt-3">Berita</span>
-                        <h2 class="mt-2 font-bold text-white"><?php echo $totalBerita ?></h2>
+                        <span class="badge bg-zinc-700 border-none mt-3">....</span>
+                        <h2 class="mt-2 font-bold text-white">24</h2>
                     </div>
                 </div>
 
