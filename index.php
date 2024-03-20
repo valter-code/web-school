@@ -15,7 +15,7 @@ $berita = query("SELECT * FROM berita");
     <link href="./src/output.css" rel="stylesheet">
 </head>
 
-<body class="bg-white  ">
+<body class="bg-white ">
     <!-- NAV START -->
     <header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-zinc-800 text-sm py-4 shadow-lg fixed z-50 ">
         <nav class="max-w-[85rem] w-full mx-auto px-4 flex flex-wrap basis-full items-center justify-between" aria-label="Global">
@@ -257,12 +257,26 @@ $berita = query("SELECT * FROM berita");
 
 
     <!-- TO TOP -->
-    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-cyan-400 block z-50 bottom-4 right-4 p-4 fixed rounded-full">
+
+    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-cyan-400  z-50 bottom-4 right-4 p-4 fixed rounded-full">
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
         </svg>
     </a>
+
+    <a id="darkMode"  href="#" class="flex justify-center items-center h-14 w-14 hover:animate-pulse bg-cyan-400  z-50 bottom-20 right-4 p-4 fixed rounded-full">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1" height="1" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z" />
+        </svg>
+
+    </a>
+
+
+
+
     <!-- TO TOP END -->
+
+
 
 
 

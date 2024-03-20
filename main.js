@@ -54,3 +54,12 @@ window.onscroll = () => {
 
   console.log("Posisi vertikal saat ini:", x);
 };
+
+const darkMode = document.getElementById("darkMode");
+
+darkMode.addEventListener("click", (event) => {
+  event.preventDefault();
+  console.log("ss");
+});
+
+

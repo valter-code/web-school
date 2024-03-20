@@ -11,7 +11,7 @@ $berita = mysqli_stmt_get_result($statement);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -113,7 +113,7 @@ $berita = mysqli_stmt_get_result($statement);
     <div class="my-24">
         <?php foreach ($berita as $berita) : ?>
             <h1 class="text-center font-sans font-extrabold text-4xl text-black"><?php echo $berita["judul_berita"] ?></h1>
-            <h2 class="text-center mt-3"><?php echo $berita ["penulis"] ?></h2>
+            <h2 class="text-center mt-3"><?php echo $berita["penulis"] ?></h2>
     </div>
     <div class="flex flex-wrap gap-3 justify-start mx-5 mb-36">
         <p class=""><?php echo $berita["isi_berita"] ?></p>
@@ -245,6 +245,15 @@ $berita = mysqli_stmt_get_result($statement);
         </div>
     </footer>
     <!-- FOOTER END -->
+
+
+    <!-- TO TOP -->
+    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-cyan-400 block z-50 bottom-4 right-4 p-4 fixed rounded-full">
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
+        </svg>
+    </a>
+    <!-- TO TOP END -->
     <script src="./node_modules/preline/dist/preline.js"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="./main.js"></script>
