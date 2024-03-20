@@ -241,7 +241,7 @@ $berita = mysqli_stmt_get_result($statement);
                 </ul>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 Powered by <a href="" class="underline"><span class="font-bold text-white">Kevin</span><span class="font-bold text-yellow-400">Dev</span></a> | All Rights Reserved.</span>
+            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 Powered by <a href="" class="underline"><span class="font-bold text-white">Forbidden</span><span class="font-bold text-yellow-400">Team</span></a> | All Rights Reserved.</span>
         </div>
     </footer>
     <!-- FOOTER END -->
