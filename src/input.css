@@ -13,3 +13,9 @@
 .aktif {
   @apply text-green-800 underline;
 }
+
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
+}

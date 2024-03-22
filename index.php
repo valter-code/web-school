@@ -90,13 +90,23 @@
                 <p id="p1" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
             </div>
 
-            <div class="flex flex-wrap items-center gap-5 justify-center my-12">
-                <img src="./assets/dummy1.png" alt="">
-                <img src="./assets/dummy2.png" alt="">
-                <img src="./assets/dummy3.png" alt="">
-                <img src="./assets/dummy4.png" alt="">
-                <img src="./assets/dummy5.png" alt="">
-                <img src="./assets/dummy6.png" alt="">
+            <div class="flex overflow-hidden space-x-2 group">
+                <div class="flex group-hover:paused space-x-2 gap-1 items-center  animate-loop-scroll">
+                    <img class="max-w-none" src="./assets/dummy1.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy2.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy3.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy4.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy5.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy6.png" alt="">
+                </div>
+                <div aria-hidden="true" class=" flex group-hover:paused  space-x-2 items-center gap-1 animate-loop-scroll">
+                    <img class="max-w-none" src="./assets/dummy1.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy2.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy3.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy4.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy5.png" alt="">
+                    <img class="max-w-none" src="./assets/dummy6.png" alt="">
+                </div>
             </div>
         </div>
     </section>
@@ -113,72 +123,18 @@
 
             <div class="flex flex-wrap justify-start items-center ">
 
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
+                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4  ">
+                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 min-h-96 max-w-60">
                         <img src="./assets/2.JPG" alt="" class="w-full">
 
                         <div class="py-8 px-6">
                             <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <p class="text-berita mb-7 min-h-[70px] line-clamp-3">lorem10</p>
                             <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
 
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
 
 
             </div>
