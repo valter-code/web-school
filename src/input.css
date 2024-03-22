@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bening {
+  @apply bg-gray-400 shadow-sm  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-b;
+}
+
+.light {
+  @apply text-white;
+}
+
+.aktif {
+  @apply text-green-800 underline;
+}

@@ -1,10 +1,3 @@
-<?php
-require("koneksi.php");
-
-$berita = query("SELECT * FROM berita");
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -13,130 +6,305 @@ $berita = query("SELECT * FROM berita");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMK Trimulia Jakarta</title>
     <link href="./src/output.css" rel="stylesheet">
+
 </head>
 
-<body class="bg-white ">
-    <!-- NAV START -->
-    <header class="flex flex-wrap sm:justify-start sm:flex-nowrap w-full bg-zinc-800 text-sm py-4 shadow-lg fixed z-50 ">
-        <nav class="max-w-[85rem] w-full mx-auto px-4 flex flex-wrap basis-full items-center justify-between" aria-label="Global">
-            <div class="flex items-center gap-2">
-                <div class="w-10">
-                    <img src="./assets/logo.png" alt="" class="">
-                </div>
-                <a class="sm:order-1 flex-none text-xl font-semibold text-white" href="#">SMK Trimulia JKT</a>
+<body class=" bg-white">
+
+
+    <!-- NAV -->
+    <nav class=" bg-transparent fixed w-full">
+        <div class='px-5 py-4 flex items-center justify-between'>
+            <div class="flex items-center justify-center gap-2">
+                <img class="w-10" src="./assets/logo.png" alt="">
+                <h2 class="text-white font-poppins  sm:text-xl md:text-2xl ">SMK Trimulia Jakarta</h2>
+            </div>
+
+
+            <div class="mr-10 hidden lg:block">
+                <ul class="flex gap-10 text-white  font-bold  text-lg">
+                    <li><a href="#home" class="Home">Home</a></li>
+                    <li><a href="#jurusan" class="jurusan">Mitra</a></li>
+                    <li><a href="#berita" class="berita">Berita</a></li>
+                    <li><a href="#kontak" class="kontak">Kontak</a></li>
+                </ul>
+            </div>
+
+            <div class="flex gap-5 hidden lg:block ">
+                <a href="./login.php"><button class="bg-green-600 py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">Login</button></a>
+                <a href="./daftar.php"><button class="bg-transparent py-2 px-6 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">Daftar</button></a>
+            </div>
+
+            <div class="lg:hidden">
+                <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                </svg>
+
+                <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                </svg>
 
             </div>
-            <div class="sm:order-3 flex items-center gap-x-2">
-                <button type="button" class="sm:hidden hs-collapse-toggle p-2.5 inline-flex justify-center items-center gap-x-2 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:border-gray-700 dark:text-white dark:hover:bg-white/10 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-collapse="#navbar-alignment" aria-controls="navbar-alignment" aria-label="Toggle navigation">
-                    <svg class="hs-collapse-open:hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" x2="21" y1="6" y2="6" />
-                        <line x1="3" x2="21" y1="12" y2="12" />
-                        <line x1="3" x2="21" y1="18" y2="18" />
-                    </svg>
-                    <svg class="hs-collapse-open:block hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 6 6 18" />
-                        <path d="m6 6 12 12" />
-                    </svg>
-                </button>
-                <button onclick="popUp()" type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg  border-white bg-gradient-to-r from-rose-100 to-teal-100  text-gray-800 shadow-sm hover:bg-blue-300 disabled:opacity-50 disabled:pointer-events-none dark:bg-blue-400  dark:text-white dark:hover:bg-blue-500 hover:shadow-lg transition duration-500 hover:scale-105 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                    LOGIN / DAFTAR
-                </button>
-            </div>
-            <div id="navbar-alignment" class="mr-36 hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:grow-0 sm:basis-auto sm:block sm:order-2 ">
-                <div class="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:mt-0 sm:ps-5">
-                    <a class="font-medium text-cyan-500  text-lg dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#" aria-current="page">Home</a>
-                    <a class="font-medium text-white hover:text-cyan-400 hover:shadow-cyan-400 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Page2</a>
-                    <a class="font-medium text-white hover:text-cyan-400 hover:shadow-cyan-400 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Page3</a>
-                    <a class="font-medium text-white hover:text-cyan-400 hover:shadow-cyan-400 hover:-translate-y-1 transition duration-300 dark:hover:text-gray-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">Page4</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+
+        </div>
+
+        <div id="nav-menu" class="hidden absolute z-40  bg-white w-full text-black  p-6 ">
+            <ul class="flex flex-col gap-4 text-xl  ">
+                <li>Home</li>
+                <li>Page 2</li>
+                <li>Page 3</li>
+                <li>Login</li>
+                <li>Daftar</li>
+            </ul>
+        </div>
+    </nav>
+
+
     <!-- NAV END -->
 
+    <!-- HERO -->
+    <section id="home" class="h-screen mb-36">
+        <div class="bg-[url('../assets/1.2.png')] bg-cover h-full">
+            <div class="text-white text-center py-52 ">
+                <h1 class="text-xl font-bold mb-2">WELCOME</h1>
+                <h2 class="text-4xl font-bold mb-10">SMK Trimulia Jakarta</h2>
+                <form action="" class="py-10 px-3 mx-auto max-w-xl">
+                    <input placeholder="Cari Berita Terkini " type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
+                </form>
 
-    <!-- HERO START -->
-    <div data-hs-carousel='{
-        "loadingClasses": "opacity-0",
-        "isAutoPlay": true
-      }' class="relative pt-16">
-        <div class="hs-carousel relative overflow-hidden w-full min-h-[500px] bg-white  ">
-            <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
-                <div class="hs-carousel-slide">
-                    <div class="flex justify-center h-full bg-gray-100 ">
-                        <img src="./assets/1tm.jpg" alt="" class="w-full">
-                    </div>
-                </div>
-                <div class="hs-carousel-slide">
-                    <div class="flex justify-center h-full bg-violet-200 ">
-                        <img src="./assets/2tm.jpg" alt="" class="w-full">
-                    </div>
-                </div>
-                <div class="hs-carousel-slide">
-                    <div class="flex justify-center h-full w-full bg-gray-300 ">
-                        <img src="./assets/3tm.png" alt="" class="w-full">
-                    </div>
-                </div>
+
+                <button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button>
+
             </div>
+
         </div>
-        <button type="button" class="hs-carousel-prev hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 start-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/[.1]">
-            <span class="text-2xl" aria-hidden="true">
-                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                </svg>
-            </span>
-            <span class="sr-only">Previous</span>
-        </button>
-        <button type="button" class="hs-carousel-next hs-carousel:disabled:opacity-50 disabled:pointer-events-none absolute inset-y-0 end-0 inline-flex justify-center items-center w-[46px] h-full text-gray-800 hover:bg-gray-800/[.1]">
-            <span class="sr-only">Next</span>
-            <span class="text-2xl" aria-hidden="true">
-                <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
-                </svg>
-            </span>
-        </button>
-        <div class="hs-carousel-pagination flex justify-center absolute bottom-3 start-0 end-0 space-x-2">
-            <span class="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer"></span>
-            <span class="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer"></span>
-            <span class="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer"></span>
-        </div>
-    </div>
+    </section>
     <!-- HERO END -->
 
 
-    <!-- BERITA START -->
-    <div class="my-24">
-        <h1 class="text-center font-sans font-extrabold text-4xl text-black">BERITA SEKOLAH</h1>
-    </div>
-    <div class="flex flex-wrap gap-3 justify-start mx-5 mb-36">
-        <?php foreach ($berita as $berita) : ?>
+    <!-- JURUSAN -->
+    <section id="jurusan" class="jurusan">
+        <div class="container">
+            <div class="text-center">
+                <h1 id="1" class="font-bold text-slate-900 text-3xl mb-7">Kami bekerja sama dengan</h1>
+                <p id="p1" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
+            </div>
 
-            <div class="card w-full bg-violet-200 ">
-                <figure>
-                    <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="car!" />
-                </figure>
+            <div class="flex flex-wrap items-center gap-5 justify-center my-12">
+                <img src="./assets/dummy1.png" alt="">
+                <img src="./assets/dummy2.png" alt="">
+                <img src="./assets/dummy3.png" alt="">
+                <img src="./assets/dummy4.png" alt="">
+                <img src="./assets/dummy5.png" alt="">
+                <img src="./assets/dummy6.png" alt="">
+            </div>
+        </div>
+    </section>
+    <!-- JURUSAN END -->
 
-                <div class="card-body">
-                    <h2 class="card-title text-slate-900"><?php echo $berita["judul_berita"] ?></h2>
-                    <p class="text-slate-800 line-clamp-5"><?php echo $berita["isi_berita"] ?></p>
+    <!-- BERITA -->
+    <section id="berita" class="my-40">
+        <div class="container">
+            <div class="text-center my-10">
+                <h1 id="2" class="font-bold text-slate-900 text-3xl mb-7">Berita Terkini</h1>
+                <p id="p2" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
+            </div>
 
-                    <div class="card-actions mt-6">
-                        <a href="berita.php?id=<?php echo $berita["id"] ?>"><button class="btn btn-primary">TOMBOL </button></a>
+
+            <div class="flex flex-wrap justify-start items-center ">
+
+                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
+                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
+                        <img src="./assets/2.JPG" alt="" class="w-full">
+
+                        <div class="py-8 px-6">
+                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
+                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
+                        </div>
                     </div>
                 </div>
+                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
+                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
+                        <img src="./assets/2.JPG" alt="" class="w-full">
+
+                        <div class="py-8 px-6">
+                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
+                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
+                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
+                        <img src="./assets/2.JPG" alt="" class="w-full">
+
+                        <div class="py-8 px-6">
+                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
+                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
+                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
+                        <img src="./assets/2.JPG" alt="" class="w-full">
+
+                        <div class="py-8 px-6">
+                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
+                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
+                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
+                        <img src="./assets/2.JPG" alt="" class="w-full">
+
+                        <div class="py-8 px-6">
+                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
+                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
+                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
+                        <img src="./assets/2.JPG" alt="" class="w-full">
+
+                        <div class="py-8 px-6">
+                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
+                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
-        <?php endforeach; ?>
-    </div>
+        </div>
+    </section>
     <!-- BERITA END -->
 
 
+    <!-- CONTACT -->
+
+    <section id="kontak" class="mb-10">
+        <div class="conatiner">
+            <div class="text-center mb-10">
+                <h1 id="3" class="font-bold text-slate-900 text-3xl mb-5">Contact Us</h1>
+                <p id="p3" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetu</p>
+            </div>
 
 
 
+            <form action="" class="pb-10">
+                <div class="max-w-xl mx-auto">
+                    <div class="w-full px-4 mb-8">
+                        <label id="label1" for="" class="text-slate-900 font-semibold">Nama</label>
+                        <input placeholder="Contoh: kevin" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
+                    </div>
+
+
+                    <div class="w-full px-4 mb-8">
+                        <label id="label2" for="" class="text-slate-900 font-semibold">Email</label>
+                        <input placeholder="Contoh: kevin@gmail.com" type="email" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
+                    </div>
+
+                    <div class="w-full px-4 mb-8">
+                        <label id="label3" for="" class="text-slate-900 font-semibold">Subject</label>
+                        <input placeholder="Contoh: Judul" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
+                    </div>
+
+
+                    <div class="w-full px-4 mb-8">
+                        <label id="label4" for="" class="text-slate-900 font-semibold">Pesan</label>
+                        <textarea placeholder="Pesan..." class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500"></textarea>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button class="hover:bg-violet-600 hover:shadow-md transition hover:scale-105 duration-300 hover:shadow-violet-600 bg-violet-500 text-white py-2 px-10 rounded-lg">Kirim</button>
+
+                    </div>
+
+
+
+                </div>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- CONTACT END -->
+
+
+    <!-- FOOTER -->
+    <section class="my h-full bg-neutral-800 py-36">
+        <div class="container">
+            <h1 class="mb-10 font-bold text-4xl text-red-500"><SPAN class="text-white">Forbidden</SPAN><span class="text-cyan-500">Team</span></h1>
+            <div class="flex flex-wrap sm:gap-5 items-center ">
+
+                <div class=" sm:w-1/3">
+                    <div class="mb-14">
+
+                        <h2 class="mb-3 text-zinc-200 font-bold text-2xl">Hubungi Kami</h2>
+                        <p class="text-slate-200 text-base mb-3">forbidden@gmail.com</p>
+                        <p class="text-slate-200 text-base mb-3">@forbidden on ig</p>
+                        <p class="text-slate-200 text-base mb-3">Amerika Utara</p>
+                    </div>
+                </div>
+
+                <div class="mb-14  sm:w-1/3">
+                    <div>
+                        <h2 class="mb-3 text-zinc-200 font-bold text-2xl">Jurusan</h2>
+                        <p class="text-slate-200 text-base mb-3">Teknik Komputer & Jaringan</p>
+                        <p class="text-slate-200 text-base mb-3">Manajemen Perkantoran</p>
+                        <p class="text-slate-200 text-base mb-3">Bisnis Daring</p>
+                    </div>
+                </div>
+
+                <div class="mb-14 w-full  sm:w-1/4">
+                    <div>
+                        <h2 class="mb-3 text-zinc-200 font-bold text-2xl">Tautan</h2>
+                        <p class="text-slate-200 text-base mb-3">.....</p>
+                        <p class="text-slate-200 text-base mb-3">.....</p>
+                        <p class="text-slate-200 text-base mb-3">.....</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mx-auto sm:1/3">
+                <div class="border-t-2 pt-10 flex justify-center gap-5">
+                    <a href="" class="w-9 h-9 rounded-full border flex justify-center items-center hover:bg-violet-800 hover:border-violet-800 hover:scale-105 hover:shadow-md hover:shadow-violet-800 transition duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </a>
+                    <a href="" class="w-9 h-9 rounded-full border flex justify-center items-center hover:bg-violet-800 hover:border-violet-800 hover:scale-105 hover:shadow-md hover:shadow-violet-800 transition duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </a>
+                    <a href="" class="w-9 h-9 rounded-full border flex justify-center items-center hover:bg-violet-800 hover:border-violet-800 hover:scale-105 hover:shadow-md hover:shadow-violet-800 transition duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </a>
+                    <a href="" class="w-9 h-9 rounded-full border flex justify-center items-center hover:bg-violet-800 hover:border-violet-800 hover:scale-105 hover:shadow-md hover:shadow-violet-800 transition duration-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                        </svg>
+                    </a>
+                </div>
+
+                <p class="text-white text-center mt-5">Made with ❤️ by <a href="" class="underline"><span class="text-white font-bold">Forbidden</span> <span class="font-bold text-cyan-500">Team</span></a> </p>
+            </div>
+    </section>
+    <!-- FOOTER -->
 
 
     <!-- LOGIN -->
-    <div id="login" class="fixed flex justify-center items-center bg-black bg-opacity-75 z-50 top-0 w-screen h-screen hidden">
+    <div id=" login" class="fixed flex justify-center items-center bg-black bg-opacity-75 z-50 top-0 w-screen h-screen hidden">
         <form action="" class="bg-purple-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 border border-gray-100  p-12 h-[400px] flex flex-col items-center justify-center">
             <div class="mb-10">
                 <h1 class="text-white text-center font-bold">SMK TRIMULIA JAKARTA</h1>
@@ -226,45 +394,19 @@ $berita = query("SELECT * FROM berita");
 
 
 
-    <!-- FOOTER START -->
-    <footer class="bg-zinc-800 shadow  ">
-        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-            <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="./assets/logo.png" class="h-8" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">SMK Trimulia Jakarta</span>
-                </a>
-                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 Powered by <a href="" class="underline"><span class="font-bold text-white">Forbidden</span><span class="font-bold text-yellow-400">Team</span></a> | All Rights Reserved.</span>
-        </div>
-    </footer>
-    <!-- FOOTER END -->
+
+
 
 
     <!-- TO TOP -->
 
-    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-cyan-400  z-50 bottom-4 right-4 p-4 fixed rounded-full">
+    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-zinc-400  z-50 bottom-4 right-4 p-4 fixed rounded-full">
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
         </svg>
     </a>
 
-    <a id="darkMode"  href="#" class="flex justify-center items-center h-14 w-14 hover:animate-pulse bg-cyan-400  z-50 bottom-20 right-4 p-4 fixed rounded-full">
+    <a id="darkMode" href="#" class="hidden  justify-center items-center h-14 w-14 hover:animate-pulse bg-violet-400  z-50 bottom-20 right-4 p-4 fixed rounded-full">
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1" height="1" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z" />
         </svg>
@@ -279,9 +421,8 @@ $berita = query("SELECT * FROM berita");
 
 
 
-
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script src="./node_modules/preline/dist/preline.js"></script>
-    <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="./main.js"></script>
 </body>
 

@@ -1,33 +1,32 @@
 <?php
-    require("../koneksi.php");
-    session_start();
+require("../koneksi.php");
+session_start();
 
-    //function login
-    if(isset($_POST["role"]) && $_POST["role"] === "admin"){
-        if(isset($_POST["login"])){
+//function login
+if (isset($_POST["role"]) && $_POST["role"] === "admin") {
+    if (isset($_POST["login"])) {
 
-            $username = mysqli_real_escape_string($koneksi, $_POST["username"]);
-            $_SESSION["username_admin"] = $username;
-            $password = mysqli_real_escape_string($koneksi, $_POST["password"]);
+        $username = mysqli_real_escape_string($koneksi, $_POST["username"]);
+        $_SESSION["username_admin"] = $username;
+        $password = mysqli_real_escape_string($koneksi, $_POST["password"]);
 
-            //query 
-            $query = "SELECT * FROM admin WHERE username_admin = '$username'";
-            $result = mysqli_query($koneksi, $query);
-            if(mysqli_num_rows($result) > 0){
-                $row = mysqli_fetch_assoc($result);
-                
-                //check password
-                if(password_verify( $password, $row["password_admin"])){
-                    $_SESSION["admin-session"] = true;
-                    header("Location: index.php");
-                    exit;
-                }
+        //query 
+        $query = "SELECT * FROM admin WHERE username_admin = '$username'";
+        $result = mysqli_query($koneksi, $query);
+        if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+
+            //check password
+            if (password_verify($password, $row["password_admin"])) {
+                $_SESSION["admin-session"] = true;
+                header("Location: index.php");
+                exit;
             }
-            $error = true;
         }
-
-}elseif(isset($_POST["role"]) && $_POST["role"] === "guru"){
-    if(isset($_POST["login"])){
+        $error = true;
+    }
+} elseif (isset($_POST["role"]) && $_POST["role"] === "guru") {
+    if (isset($_POST["login"])) {
 
         $username = mysqli_real_escape_string($koneksi, $_POST["username"]);
         $_SESSION["username_guru"] = $username;
@@ -36,11 +35,11 @@
         //query 
         $query = "SELECT * FROM guru WHERE username_guru = '$username'";
         $result = mysqli_query($koneksi, $query);
-        if(mysqli_num_rows($result) > 0){
+        if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
-            
+
             //check password
-            if(password_verify( $password, $row["password_guru"])){
+            if (password_verify($password, $row["password_guru"])) {
                 $_SESSION["guru-session"] = true;
                 header("Location: ../guru/index.php");
                 exit;
@@ -49,7 +48,7 @@
         $error = true;
     }
 }
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -74,7 +73,7 @@
                 </div>
 
                 <!-- pesan error jika username/password salah -->
-                <?php if(isset($error)): ?>
+                <?php if (isset($error)) : ?>
                     <p style="color:red;">Username/Password Salah!</p>
                 <?php endif; ?>
                 <!-- pesan error jika username/password salah -->
@@ -98,12 +97,12 @@
                     <input name="password" type="password" placeholder="" class="w-full bg-transparent border-none text-white focus:ring-0  ">
                 </div>
                 <div class="mb-5">
-                                            <label class="form-label mb-2">Role</label>
-                                            <select name="role" class="select select-block mb-2">
-                                                <option value="admin">admin</option>
-                                                <option value="guru">guru</option>
-                                            </select>
-                                        </div>
+                    <label class="form-label mb-2">Role</label>
+                    <select name="role" class="select select-block mb-2">
+                        <option value="admin">admin</option>
+                        <option value="guru">guru</option>
+                    </select>
+                </div>
                 <button type="submit" name="login" class="bg-violet-600 text-white w-full rounded-full py-2 shadow-lg hover:scale-95 duration-300 transition hover:bg-violet-700 font-bold">LOGIN</button>
             </form>
         </div>
