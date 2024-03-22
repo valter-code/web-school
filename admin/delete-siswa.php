@@ -1,10 +1,10 @@
 <?php
-require("../koneksi.php");
+    require("../koneksi.php");
 
-$id_siswa = $_GET["id_siswa"];
+    $id = $_GET["id_siswa"];
+    if(deleteSiswa($id) > 0){
+        echo "<script>alert('Berhasil Hapus Data Siswa!'); document.location.href = 'siswa.php'</script>";
+        exit;
+    }
 
-if (delete($id_siswa) > 0) {
-    echo "<script>alert('Berhasil Hapus data siswa!'); document.location.href = 'data-siswa.php'</script>";
-} else {
-    echo "<script>alert('Gagal Hapus data siswa!'); document.location.href = 'data-siswa.php'</script>";
-}
+?>

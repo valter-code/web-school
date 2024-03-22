@@ -136,3 +136,16 @@ tutup.addEventListener("click", () => {
   tutup.classList.add("hidden");
   buka.classList.remove("hidden");
 });
+
+const akun = document.getElementsByClassName("akun");
+
+for (let i = 0; i < akun.length; i++) {
+  akun[i].addEventListener("mouseenter", () => {
+    console.log("anjay");
+  });
+}
+
+// akun.addEventListener("mouseover", () => {
+//   for(let i = 0; i < akun.length)
+//   console.log("anjay");
+// });
