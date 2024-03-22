@@ -1,12 +1,13 @@
 <?php
     require("../koneksi.php");
-    $id_berita = $_GET["id"];
 
-    if(delete_berita($id_berita) > 0){
-        echo "<script>alert('Berhasil Hapus Data Berita'); document.location.href = 'berita.php'</script>";
+    $id = $_GET["id"];
+
+    if(deleteBerita($id)){
+        echo "<script>alert('Berhasil menghapus data mahasiswa'); document.location.href = 'berita.php'</script>";
         exit;
     }else{
-        echo "<script>alert('Gagal Hapus Data Berita'); document.location.href = 'berita.php'</script>";
+        echo "<script>alert('Gagal menghapus data mahasiswa'); document.location.href = 'berita.php'</script>";
         exit;
     }
 ?>

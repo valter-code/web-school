@@ -1,22 +1,12 @@
 <?php
-require("../koneksi.php");
-session_start();
+    require("../koneksi.php");
 
-//kick jika belum login
-if (!isset($_SESSION["admin-session"])) {
-    header("Location: login.php");
-    exit();
-}
-
-//fungsi tambah berita
-if(isset($_POST["tambah"])){
-    if(tambahBerita($_POST) > 0){
-        echo "<script>alert('Berhasil tambah berita'); document.location.href = 'berita.php' </script>";
-    }else{
-        echo "<script>alert('Gagal tambah berita'); document.location.href = 'berita.php' </script>";
+    if(isset($_POST["tambah"])){
+        if(tambahBerita($_POST) > 0){
+            echo "<script>alert('Berhasil menambahkan data mahasiswa'); document.location.href = 'berita.php'</script>";
+            exit;
+        }
     }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +43,7 @@ if(isset($_POST["tambah"])){
                 </div>
                 <div class="flex flex-col">
                     <span>Welcome admin</span>
-                    <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username_admin"] ?></span>
+                    <span class="text-xs font-normal text-content2"></span>
 
                 </div>
             </section>
@@ -72,7 +62,7 @@ if(isset($_POST["tambah"])){
                         </li>
                     </a>
 
-                    <a href="data-siswa.php">
+                    <a href="siswa.php">
                         <li class="menu-item ">
                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9h3m-3 3h3m-3 3h3m-6 1c-.306-.613-.933-1-1.618-1H7.618c-.685 0-1.312.387-1.618 1M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm7 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
@@ -145,7 +135,7 @@ if(isset($_POST["tambah"])){
 
             <div class="my-10 flex flex-wrap justify-center items-center gap-4 w-full border-neutral-700 border-dashed border-2 rounded-xl p-5">
                 <div class="w-1/3 ">
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
                     <h1 class="text-white mb-2 text-center">Judul Berita</h1>
                     <input name="judul_berita" required type="text" class="input-ghost-secondary input ">
                 </div>
@@ -169,24 +159,6 @@ if(isset($_POST["tambah"])){
                 </form>
                 </div>  
                 <!-- CONTENT END -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

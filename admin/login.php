@@ -1,55 +1,29 @@
 <?php
-require("../koneksi.php");
-session_start();
+    require("../koneksi.php");
+    session_start();
 
-//function login
-if (isset($_POST["role"]) && $_POST["role"] === "admin") {
-    if (isset($_POST["login"])) {
 
-        $username = mysqli_real_escape_string($koneksi, $_POST["username"]);
-        $_SESSION["username_admin"] = $username;
-        $password = mysqli_real_escape_string($koneksi, $_POST["password"]);
+    if(isset($_POST["login"])){
+        $username = $_POST["username"];
+        $_SESSION["username-admin"] = $username;
+        $password = $_POST["password"];
 
-        //query 
+        //cek username
         $query = "SELECT * FROM admin WHERE username_admin = '$username'";
         $result = mysqli_query($koneksi, $query);
-        if (mysqli_num_rows($result) > 0) {
+        if(mysqli_num_rows($result) > 0){
             $row = mysqli_fetch_assoc($result);
-
-            //check password
-            if (password_verify($password, $row["password_admin"])) {
-                $_SESSION["admin-session"] = true;
+            //cek password
+            if(password_verify($password, $row["password_admin"])){
+                $_SESSION["session-admin"] = true;
                 header("Location: index.php");
                 exit;
             }
         }
         $error = true;
     }
-} elseif (isset($_POST["role"]) && $_POST["role"] === "guru") {
-    if (isset($_POST["login"])) {
-
-        $username = mysqli_real_escape_string($koneksi, $_POST["username"]);
-        $_SESSION["username_guru"] = $username;
-        $password = mysqli_real_escape_string($koneksi, $_POST["password"]);
-
-        //query 
-        $query = "SELECT * FROM guru WHERE username_guru = '$username'";
-        $result = mysqli_query($koneksi, $query);
-        if (mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-
-            //check password
-            if (password_verify($password, $row["password_guru"])) {
-                $_SESSION["guru-session"] = true;
-                header("Location: ../guru/index.php");
-                exit;
-            }
-        }
-        $error = true;
-    }
-}
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -71,12 +45,9 @@ if (isset($_POST["role"]) && $_POST["role"] === "admin") {
                 <div class="mb-6">
                     <h1 class="text-white text-center font-bold">LOGIN ADMIN</h1>
                 </div>
-
-                <!-- pesan error jika username/password salah -->
-                <?php if (isset($error)) : ?>
+                <?php if(isset($error)): ?>
                     <p style="color:red;">Username/Password Salah!</p>
                 <?php endif; ?>
-                <!-- pesan error jika username/password salah -->
                 <div class="border-b-2 mb-10 sm:w-96">
                     <div class="flex items-center gap-[2px]">
                         <label for="User" class="text-white">Username </label>

@@ -1,41 +1,31 @@
 <?php
-require("../koneksi.php");
-session_start();
+    require("../koneksi.php");
+    session_start();
 
-//kick jika belum login
-if (!isset($_SESSION["admin-session"])) {
-    header("Location: login.php");
-    exit();
-}
+    $berita = query("SELECT * FROM berita");
 
-//query
-$berita = query("SELECT * FROM berita");
+    //fitur search
+    if(isset($_GET["cari"])){
+        $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        $keyword = htmlspecialchars($_GET["keyword"]);
 
-//fungsi pencarian siswa
-if (isset($_GET["cari"])) {
-    $query = "SELECT * FROM berita WHERE judul_berita LIKE ? OR penulis LIKE ?";
-    $statement = mysqli_prepare($koneksi, $query);
-    $keyword = htmlspecialchars($_GET["keyword"]);
+        //bind
+        $keyword = "%" . $keyword . "%";
+        mysqli_stmt_bind_param( $statement,"s", $keyword);
 
-    //bind
-    $keyword = "%" . $keyword . "%";
-    mysqli_stmt_bind_param($statement, "ss", $keyword, $keyword);
+        mysqli_stmt_execute( $statement );
 
-    //execute
-    mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
 
-    //result
-    $result = mysqli_stmt_get_result($statement);
+        $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    //simpan data kedalam array
-    $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    if (mysqli_num_rows($result) === 0) {
-        $nothing = "Pencarian Anda : " . htmlspecialchars($_GET["keyword"]) . " tidak ada";
-    } else {
-        $some = "Pecarian Anda : " . htmlspecialchars($_GET["keyword"]);
+        if(mysqli_num_rows($result) === 0){
+            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
+        }else{
+            $some = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
+        }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +62,7 @@ if (isset($_GET["cari"])) {
                 </div>
                 <div class="flex flex-col">
                     <span>Welcome admin</span>
-                    <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username_admin"] ?></span>
+                    <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username-admin"] ?></span>
                 </div>
             </section>
             <section class="sidebar-content min-h-[20rem]">
@@ -92,7 +82,7 @@ if (isset($_GET["cari"])) {
                                 </li>
                             </a>
 
-                            <a href="data-siswa.php">
+                            <a href="siswa.php">
                                 <li class="menu-item">
                                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9h3m-3 3h3m-3 3h3m-6 1c-.306-.613-.933-1-1.618-1H7.618c-.685 0-1.312.387-1.618 1M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm7 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
@@ -190,6 +180,7 @@ if (isset($_GET["cari"])) {
                                 <th>Isi Berita</th>
                                 <th>penulis</th>
                                 <th>date</th>
+                                <th>gambar</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -202,6 +193,7 @@ if (isset($_GET["cari"])) {
                                     <th><?php echo $berita["isi_berita"] ?></th>
                                     <th><?php echo $berita["penulis"] ?></th>
                                     <th><?php echo $berita["date"] ?></th>
+                                    <th><?php echo $berita["gambar_berita"] ?></th>
                                     <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>
