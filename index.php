@@ -1,3 +1,32 @@
+<?php
+    require("koneksi.php");
+
+    $berita = query("SELECT * FROM berita");
+    
+    //cari berita
+    if(isset($_GET["cari"])){
+        $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        $keyword = $_GET["keyword"];
+        
+        //bind
+        $keyword = "%" . $keyword . "%";
+        mysqli_stmt_bind_param( $statement,"s", $keyword);
+
+        mysqli_stmt_execute( $statement );
+        $result = mysqli_stmt_get_result($statement);
+        $berita = mysqli_fetch_all( $result, MYSQLI_ASSOC );
+
+        if(mysqli_num_rows( $result ) == 0){
+            $nothing = "Pencarian anda " . $_GET["keyword"] . " Tidak ada";
+        }else{
+            $nothing = "Pencarian anda " . $_GET["keyword"];
+
+        }
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -68,11 +97,14 @@
             <div class="text-white text-center py-52 ">
                 <h1 class="text-xl font-bold mb-2">WELCOME</h1>
                 <h2 class="text-4xl font-bold mb-10">SMK Trimulia Jakarta</h2>
-                <form action="" class="py-10 px-3 mx-auto max-w-xl">
-                    <input placeholder="Cari Berita Terkini " type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
+                <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get">
+                    <input name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
+                    <button type="submit" name="cari">cari</button>
                 </form>
-
-
+                <?php if(isset($nothing)): ?>
+                    <?php echo $nothing ?>
+                <?php endif; ?>
+                <br>
                 <a href="#kontak"><button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
 
             </div>
@@ -110,77 +142,23 @@
                 <p id="p2" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
             </div>
 
-
+            
             <div class="flex flex-wrap justify-start items-center ">
+            <?php foreach( $berita as $row): ?>
 
                 <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
                     <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
+                        <img src="img-berita/<?php echo $row["gambar_berita"] ?>" alt="gambar hehe" class="w-full">
 
                         <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
+                            <h3 class="text-berita mb-3 font-semibold text-xl truncate "><?php echo $row["judul_berita"] ?></h3>
+                            <p class="text-berita mb-7 line-clamp-3"><?php echo $row["isi_berita"] ?></p>
                             <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
                         </div>
                     </div>
                 </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                    <div class=" rounded-md  kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 max-h-96 max-w-60">
-                        <img src="./assets/2.JPG" alt="" class="w-full">
-
-                        <div class="py-8 px-6">
-                            <h3 class="text-berita mb-3 font-semibold text-xl truncate ">Indofringe</h3>
-                            <p class="text-berita mb-7 line-clamp-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, debitis.wwqwqwqwqwqwwwwwwwwwsssssssssssssswwwwwwwwwww</p>
-                            <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
-                        </div>
-                    </div>
-                </div>
-
-
+                
+            <?php endforeach; ?>
             </div>
         </div>
     </section>
@@ -198,7 +176,7 @@
 
 
 
-            <form action="" class="pb-10">
+            <form action="" method="get" class="pb-10">
                 <div class="max-w-xl mx-auto">
                     <div class="w-full px-4 mb-8">
                         <label id="label1" for="" class="text-slate-900 font-semibold">Nama</label>
