@@ -76,9 +76,7 @@ if (isset($_GET["cari"])) {
                 </div>
 
 
-                <div class="absolute z-50 top-3 left-3 ">
-                    <h1 class="text-red-500 bg-white py-2 px-10 rounded-lg font-bold">Logout</h1>
-                </div>
+
             </div>
 
             <div class="lg:hidden">
@@ -108,7 +106,7 @@ if (isset($_GET["cari"])) {
     </nav>
 
 
-
+    
 
     <!-- NAV END -->
 

@@ -94,6 +94,12 @@ const textBerita = document.getElementsByClassName("text-berita");
 // darkmode
 darkMode.addEventListener("click", (event) => {
   event.preventDefault();
+
+  const moon = document.getElementById("moon");
+  const sun = document.getElementById("sun");
+
+  moon.classList.toggle("hidden");
+  sun.classList.toggle("hidden");
   document.body.classList.toggle("bg-white");
   document.body.classList.toggle("bg-neutral-500");
 
