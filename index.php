@@ -18,9 +18,9 @@ if (isset($_GET["cari"])) {
     $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     if (mysqli_num_rows($result) == 0) {
-        $nothing = "Pencarian anda " . $_GET["keyword"] . " Tidak ada";
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
     } else {
-        $nothing = "Pencarian anda " . $_GET["keyword"];
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
     }
 }
 ?>
@@ -95,13 +95,14 @@ if (isset($_GET["cari"])) {
             <div class="text-white text-center py-52 ">
                 <h1 class="text-xl font-bold mb-2">WELCOME</h1>
                 <h2 class="text-4xl font-bold mb-10">SMK Trimulia Jakarta</h2>
+                <?php if (isset($nothing)) : ?>
+                    <?php echo $nothing ?>
+                <?php endif; ?>
                 <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get">
                     <input name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
                     <button type="submit" name="cari">cari</button>
                 </form>
-                <?php if (isset($nothing)) : ?>
-                    <?php echo $nothing ?>
-                <?php endif; ?>
+                
                 <br>
                 <a href="#kontak"><button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
 

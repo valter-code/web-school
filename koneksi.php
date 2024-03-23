@@ -79,9 +79,14 @@
         $penulis = mysqli_real_escape_string($koneksi, $_POST["penulis"]);
         $date = date('d-m-Y');
         
-        $gambar = upload();
-        if(!$gambar){
-            return false;
+        if(isset($_FILES["gambar"]) && $_FILES["gambar"]["error"] !== 4){
+            $gambar = upload();
+
+            if(!$gambar){
+                return false;
+            }
+        }else{
+            $gambar = "default.JPG";
         }
         
         //queury

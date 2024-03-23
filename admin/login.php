@@ -2,8 +2,8 @@
     require("../koneksi.php");
     session_start();
 
-
     if(isset($_POST["login"])){
+        if(isset($_POST["role"]) && $_POST["role"] == "admin"){
         $username = $_POST["username"];
         $_SESSION["username-admin"] = $username;
         $password = $_POST["password"];
@@ -21,7 +21,26 @@
             }
         }
         $error = true;
+    }elseif(isset($_POST["role"]) && $_POST["role"] == "guru"){
+        $username = $_POST["username"];
+        $_SESSION["username-guru"] = $username;
+        $password = $_POST["password"];
+
+        //cek username
+        $query = "SELECT * FROM guru WHERE username_guru = '$username'";
+        $result = mysqli_query($koneksi, $query);
+        if(mysqli_num_rows($result) > 0){
+            $row = mysqli_fetch_assoc($result);
+            //cek password
+            if(password_verify($password, $row["password_guru"])){
+                $_SESSION["session-guru"] = true;
+                header("Location: ../guru/index.php");
+                exit;
+            }
+        }
     }
+    $error = true;
+}
 ?>
 
 
