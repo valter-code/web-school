@@ -1,5 +1,12 @@
 <?php
     require("../koneksi.php");
+    session_start();
+
+    //kick jika belum login
+    if(!isset($_SESSION["session-guru"])){
+        header("Location: ../admin/login.php");
+        exit;
+    }
 
     if(isset($_POST["tambah"])){
         if(tambahBerita($_POST) > 0){
@@ -42,8 +49,8 @@
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <span>Welcome admin</span>
-                    <span class="text-xs font-normal text-content2"></span>
+                    <span>Welcome guru</span>
+                    <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username-guru"] ?></span>
 
                 </div>
             </section>
