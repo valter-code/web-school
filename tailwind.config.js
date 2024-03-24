@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.php", "./login.php", "node_modules/preline/dist/*.js", "./node_modules/flowbite/**/*.js", "./admin/login.php", "./admin/logout.php", "./admin/index.php", "./admin/data-siswa.php"],
+  content: ["./index.php", "./login.php", "node_modules/preline/dist/*.js", "./node_modules/flowbite/**/*.js", "./admin/login.php", "./admin/logout.php", "./admin/index.php", "./admin/data-siswa.php", "./akun.php", './profil-akun.php'],
   theme: {
     container: {
       center: true,

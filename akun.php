@@ -57,9 +57,9 @@ if (isset($_GET["cari"])) {
                 </ul>
             </div>
 
-            <div class="gap-5 hidden lg:block ">
+            <div id="akun" class="gap-5 hidden lg:block ">
                 <div class="flex items-center gap-4">
-                    <a href="" class="w-10 akun">
+                    <a href="#" class="w-10 akun">
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-circle   " viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
                             <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
@@ -67,7 +67,7 @@ if (isset($_GET["cari"])) {
 
                     </a>
 
-                    <a href="" class="akun">
+                    <a href="#" class="akun">
                         <h1 class="text-white">Selamat datang,</h1>
                         <p class="text-white font-bold">Namamu</p>
                     </a>
@@ -106,7 +106,7 @@ if (isset($_GET["cari"])) {
     </nav>
 
 
-    
+
 
     <!-- NAV END -->
 
@@ -118,7 +118,7 @@ if (isset($_GET["cari"])) {
                 <h2 class="text-4xl font-bold mb-10">SMK Trimulia Jakarta</h2>
                 <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get">
                     <input name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
-                    <button type="submit" name="cari">cari</button>
+                    <button type="submit" name="cari" class="hidden">cari</button>
                 </form>
                 <?php if (isset($nothing)) : ?>
                     <?php echo $nothing ?>
@@ -325,10 +325,20 @@ if (isset($_GET["cari"])) {
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1" height="1" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z" />
         </svg>
-
     </a>
-
     <!-- TO TOP END -->
+
+    <!-- AKUN -->
+    <div id="logout" class="fixed hidden bg-zinc-900 z-[9999]  top-20 right-12 rounded-lg px-5 py-7">
+        <a href="./profil-akun.php">
+            <h1 class="text-white font-bold text-center mb-5 text-lg">Lihat Profil</h1>
+        </a>
+        <div class="border-t pt-5">
+
+            <a href="#"><button class="bg-red-500 py-1 px-7 text-white font-bold rounded-lg">Logout</button></a>
+        </div>
+    </div>
+    <!-- AKUN END -->
 
 
 

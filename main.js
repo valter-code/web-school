@@ -143,15 +143,33 @@ tutup.addEventListener("click", () => {
   buka.classList.remove("hidden");
 });
 
-const akun = document.getElementsByClassName("akun");
+// const akun = document.getElementById("akun");
+// const logout = document.getElementById("logout");
 
-for (let i = 0; i < akun.length; i++) {
-  akun[i].addEventListener("mouseenter", () => {
-    console.log("anjay");
-  });
-}
-
-// akun.addEventListener("mouseover", () => {
-//   for(let i = 0; i < akun.length)
-//   console.log("anjay");
+// akun.addEventListener("click", () => {
+//   const logout = document.getElementById("logout");
+//   logout.classList.toggle("hidden");
 // });
+
+// window.addEventListener("click", function (e) {
+//   if (e.target.id !== akun && e.target.id !== logout ) {
+
+//     logout.classList.add("hidden");
+//   }
+// });
+
+// Pop Up akun
+
+const akun = document.getElementById("akun");
+const logout = document.getElementById("logout");
+
+akun.addEventListener("click", (event) => {
+  logout.classList.toggle("hidden");
+  event.stopPropagation(); // Menghentikan penyebaran event ke atas
+});
+
+window.addEventListener("click", function (event) {
+  if (event.target.id !== akun.id && event.target.id !== logout.id) {
+    logout.classList.add("hidden");
+  }
+});
