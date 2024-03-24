@@ -1,5 +1,6 @@
 <?php
 require("koneksi.php");
+session_start();
 
 $berita = query("SELECT * FROM berita");
 
@@ -57,6 +58,7 @@ if (isset($_GET["cari"])) {
                 </ul>
             </div>
 
+            <?php if(!isset($_SESSION["session-siswa"])): ?>
             <div class="flex gap-5 hidden lg:block ">
                 <a href="./login.php"><button class="bg-green-600 py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">Login</button></a>
                 <a href="./daftar.php"><button class="bg-transparent py-2 px-6 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">Daftar</button></a>
@@ -72,6 +74,51 @@ if (isset($_GET["cari"])) {
                 </svg>
 
             </div>
+            <?php endif; ?>
+
+            <?php if(isset($_SESSION["session-siswa"])): ?>
+                <div id="akun" class="gap-5 hidden lg:block ">
+                <div class="flex items-center gap-4">
+                    <a href="#" class="w-10 akun">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-circle   " viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                        </svg>
+
+                    </a>
+
+                    <a href="#" class="akun">
+                        <h1 class="text-white">Selamat datang,</h1>
+                        <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"]?></p>
+                    </a>
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="lg:hidden">
+                <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                </svg>
+
+                <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                </svg>
+
+            </div>
+            <div id="logout" class="fixed hidden bg-zinc-900 z-[9999]  top-20 right-12 rounded-lg px-5 py-7">
+        <a href="./profil-akun.php">
+            <h1 class="text-white font-bold text-center mb-5 text-lg">Lihat Profil</h1>
+        </a>
+        <div class="border-t pt-5">
+
+            <a href="logout.php"><button class="bg-red-500 py-1 px-7 text-white font-bold rounded-lg">Logout</button></a>
+        </div>
+    </div>
+            <?php endif; ?>
 
         </div>
 

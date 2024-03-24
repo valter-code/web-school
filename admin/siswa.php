@@ -277,6 +277,14 @@
                                 <th>No.</th>
                                 <th>Nama</th>
                                 <th>Jurusan</th>
+                                <th>gender</th>
+                                <th>agama</th>
+                                <th>nis</th>
+                                <th>nik</th>
+                                <th>tempat-lahir</th>
+                                <th>tanggal-lahir</th>
+                                <th>username</th>
+                                <th>foto</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -287,6 +295,14 @@
                                     <th><?php echo $no ?></th>
                                     <th><?php echo $siswa["nama_siswa"] ?></th>
                                     <th><?php echo $siswa["jurusan_siswa"] ?></th>
+                                    <th><?php echo $siswa["gender"] ?></th>
+                                    <th><?php echo $siswa["agama"] ?></th>
+                                    <th><?php echo $siswa["nis"] ?></th>
+                                    <th><?php echo $siswa["nik"] ?></th>
+                                    <th><?php echo $siswa["tempat_lahir"] ?></th>
+                                    <th><?php echo $siswa["tanggal_lahir"] ?></th>
+                                    <th><?php echo $siswa["username_siswa"] ?></th>
+                                    <th><?php echo $siswa["foto"] ?></th>
                                     <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>

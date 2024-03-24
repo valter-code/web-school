@@ -1,3 +1,9 @@
+<?php
+    require("koneksi.php");
+    session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +27,7 @@
                 </div>
 
                 <div>
-                    <h1 class="text-white text-lg">Kevin Ekarevano</h1>
+                    <h1 class="text-white text-lg">Kevin Eka Revano</h1>
                     <p class="text-center text-sm font-semibold text-white">Siswa</p>
                 </div>
             </div>
@@ -43,10 +49,10 @@
 
             </div>
 
-            <button class="mt-5 text-white font-bold bg-red-500 py-2 px-7 rounded-lg w-full shadolg hover:scale-95 transition duration-300 hover:bg-red-600">LOGOUT</button>
+            <a href="logout.php"><button class="mt-5 text-white font-bold bg-red-500 py-2 px-7 rounded-lg w-full shadolg hover:scale-95 transition duration-300 hover:bg-red-600">LOGOUT</button></a>
 
         </div>
-        <a href="./akun.php" class="h-12 w-12 rounded-full bottom-3 z-50 absolute flex justify-center items-center bg-white dark:bg-white ">
+        <a href="./index.php" class="h-12 w-12 rounded-full bottom-3 z-50 absolute flex justify-center items-center bg-white dark:bg-white ">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
             </svg>
