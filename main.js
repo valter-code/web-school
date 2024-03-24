@@ -101,7 +101,7 @@ darkMode.addEventListener("click", (event) => {
   moon.classList.toggle("hidden");
   sun.classList.toggle("hidden");
   document.body.classList.toggle("bg-white");
-  document.body.classList.toggle("bg-neutral-500");
+  document.body.classList.toggle("bg-neutral-900");
 
   for (let i = 0; i < textBerita.length; i++) {
     textBerita[i].classList.toggle("text-white");

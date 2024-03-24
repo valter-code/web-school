@@ -1,7 +1,10 @@
 <?php
 require("koneksi.php");
+session_start();
 
 $berita = query("SELECT * FROM berita");
+
+
 
 //cari berita
 if (isset($_GET["cari"])) {
@@ -69,7 +72,7 @@ if (isset($_GET["cari"])) {
 
                     <a href="#" class="akun">
                         <h1 class="text-white">Selamat datang,</h1>
-                        <p class="text-white font-bold">Namamu</p>
+                        <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"]?></p>
                     </a>
 
 
