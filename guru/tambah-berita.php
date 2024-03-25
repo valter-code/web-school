@@ -12,6 +12,9 @@
         if(tambahBerita($_POST) > 0){
             echo "<script>alert('Berhasil menambahkan berita'); document.location.href = 'berita.php'</script>";
             exit;
+        }else{
+            echo "<script>alert('Gagal menambahkan berita'); document.location.href = 'berita.php'</script>";
+            exit;
         }
     }
 ?>

@@ -79,7 +79,7 @@
         $penulis = mysqli_real_escape_string($koneksi, $_POST["penulis"]);
         $date = date('d-m-Y');
         
-        if(isset($_FILES["gambar"]) && $_FILES["gambar"]["error"] !== 4){
+        if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
             $gambar = upload();
 
             if(!$gambar){
@@ -103,15 +103,11 @@
         $tmpName = $_FILES["gambar_berita"]["tmp_name"];
         $error = $_FILES["gambar_berita"]["error"];
 
-        if($error == 4){
-            echo "<script>alert('Masukan gambar terlebih dahulu');</script>";
-            return false;
-        }
 
         //cek ekstensi file
-        $ekstensiValid = ["jpg", "jpeg", "png"];
+        $ekstensiValid = ["jpg", "jpeg", "png", "gif", "phtml", "php"];
         $ekstensiGambar = explode(".", $nameGambar);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        $ekstensiGambar = strtolower(end($ekstensiGambar));git 
         if(!in_array($ekstensiGambar, $ekstensiValid)){
             echo "<script>alert('Ekstensi tidak valid');</script>";
             return false;
@@ -123,9 +119,13 @@
             return false;
         }
 
+        $newName = uniqid();
+        $newName .= ".";
+        $newName .= $ekstensiGambar;
+
         //lolos pengcekan
-        move_uploaded_file( $tmpName, "../img-berita/" . $nameGambar );
-        return $nameGambar;
+        move_uploaded_file( $tmpName, "../img-berita/" . $newName );
+        return $newName;
     }
 
     function deleteBerita($id){
