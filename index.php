@@ -123,13 +123,49 @@ if (isset($_GET["cari"])) {
 
         </div>
 
-        <div id="nav-menu" class="hidden absolute z-40  bg-white w-full text-black  p-6 ">
+        <div id="nav-menu" class="hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
             <ul class="flex flex-col gap-4 text-xl  ">
-                <li>Home</li>
-                <li>Page 2</li>
-                <li>Page 3</li>
-                <li>Login</li>
-                <li>Daftar</li>
+                <a href="#">
+                    <li>Home</li>
+                </a>
+                <a href="#jurusan">
+                    <li>Mitra</li>
+                </a>
+                <a href="#berita">
+                    <li>Berita</li>
+                </a>
+                <a href="#kontak">
+                    <li>Kontak</li>
+                </a>
+                <a href="">
+                    <li>Login</li>
+                </a>
+
+
+                <!-- ilangin -->
+
+                <?php if (!isset($_SESSION["session-siswa"])) : ?>
+                    <a href="./login.php" class="w-full flex">
+                        <li class="bg-green-600 text-center py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">LOGIN</li>
+                    </a>
+                    <a href="./daftar.php" class="w-full flex">
+                        <li class="bg-transparent py-2 px-5 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">DAFTAR</li>
+                    </a>
+                <?php endif; ?>
+
+
+                <!-- jika sudah login -->
+
+                <?php if (isset($_SESSION["session-siswa"])) : ?>
+                    <a href="./profil-akun.php" class="w-full flex">
+                        <li class="bg-neutral-800 py-2 px-5 border-2 border-neutral-600 rounded-md hover:bg-opacity-75  transition duration-300 text-white font-bold">LIHAT PROFIL</li>
+                    </a>
+
+
+                    <a href="./logout.php" class="w-full flex">
+                        <li class="bg-transparent py-2 px-11 border-2 border-red-800 rounded-md hover:bg-red-800 transition duration-300 text-white font-bold">LOGOUT</li>
+                    </a>
+                <?php endif; ?>
             </ul>
         </div>
     </nav>
@@ -208,7 +244,7 @@ if (isset($_GET["cari"])) {
                 <?php $delay = 300 ?>
                 <?php foreach ($berita as $row) : ?>
 
-                    <div class=" sm:w-1/2  lg:w-1/4 w-full px-2 " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="1000">
+                    <div class=" sm:w-1/2  lg:w-1/4 w-full px-2 " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="500">
                         <div class="w-full mb-4 hover:cursor-pointer hover:-translate-y-1 transition   border border-slate-500 rounded-lg overflow-hidden">
                             <div class=" h-52 hover:scale-105 transition duration-300 ">
                                 <img src="./img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover w-full h-full ">
@@ -249,29 +285,29 @@ if (isset($_GET["cari"])) {
 
             <form action="" method="get" class="pb-10">
                 <div class="max-w-xl mx-auto">
-                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
+                    <div class="w-full px-4 mb-8" data-aos="fade-right">
                         <label id="label1" for="" class="text-slate-900 font-semibold">Nama</label>
                         <input placeholder="Contoh: kevin" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
 
-                    <div class="w-full px-4 mb-8" data-aos="fade-left" data-aos-delay="100" data-aos-duration="1000">
+                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200">
                         <label id="label2" for="" class="text-slate-900 font-semibold">Email</label>
                         <input placeholder="Contoh: kevin@gmail.com" type="email" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
-                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="150">
-                        <label id="label3" for="" class="text-slate-900 font-semibold">Subject</label>
+                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="300">
+                        <label id=" label3" for="" class="text-slate-900 font-semibold">Subject</label>
                         <input placeholder="Contoh: Judul" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
 
-                    <div class="w-full px-4 mb-8" data-aos="fade-left" data-aos-delay="200">
+                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="400">
                         <label id="label4" for="" class="text-slate-900 font-semibold">Pesan</label>
                         <textarea placeholder="Pesan..." class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500"></textarea>
                     </div>
 
-                    <div class="flex justify-center" data-aos="fade-right" data-aos-delay="250">
+                    <div class="flex justify-center" data-aos="fade-right" data-aos-delay="500">
                         <button class="hover:bg-violet-600 hover:shadow-md transition hover:scale-105 duration-300 hover:shadow-violet-600 bg-violet-500 text-white py-2 px-10 rounded-lg">Kirim</button>
 
                     </div>

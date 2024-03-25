@@ -81,7 +81,7 @@
         
         if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
             $gambar = upload();
-
+            
             if(!$gambar){
                 return false;
             }

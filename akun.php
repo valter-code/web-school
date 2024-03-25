@@ -72,7 +72,7 @@ if (isset($_GET["cari"])) {
 
                     <a href="#" class="akun">
                         <h1 class="text-white">Selamat datang,</h1>
-                        <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"]?></p>
+                        <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"] ?></p>
                     </a>
 
 
@@ -97,7 +97,7 @@ if (isset($_GET["cari"])) {
 
         <div id="nav-menu" class="hidden absolute z-40  bg-white w-full text-black  p-6 ">
             <ul class="flex flex-col gap-4 text-xl  ">
-                <li>Home</li>
+                <li>pppp</li>
                 <li>Page 2</li>
                 <li>Page 3</li>
                 <li>Login</li>
