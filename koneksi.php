@@ -79,9 +79,9 @@
         $penulis = mysqli_real_escape_string($koneksi, $_POST["penulis"]);
         $date = date('d-m-Y');
         
-        if(isset($_FILES["gambar"]) && $_FILES["gambar"]["error"] !== 4){
+        if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
             $gambar = upload();
-
+            
             if(!$gambar){
                 return false;
             }
