@@ -104,7 +104,8 @@ darkMode.addEventListener("click", (event) => {
   document.body.classList.toggle("bg-neutral-900");
 
   for (let i = 0; i < textBerita.length; i++) {
-    textBerita[i].classList.toggle("text-white");
+    textBerita[i].classList.toggle("text-zinc-800");
+    textBerita[i].classList.toggle("text-zinc-200");
   }
 
   for (let i = 0; i < kartu.length; i++) {

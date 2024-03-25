@@ -34,6 +34,7 @@ if (isset($_GET["cari"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMK Trimulia Jakarta</title>
     <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 </head>
 
@@ -41,7 +42,7 @@ if (isset($_GET["cari"])) {
 
 
     <!-- NAV -->
-    <nav class=" bg-transparent fixed w-full">
+    <nav class=" bg-transparent fixed z-50 w-full" data-aos="fade-down" data-aos-duration="1000">
         <div class='px-5 py-4 flex items-center justify-between'>
             <div class="flex items-center justify-center gap-2">
                 <img class="w-10" src="./assets/logo.png" alt="">
@@ -58,66 +59,66 @@ if (isset($_GET["cari"])) {
                 </ul>
             </div>
 
-            <?php if(!isset($_SESSION["session-siswa"])): ?>
-            <div class="flex gap-5 hidden lg:block ">
-                <a href="./login.php"><button class="bg-green-600 py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">Login</button></a>
-                <a href="./daftar.php"><button class="bg-transparent py-2 px-6 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">Daftar</button></a>
-            </div>
+            <?php if (!isset($_SESSION["session-siswa"])) : ?>
+                <div class="flex gap-5 hidden lg:block ">
+                    <a href="./login.php"><button class="bg-green-600 py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">Login</button></a>
+                    <a href="./daftar.php"><button class="bg-transparent py-2 px-6 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">Daftar</button></a>
+                </div>
 
-            <div class="lg:hidden">
-                <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                </svg>
+                <div class="lg:hidden">
+                    <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                    </svg>
 
-                <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
-                </svg>
+                    <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                    </svg>
 
-            </div>
+                </div>
             <?php endif; ?>
 
-            <?php if(isset($_SESSION["session-siswa"])): ?>
+            <?php if (isset($_SESSION["session-siswa"])) : ?>
                 <div id="akun" class="gap-5 hidden lg:block ">
-                <div class="flex items-center gap-4">
-                    <a href="#" class="w-10 akun">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-circle   " viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                        </svg>
+                    <div class="flex items-center gap-4">
+                        <a href="#" class="w-10 akun">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-circle   " viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                            </svg>
 
-                    </a>
+                        </a>
 
-                    <a href="#" class="akun">
-                        <h1 class="text-white">Selamat datang,</h1>
-                        <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"]?></p>
-                    </a>
+                        <a href="#" class="akun">
+                            <h1 class="text-white">Selamat datang,</h1>
+                            <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"] ?></p>
+                        </a>
+
+
+                    </div>
+
 
 
                 </div>
 
+                <div class="lg:hidden">
+                    <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                    </svg>
 
+                    <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
+                    </svg>
 
-            </div>
+                </div>
+                <div id="logout" class="fixed hidden bg-zinc-900 z-[9999]  top-20 right-12 rounded-lg px-5 py-7">
+                    <a href="./profil-akun.php">
+                        <h1 class="text-white font-bold text-center mb-5 text-lg">Lihat Profil</h1>
+                    </a>
+                    <div class="border-t pt-5">
 
-            <div class="lg:hidden">
-                <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                </svg>
-
-                <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
-                </svg>
-
-            </div>
-            <div id="logout" class="fixed hidden bg-zinc-900 z-[9999]  top-20 right-12 rounded-lg px-5 py-7">
-        <a href="./profil-akun.php">
-            <h1 class="text-white font-bold text-center mb-5 text-lg">Lihat Profil</h1>
-        </a>
-        <div class="border-t pt-5">
-
-            <a href="logout.php"><button class="bg-red-500 py-1 px-7 text-white font-bold rounded-lg">Logout</button></a>
-        </div>
-    </div>
+                        <a href="logout.php"><button class="bg-red-500 py-1 px-7 text-white font-bold rounded-lg">Logout</button></a>
+                    </div>
+                </div>
             <?php endif; ?>
 
         </div>
@@ -140,18 +141,21 @@ if (isset($_GET["cari"])) {
     <section id="home" class="h-screen mb-36">
         <div class="bg-[url('../assets/1.2.png')] bg-cover h-full">
             <div class="text-white text-center py-52 ">
-                <h1 class="text-xl font-bold mb-2">WELCOME</h1>
-                <h2 class="text-4xl font-bold mb-10">SMK Trimulia Jakarta</h2>
+                <h1 class="text-xl font-bold mb-2" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">WELCOME</h1>
+                <h2 class="text-4xl font-bold mb-10" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="700">SMK Trimulia Jakarta</h2>
                 <?php if (isset($nothing)) : ?>
                     <?php echo $nothing ?>
                 <?php endif; ?>
-                <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get">
+                <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="900">
                     <input name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
                     <button type="submit" name="cari" class="hidden">cari</button>
                 </form>
 
                 <br>
-                <a href="#kontak"><button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
+                <div data-aos="fade-down" data-aos-duration="1000">
+
+                    <a href="#kontak"><button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
+                </div>
 
             </div>
 
@@ -163,12 +167,12 @@ if (isset($_GET["cari"])) {
     <!-- JURUSAN -->
     <section id="jurusan" class="jurusan">
         <div class="container">
-            <div class="text-center">
-                <h1 id="1" class="font-bold text-slate-900 text-3xl mb-7">Kami bekerja sama dengan</h1>
-                <p id="p1" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
+            <div class="text-center mb-10">
+                <h1 data-aos="fade-down" data-aos-duration="1000" id="1" class="font-bold text-slate-900 text-3xl mb-7">Kami bekerja sama dengan</h1>
+                <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000" id="p1" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
             </div>
 
-            <div class="flex overflow-hidden space-x-2 group">
+            <div class="flex overflow-hidden space-x-2 group" data-aos="flip-up" data-aos-delay="300" data-aos-duration="1000">
                 <div class="flex group-hover:paused space-x-2 gap-1 items-center  animate-loop-scroll">
                     <img class="max-w-none" src="./assets/dummy1.png" alt="">
                     <img class="max-w-none" src="./assets/dummy2.png" alt="">
@@ -194,33 +198,40 @@ if (isset($_GET["cari"])) {
     <section id="berita" class="my-40">
         <div class="container">
             <div class="text-center my-10">
-                <h1 id="2" class="font-bold text-slate-900 text-3xl mb-7">Berita Terkini</h1>
-                <p id="p2" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
+                <h1 data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" id="2" class="font-bold text-slate-900 text-3xl mb-7">Berita Terkini</h1>
+                <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="000" id="p2" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
             </div>
 
 
             <div class="flex flex-wrap justify-start items-center ">
+
+                <?php $delay = 300 ?>
                 <?php foreach ($berita as $row) : ?>
 
-                    <div class="w-full flex justify-center  sm:w-1/2 md:w-1/4  px-4">
-                        <div class=" rounded-md   kartu shadow-xl  border-spacing-4 border border-gray-700 overflow-hidden mb-10 min-h-96 max-h-96 max-w-60">
+                    <div class=" sm:w-1/2  lg:w-1/4 w-full px-2 " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="1000">
+                        <div class="w-full mb-4 hover:cursor-pointer hover:-translate-y-1 transition   border border-slate-500 rounded-lg overflow-hidden">
+                            <div class=" h-52 hover:scale-105 transition duration-300 ">
+                                <img src="./img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover w-full h-full ">
+                            </div>
 
-                            <img src="img-berita/<?php echo $row["gambar_berita"] ?>" alt="gambar hehe" class="w-full h-50">
+                            <div class="p-3 h-60 flex flex-col justify-between ">
+                                <h1 class="text-berita font-bold text-zinc-800 text-2xl  line-clamp-1 h-1/3   "><?php echo $row["judul_berita"] ?></h1>
+                                <p class="text-zinc-800 text-berita  line-clamp-1 mb-10 h-full  py-2"> <?php echo $row["isi_berita"] ?></p>
 
-                            <div class="py-8 px-6">
-                                <h3 class="text-berita mb-3 font-semibold text-xl truncate "><?php echo $row["judul_berita"] ?></h3>
-                                <p class="mb-5 text-berita line-clamp-1 min-h-24 max-h-36 break-all  "><?php echo $row["isi_berita"] ?></p>
-                                <a href="" class="font-medium text-sm text-white bg-primary py-2 px-4 rounded-lg hover:shadow-lg hover:shadow-primary transition duration-500 ">Baca Selengkapnya</a>
+                                <button class="w-full    hover:translate-x-1 hover:shadow-sm hover:shadow-zinc-700 transition duration-500 bg-zinc-700 text-white px-7 py-2 rounded-md font-bold">Baca Selengkapnya</button>
                             </div>
                         </div>
                     </div>
-
+                    <?php $delay += 100 ?>
                 <?php endforeach; ?>
 
 
 
+
             </div>
-        </div>
+
+
+
     </section>
     <!-- BERITA END -->
 
@@ -230,37 +241,37 @@ if (isset($_GET["cari"])) {
     <section id="kontak" class="mb-10">
         <div class="conatiner">
             <div class="text-center mb-10">
-                <h1 id="3" class="font-bold text-slate-900 text-3xl mb-5">Contact Us</h1>
-                <p id="p3" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetu</p>
+                <h1 data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" id="3" class="font-bold text-slate-900 text-3xl mb-5">Contact Us</h1>
+                <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000" id="p3" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetu</p>
             </div>
 
 
 
             <form action="" method="get" class="pb-10">
                 <div class="max-w-xl mx-auto">
-                    <div class="w-full px-4 mb-8">
+                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="200" data-aos-duration="1000">
                         <label id="label1" for="" class="text-slate-900 font-semibold">Nama</label>
                         <input placeholder="Contoh: kevin" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
 
-                    <div class="w-full px-4 mb-8">
+                    <div class="w-full px-4 mb-8" data-aos="fade-left" data-aos-delay="100" data-aos-duration="1000">
                         <label id="label2" for="" class="text-slate-900 font-semibold">Email</label>
                         <input placeholder="Contoh: kevin@gmail.com" type="email" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
-                    <div class="w-full px-4 mb-8">
+                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="150">
                         <label id="label3" for="" class="text-slate-900 font-semibold">Subject</label>
                         <input placeholder="Contoh: Judul" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
 
-                    <div class="w-full px-4 mb-8">
+                    <div class="w-full px-4 mb-8" data-aos="fade-left" data-aos-delay="200">
                         <label id="label4" for="" class="text-slate-900 font-semibold">Pesan</label>
                         <textarea placeholder="Pesan..." class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500"></textarea>
                     </div>
 
-                    <div class="flex justify-center">
+                    <div class="flex justify-center" data-aos="fade-right" data-aos-delay="250">
                         <button class="hover:bg-violet-600 hover:shadow-md transition hover:scale-105 duration-300 hover:shadow-violet-600 bg-violet-500 text-white py-2 px-10 rounded-lg">Kirim</button>
 
                     </div>
@@ -367,6 +378,10 @@ if (isset($_GET["cari"])) {
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script src="./node_modules/preline/dist/preline.js"></script>
     <script src="./main.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
