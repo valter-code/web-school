@@ -137,34 +137,38 @@ if (isset($_GET["cari"])) {
                 <a href="#kontak">
                     <li>Kontak</li>
                 </a>
-                <a href="">
-                    <li>Login</li>
-                </a>
 
 
-                <!-- ilangin -->
+
+                <!-- Jika siswa belum login -->
 
                 <?php if (!isset($_SESSION["session-siswa"])) : ?>
-                    <a href="./login.php" class="w-full flex">
-                        <li class="bg-green-600 text-center py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">LOGIN</li>
-                    </a>
-                    <a href="./daftar.php" class="w-full flex">
-                        <li class="bg-transparent py-2 px-5 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">DAFTAR</li>
-                    </a>
+                    <div class="flex w-full gap-3 mt-3 ">
+
+                        <a href="./login.php" class="w-full flex  ">
+                            <li class="bg-green-600 w-full text-center py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">LOGIN</li>
+                        </a>
+                        <a href="./daftar.php" class="w-full flex">
+                            <li class="w-full text-center bg-transparent py-2 px-5 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">DAFTAR</li>
+                        </a>
+                    </div>
                 <?php endif; ?>
 
 
-                <!-- jika sudah login -->
+                <!-- jika siswa sudah login -->
 
                 <?php if (isset($_SESSION["session-siswa"])) : ?>
-                    <a href="./profil-akun.php" class="w-full flex">
-                        <li class="bg-neutral-800 py-2 px-5 border-2 border-neutral-600 rounded-md hover:bg-opacity-75  transition duration-300 text-white font-bold">LIHAT PROFIL</li>
-                    </a>
+                    <div class="flex mt-5">
+
+                        <a href="./profil-akun.php" class="w-full flex">
+                            <li class="bg-neutral-800 py-2 px-5 border-2 border-neutral-600 rounded-md hover:bg-opacity-75  transition duration-300 text-white font-bold">LIHAT PROFIL</li>
+                        </a>
 
 
-                    <a href="./logout.php" class="w-full flex">
-                        <li class="bg-transparent py-2 px-11 border-2 border-red-800 rounded-md hover:bg-red-800 transition duration-300 text-white font-bold">LOGOUT</li>
-                    </a>
+                        <a href="./logout.php" class="w-full flex">
+                            <li class="bg-transparent py-2 px-11 border-2 border-red-800 rounded-md hover:bg-red-800 transition duration-300 text-white font-bold">LOGOUT</li>
+                        </a>
+                    </div>
                 <?php endif; ?>
             </ul>
         </div>
@@ -175,20 +179,20 @@ if (isset($_GET["cari"])) {
 
     <!-- HERO -->
     <section id="home" class="h-screen mb-36">
-        <div class="bg-[url('../assets/1.2.png')] bg-cover h-full">
+        <div class="bg-[url('../assets/banner.svg')]  bg-cover bg-center w-full h-full">
             <div class="text-white text-center py-52 ">
                 <h1 class="text-xl font-bold mb-2" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">WELCOME</h1>
                 <h2 class="text-4xl font-bold mb-10" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="700">SMK Trimulia Jakarta</h2>
                 <?php if (isset($nothing)) : ?>
                     <?php echo $nothing ?>
                 <?php endif; ?>
-                <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="900">
+                <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="800">
                     <input name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
                     <button type="submit" name="cari" class="hidden">cari</button>
                 </form>
 
                 <br>
-                <div data-aos="fade-down" data-aos-duration="1000">
+                <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="900">
 
                     <a href="#kontak"><button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
                 </div>
@@ -204,7 +208,7 @@ if (isset($_GET["cari"])) {
     <section id="jurusan" class="jurusan">
         <div class="container">
             <div class="text-center mb-10">
-                <h1 data-aos="fade-down" data-aos-duration="1000" id="1" class="font-bold text-slate-900 text-3xl mb-7">Kami bekerja sama dengan</h1>
+                <h1 id="1" class="font-bold text-slate-900  text-3xl mb-7" data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000">Kami bekerja sama dengan</h1>
                 <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000" id="p1" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
             </div>
 
@@ -297,7 +301,7 @@ if (isset($_GET["cari"])) {
                     </div>
 
                     <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="300">
-                        <label id=" label3" for="" class="text-slate-900 font-semibold">Subject</label>
+                        <label id="label3" for="" class="text-slate-900 font-semibold">Subject</label>
                         <input placeholder="Contoh: Judul" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
@@ -329,7 +333,7 @@ if (isset($_GET["cari"])) {
             <h1 class="mb-10 font-bold text-4xl text-red-500"><SPAN class="text-white">Forbidden</SPAN><span class="text-cyan-500">Team</span></h1>
             <div class="flex flex-wrap sm:gap-5 items-center ">
 
-                <div class=" sm:w-1/3">
+                <div class="w-full sm:w-1/3">
                     <div class="mb-14">
 
                         <h2 class="mb-3 text-zinc-200 font-bold text-2xl">Hubungi Kami</h2>
@@ -339,7 +343,7 @@ if (isset($_GET["cari"])) {
                     </div>
                 </div>
 
-                <div class="mb-14  sm:w-1/3">
+                <div class="mb-14 w-full  sm:w-1/3">
                     <div>
                         <h2 class="mb-3 text-zinc-200 font-bold text-2xl">Jurusan</h2>
                         <p class="text-slate-200 text-base mb-3">Teknik Komputer & Jaringan</p>
