@@ -4,10 +4,10 @@
     $id = $_GET["id"];
 
     if(deleteBerita($id)){
-        echo "<script>alert('Berhasil menghapus data mahasiswa'); document.location.href = 'berita.php'</script>";
+        echo "<script>alert('Berhasil menghapus berita'); document.location.href = 'berita.php'</script>";
         exit;
     }else{
-        echo "<script>alert('Gagal menghapus data mahasiswa'); document.location.href = 'berita.php'</script>";
+        echo "<script>alert('Gagal menghapus berita'); document.location.href = 'berita.php'</script>";
         exit;
     }
 ?>

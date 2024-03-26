@@ -5,6 +5,9 @@
         if(tambahBerita($_POST) > 0){
             echo "<script>alert('Berhasil menambahkan berita'); document.location.href = 'berita.php'</script>";
             exit;
+        }else{
+            echo "<script>alert('Gagal menambahkan berita'); document.location.href = 'berita.php'</script>";
+            exit;
         }
     }
 ?>
@@ -15,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa</title>
+    <title>Tambah Berita</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui@1.12.1/dist/css/styles.css" />
 </head>
 
