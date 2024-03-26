@@ -198,6 +198,7 @@ if (isset($_GET["cari"])) {
                 </div>
 
             </div>
+            
 
         </div>
     </section>
@@ -255,10 +256,10 @@ if (isset($_GET["cari"])) {
                             </div>
 
                             <div class="p-3 h-60 flex flex-col justify-between ">
-                                <h1 class="text-berita font-bold text-zinc-800 text-2xl  line-clamp-1 h-1/3   "><?php echo $row["judul_berita"] ?></h1>
+                                <a href="berita.php?id=<?php echo $row["id"] ?>"><h1 class="text-berita font-bold text-zinc-800 text-2xl  line-clamp-1 h-1/3   "><?php echo $row["judul_berita"] ?></h1>
                                 <p class="text-zinc-800 text-berita  line-clamp-1 mb-10 h-full  py-2"> <?php echo $row["isi_berita"] ?></p>
 
-                                <button class="w-full    hover:translate-x-1 hover:shadow-sm hover:shadow-zinc-700 transition duration-500 bg-zinc-700 text-white px-7 py-2 rounded-md font-bold">Baca Selengkapnya</button>
+                                <a href="berita.php?id=<?php echo $row["id"] ?>"><button class="w-full    hover:translate-x-1 hover:shadow-sm hover:shadow-zinc-700 transition duration-500 bg-zinc-700 text-white px-7 py-2 rounded-md font-bold">Baca Selengkapnya</button></a>
                             </div>
                         </div>
                     </div>

@@ -103,10 +103,10 @@
         $tmpName = $_FILES["gambar_berita"]["tmp_name"];
         $error = $_FILES["gambar_berita"]["error"];
 
-        if($error == 4){
-            echo "<script>alert('Masukan gambar terlebih dahulu');</script>";
-            return false;
-        }
+        // if($error == 4){
+        //     echo "<script>alert('Masukan gambar terlebih dahulu');</script>";
+        //     return false;
+        // }
 
         //cek ekstensi file
         $ekstensiValid = ["jpg", "jpeg", "png"];
@@ -123,9 +123,14 @@
             return false;
         }
 
+        //ganti nama file
+        $newnameFile = uniqid();
+        $newnameFile .= ".";
+        $newnameFile .= $ekstensiGambar;
+
         //lolos pengcekan
-        move_uploaded_file( $tmpName, "../img-berita/" . $nameGambar );
-        return $nameGambar;
+        move_uploaded_file( $tmpName, "../img-berita/" . $newnameFile );
+        return $newnameFile;
     }
 
     function deleteBerita($id){
@@ -134,6 +139,34 @@
         $statement = mysqli_prepare( $koneksi, $query );
         mysqli_stmt_bind_param( $statement,"i", $id );
         mysqli_stmt_execute( $statement );
+        return mysqli_affected_rows( $koneksi );
+    }
+
+    //function edit berita
+    function editBerita(){
+        global $koneksi;
+        $id = $_POST["id"];
+        $judul = htmlspecialchars(mysqli_real_escape_string( $koneksi, $_POST["judul_berita"]));
+        $penulis = htmlspecialchars(mysqli_real_escape_string( $koneksi, $_POST["penulis"]));
+        $isi = htmlspecialchars(mysqli_real_escape_string( $koneksi, $_POST["isi_berita"]));
+    
+        if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
+            $gambar = upload();
+
+            if(!$gambar){
+                return false;
+            }
+        }else{
+            $query = "SELECT * FROM berita WHERE id = $id";
+            $result = mysqli_query($koneksi, $query );
+            $berita = mysqli_fetch_assoc($result);
+            $gambar = $berita["gambar_berita"];
+        }
+
+        //query
+        $query = "UPDATE berita SET judul_berita = '$judul', isi_berita = '$isi', penulis = '$penulis', gambar_berita = '$gambar' WHERE id = $id";
+        mysqli_query( $koneksi, $query);
+
         return mysqli_affected_rows( $koneksi );
     }
 ?>

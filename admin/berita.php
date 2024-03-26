@@ -194,7 +194,7 @@
                                     <th><?php echo $berita["penulis"] ?></th>
                                     <th><?php echo $berita["date"] ?></th>
                                     <th><?php echo $berita["gambar_berita"] ?></th>
-                                    <th><a class="text-sky-500" href="edit-siswa.php">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
+                                    <th><a class="text-sky-500" href="edit-berita.php?id=<?php echo $berita["id"]; ?>">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>
                             <?php endforeach; ?>
