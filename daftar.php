@@ -16,11 +16,7 @@
                 <div class="mb-10">
                     <h1 class="text-white text-center font-bold">SMK TRIMULIA JAKARTA</h1>
 
-                    <a href="" class="absolute right-1 top-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-                        </svg>
-                    </a>
+
 
                     <h2 class="text-white text-center text-sm font-light">DAFTAR SISWA</h2>
                 </div>
@@ -55,7 +51,7 @@
                     <img src="./assets/logo.png" alt="">
                 </div>
 
-                <a href="./index.php" class="h-12 w-12 rounded-full -left-20 z-50 absolute flex justify-center items-center bg-white dark:bg-white ">
+                <a href="./index.php" class="h-12 w-12 rounded-full md:bottom-auto md:-left-20 -bottom-20 left-50 z-50 absolute flex justify-center items-center bg-white dark:bg-white ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-arrow-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                     </svg>

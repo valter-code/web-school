@@ -1,25 +1,25 @@
 <?php
-    require("koneksi.php");
-    session_start();
+require("koneksi.php");
+session_start();
 
-    if(isset($_POST["login"])){
-        $username = $_POST["username_siswa"];
-        $_SESSION["username-siswa"] = $username;
-        $password = $_POST["password_siswa"];
+if (isset($_POST["login"])) {
+    $username = $_POST["username_siswa"];
+    $_SESSION["username-siswa"] = $username;
+    $password = $_POST["password_siswa"];
 
-        $query = "SELECT * FROM siswa WHERE username_siswa = '$username'";
-        $result = mysqli_query($koneksi, $query);
-        if(mysqli_num_rows($result) == 1){
-            $row = mysqli_fetch_assoc($result);
-            if(password_verify( $password, $row["password_siswa"])){
-                $_SESSION["session-siswa"] = true;
-                header("Location: index.php");
-                exit;
-            }
+    $query = "SELECT * FROM siswa WHERE username_siswa = '$username'";
+    $result = mysqli_query($koneksi, $query);
+    if (mysqli_num_rows($result) == 1) {
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password_siswa"])) {
+            $_SESSION["session-siswa"] = true;
+            header("Location: index.php");
+            exit;
         }
-        $error = true;
     }
-    
+    $error = true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -43,9 +43,9 @@
 
                     <h2 class="text-white text-center text-sm font-light">LOGIN SISWA</h2>
                 </div>
-                
-                <?php if(isset($error)): ?>
-                <p style="color:red;">username/password salah</p>
+
+                <?php if (isset($error)) : ?>
+                    <p style="color:red;">username/password salah</p>
                 <?php endif; ?>
 
                 <div class="border-b-2 mb-10">
@@ -68,7 +68,7 @@
                     <img src="./assets/logo.png" alt="">
                 </div>
 
-                <a href="./index.php" class="h-12 w-12 rounded-full -left-20 z-50 absolute flex justify-center items-center bg-white dark:bg-white ">
+                <a href="./index.php" class="h-12 w-12 rounded-full -bottom-20 left-50 md:-left-20 md:bottom-auto z-50 absolute flex justify-center items-center bg-white dark:bg-white ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-arrow-left" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
                     </svg>
