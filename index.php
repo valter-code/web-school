@@ -123,7 +123,7 @@ if (isset($_GET["cari"])) {
 
         </div>
 
-        <div id="nav-menu" class="hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
+        <div id="nav-menu" class="lg:hidden hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
             <ul class="flex flex-col gap-4 text-xl  ">
                 <a href="#">
                     <li>Home</li>
@@ -137,40 +137,45 @@ if (isset($_GET["cari"])) {
                 <a href="#kontak">
                     <li>Kontak</li>
                 </a>
-
-
-
-                <!-- Jika siswa belum login -->
-
-                <?php if (!isset($_SESSION["session-siswa"])) : ?>
-                    <div class="flex w-full gap-3 mt-3 ">
-
-                        <a href="./login.php" class="w-full flex  ">
-                            <li class="bg-green-600 w-full text-center py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">LOGIN</li>
-                        </a>
-                        <a href="./daftar.php" class="w-full flex">
-                            <li class="w-full text-center bg-transparent py-2 px-5 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">DAFTAR</li>
-                        </a>
-                    </div>
-                <?php endif; ?>
-
-
-                <!-- jika siswa sudah login -->
-
-                <?php if (isset($_SESSION["session-siswa"])) : ?>
-                    <div class="flex mt-5">
-
-                        <a href="./profil-akun.php" class="w-full flex">
-                            <li class="bg-neutral-800 py-2 px-5 border-2 border-neutral-600 rounded-md hover:bg-opacity-75  transition duration-300 text-white font-bold">LIHAT PROFIL</li>
-                        </a>
-
-
-                        <a href="./logout.php" class="w-full flex">
-                            <li class="bg-transparent py-2 px-11 border-2 border-red-800 rounded-md hover:bg-red-800 transition duration-300 text-white font-bold">LOGOUT</li>
-                        </a>
-                    </div>
-                <?php endif; ?>
             </ul>
+
+
+            <!-- Jika siswa belum login -->
+            <?php if (!isset($_SESSION["session-siswa"])) : ?>
+                <div class="flex flex-wrap sm:flex-nowrap w-full gap-3 mt-3 ">
+
+                    <a href="./login.php" class="w-full flex  ">
+                        <button class="bg-green-600 w-full text-center py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">LOGIN </button>
+                    </a>
+                    <a href="./daftar.php" class="w-full flex">
+                        <button class="w-full text-center bg-transparent py-2 px-5 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">DAFTAR</button>
+                    </a>
+                </div>
+            <?php endif; ?>
+
+
+            <!-- jika siswa sudah login -->
+            <?php if (isset($_SESSION["session-siswa"])) : ?>
+
+                <a href="#" class="">
+                    <h1 class="text-white text-lg mt-2">Selamat datang,</h1>
+                    <p class="text-white text-lg font-bold"><?php echo $_SESSION["username-siswa"] ?></p>
+                </a>
+
+                <div class="flex flex-wrap gap-2  mt-5 sm:flex-nowrap">
+
+                    <a href="./profil-akun.php" class="w-full  ">
+                        <button class="w-full bg-neutral-800 py-2 px-4 border-2 border-neutral-600 rounded-md hover:bg-opacity-75  transition duration-300 text-white font-bold">LIHAT PROFIL</button>
+                    </a>
+
+
+                    <a href="./logout.php" class="w-full ">
+                        <button class="w-full bg-transparent py-2 px-9 border-2 border-red-800 rounded-md hover:bg-red-800 transition duration-300 text-white font-bold">LOGOUT</button>
+                    </a>
+                </div>
+
+
+            <?php endif; ?>
         </div>
     </nav>
 
