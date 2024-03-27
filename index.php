@@ -278,25 +278,26 @@ if (isset($_GET["cari"])) {
 
             <!-- pagination -->
             <div class="flex gap-1 justify-center mt-5">
-                <a href="" class="h-10 w-10 bg-violet-700  border  flex justify-center items-center rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <a href="" class="h-10 w-10 bg-zinc-400 border  flex justify-center items-center rounded-md hover:scale-95 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-800 bi-caret-left" viewBox="0 0 16 16">
                         <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753" />
                     </svg>
                 </a>
-                <a href="" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white">1</h1>
+                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
+                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">1</h1>
                 </a>
-                <a href="" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white">2</h1>
+                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
+                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">2</h1>
                 </a>
-                <a href="" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white">3</h1>
+                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
+                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">3</h1>
                 </a>
-                <a href="" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white">...</h1>
+                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
+                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">...</h1>
                 </a>
-                <a href="" class="h-10 w-10 bg-violet-700 border flex justify-center items-center rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-right" viewBox="0 0 16 16">
+
+                <a href="" class="h-10 w-10 bg-violet-400  flex justify-center items-center rounded-md group hover:scale-95 transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-800 bi-caret-right" viewBox="0 0 16 16">
                         <path d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753" />
                     </svg>
                 </a>
