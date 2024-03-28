@@ -1,39 +1,39 @@
 <?php
-    require("koneksi.php");
-    session_start();
+require("koneksi.php");
+session_start();
 
-    $id = $_GET["id"];
-    $query = "SELECT * FROM berita WHERE id = ?";
+$id = $_GET["id"];
+$query = "SELECT * FROM berita WHERE id = ?";
+$statement = mysqli_prepare($koneksi, $query);
+mysqli_stmt_bind_param($statement, "i", $id);
+mysqli_stmt_execute($statement);
+$result = mysqli_stmt_get_result($statement);
+$row = mysqli_fetch_assoc($result);
+
+
+
+$berita = query("SELECT * FROM berita");
+
+//cari berita
+if (isset($_GET["cari"])) {
+    $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
     $statement = mysqli_prepare($koneksi, $query);
-    mysqli_stmt_bind_param($statement,"i", $id);
+    $keyword = $_GET["keyword"];
+
+    //bind
+    $keyword = "%" . $keyword . "%";
+    mysqli_stmt_bind_param($statement, "s", $keyword);
+
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
-    $row = mysqli_fetch_assoc($result);
-    
+    $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-
-    $berita = query("SELECT * FROM berita");
-
-    //cari berita
-    if (isset($_GET["cari"])) {
-        $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
-        $statement = mysqli_prepare($koneksi, $query);
-        $keyword = $_GET["keyword"];
-
-        //bind
-        $keyword = "%" . $keyword . "%";
-        mysqli_stmt_bind_param($statement, "s", $keyword);
-
-        mysqli_stmt_execute($statement);
-        $result = mysqli_stmt_get_result($statement);
-        $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if (mysqli_num_rows($result) == 0) {
-            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
-        } else {
-            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
-        }
+    if (mysqli_num_rows($result) == 0) {
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
+    } else {
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -52,142 +52,11 @@
 
 
     <!-- NAV -->
-    <nav class=" bg-transparent fixed z-50 w-full" data-aos="fade-down" data-aos-duration="1000">
-        <div class='px-5 py-4 flex items-center justify-between'>
-            <div class="flex items-center justify-center gap-2">
-                <img class="w-10" src="./assets/logo.png" alt="">
-                <h2 class="text-white font-poppins  sm:text-xl md:text-2xl ">SMK Trimulia Jakarta</h2>
-            </div>
-
-
-            <div class="mr-10 hidden lg:block">
-                <ul class="flex gap-10 text-white  font-bold  text-lg">
-                    <li><a href="#home" class="Home">Home</a></li>
-                    <li><a href="#jurusan" class="jurusan">Mitra</a></li>
-                    <li><a href="#berita" class="berita">Berita</a></li>
-                    <li><a href="#kontak" class="kontak">Kontak</a></li>
-                </ul>
-            </div>
-
-            <?php if (!isset($_SESSION["session-siswa"])) : ?>
-                <div class="flex gap-5 hidden lg:block ">
-                    <a href="./login.php"><button class="bg-green-600 py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">Login</button></a>
-                    <a href="./daftar.php"><button class="bg-transparent py-2 px-6 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">Daftar</button></a>
-                </div>
-
-                <div class="lg:hidden">
-                    <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                    </svg>
-
-                    <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
-                    </svg>
-
-                </div>
-            <?php endif; ?>
-
-            <?php if (isset($_SESSION["session-siswa"])) : ?>
-                <div id="akun" class="gap-5 hidden lg:block ">
-                    <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 akun">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-circle   " viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg>
-
-                        </a>
-
-                        <a href="#" class="akun">
-                            <h1 class="text-white">Selamat datang,</h1>
-                            <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"] ?></p>
-                        </a>
-
-
-                    </div>
-
-
-
-                </div>
-
-                <div class="lg:hidden">
-                    <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                    </svg>
-
-                    <svg id="open" class="cursor-pointer w-6 h-6  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14" />
-                    </svg>
-
-                </div>
-                <div id="logout" class="fixed hidden bg-zinc-900 z-[9999]  top-20 right-12 rounded-lg px-5 py-7">
-                    <a href="./profil-akun.php">
-                        <h1 class="text-white font-bold text-center mb-5 text-lg">Lihat Profil</h1>
-                    </a>
-                    <div class="border-t pt-5">
-
-                        <a href="logout.php"><button class="bg-red-500 py-1 px-7 text-white font-bold rounded-lg">Logout</button></a>
-                    </div>
-                </div>
-            <?php endif; ?>
-
-        </div>
-
-        <div id="nav-menu" class="hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
-            <ul class="flex flex-col gap-4 text-xl  ">
-                <a href="#">
-                    <li>Home</li>
-                </a>
-                <a href="#jurusan">
-                    <li>Mitra</li>
-                </a>
-                <a href="#berita">
-                    <li>Berita</li>
-                </a>
-                <a href="#kontak">
-                    <li>Kontak</li>
-                </a>
-
-
-                <!-- Jika siswa belum login -->
-
-                <?php if (!isset($_SESSION["session-siswa"])) : ?>
-                    <div class="flex w-full gap-3 mt-3 ">
-
-                        <a href="./login.php" class="w-full flex  ">
-                            <li class="bg-green-600 w-full text-center py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">LOGIN</li>
-                        </a>
-                        <a href="./daftar.php" class="w-full flex">
-                            <li class="w-full text-center bg-transparent py-2 px-5 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">DAFTAR</li>
-                        </a>
-                    </div>
-                <?php endif; ?>
-
-
-                <!-- jika siswa sudah login -->
-
-                <?php if (isset($_SESSION["session-siswa"])) : ?>
-                    <div class="flex mt-5">
-
-                        <a href="./profil-akun.php" class="w-full flex">
-                            <li class="bg-neutral-800 py-2 px-5 border-2 border-neutral-600 rounded-md hover:bg-opacity-75  transition duration-300 text-white font-bold">LIHAT PROFIL</li>
-                        </a>
-
-
-                        <a href="./logout.php" class="w-full flex">
-                            <li class="bg-transparent py-2 px-11 border-2 border-red-800 rounded-md hover:bg-red-800 transition duration-300 text-white font-bold">LOGOUT</li>
-                        </a>
-                    </div>
-                <?php endif; ?>
-            </ul>
-        </div>
-    </nav>
-
 
     <!-- NAV END -->
 
     <!-- HERO -->
-    <section id="home" class="h-screen mb-36">
+    <!-- <section id="home" class="h-screen mb-36">
         <div class="bg-[url('../assets/banner.svg')]  bg-cover bg-center w-full h-full">
             <div class="text-white text-center py-52 ">
                 <h1 class="text-xl font-bold mb-2" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">WELCOME</h1>
@@ -209,12 +78,12 @@
             </div>
 
         </div>
-    </section>
+    </section> -->
     <!-- HERO END -->
 
 
     <!-- JURUSAN -->
-    <section id="jurusan" class="jurusan">
+    <!-- <section id="jurusan" class="jurusan">
         <div class="container">
             <div class="text-center mb-10">
                 <h1 id="1" class="font-bold text-slate-900  text-3xl mb-7" data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000">Kami bekerja sama dengan</h1>
@@ -240,19 +109,41 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- JURUSAN END -->
 
-    <!-- BERITA -->
-    <section id="berita" class="my-40">
-        <div class="container">
-            <div class="text-center my-10">
-                <img src="img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
-                <h1 data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" id="2" class="font-bold text-slate-900 text-3xl mb-7"><?php echo $row["judul_berita"] ?></h1>
-                <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="000" id="p2" class="text-slate-700 text-base"><?php echo $row["isi_berita"] ?></p>
-            </div>
+    <!-- BREADCRUMB -->
+    <div class="container pt-20">
+        <ul class="flex gap-2 items-center md:text-xl text-zinc-800 text-berita">
+            <a href="./index.php#berita">
+                <li>Home</li>
+            </a>
+            <li>//</li>
+            <a href="#">
+                <li class="breadcrumb-aktif">Berita NamaBerita</li>
+            </a>
+        </ul>
+    </div>
+    <!-- BREADCRUMB END -->
 
+    <!-- BERITA -->
+    <section id="berita" class="pt-10 pb-80">
+        <div class="container  ">
+            <div class="border float-left mb-2 mr-4  h-60 max-w-sm w-full overflow-hidden">
+                <img class="object-cover w-full h-full" src="img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
+            </div>
+            <h1 id="2" class="text-berita font-bold text-zinc-800 text-4xl    "><?php echo $row["judul_berita"] ?></h1>
+            <h3 class="text-berita mb-5 text-zinc-800">Autor - 24 April 2007</h3>
+            <p id="p2" class="text-zinc-800 text-berita text-base"><?php echo $row["isi_berita"] ?></p>
+
+
+            <div class="flex items-center gap-0 lg:gap-1 mt-28 sm:px-32">
+                <div class="border-t-slate-600 pembatas border-t block w-1/2  lg:w-full  "></div>
+                <a href="./index.php#berita" class="text-zinc-800 font-bold text-berita text-center w-full   md:w-1/3 lg:w-1/3 ">lihat berita lainnya</a>
+                <div class="border-t-slate-600 pembatas border-t block w-1/2 lg:w-full  "></div>
+            </div>
         </div>
+
 
 
     </section>
@@ -261,7 +152,7 @@
 
     <!-- CONTACT -->
 
-    <section id="kontak" class="mb-10">
+    <!-- <section id="kontak" class="mb-10">
         <div class="conatiner">
             <div class="text-center mb-10">
                 <h1 data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" id="3" class="font-bold text-slate-900 text-3xl mb-5">Contact Us</h1>
@@ -305,13 +196,13 @@
             </form>
 
         </div>
-    </section>
+    </section> -->
 
     <!-- CONTACT END -->
 
 
     <!-- FOOTER -->
-    <section class="my h-full bg-neutral-800 py-36">
+    <section class=" h-full bg-neutral-800 py-36">
         <div class="container">
             <h1 class="mb-10 font-bold text-4xl text-red-500"><SPAN class="text-white">Forbidden</SPAN><span class="text-cyan-500">Team</span></h1>
             <div class="flex flex-wrap sm:gap-5 items-center ">

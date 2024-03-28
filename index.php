@@ -277,7 +277,7 @@ if (isset($_GET["cari"])) {
             </div>
 
             <!-- pagination -->
-            <div class="flex gap-1 justify-center mt-5">
+            <div class="flex gap-1 justify-center mt-5" data-aos="fade-down" data-aos-duration="850">
                 <a href="" class="h-10 w-10 bg-zinc-400 border  flex justify-center items-center rounded-md hover:scale-95 transition duration-300">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-800 bi-caret-left" viewBox="0 0 16 16">
                         <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753" />

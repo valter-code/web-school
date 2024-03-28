@@ -20,4 +20,6 @@
   }
 }
 
-
+.breadcrumb-aktif {
+  @apply font-medium underline;
+}

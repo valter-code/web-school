@@ -90,6 +90,7 @@ const lightModeP = [document.getElementById("p1"), document.getElementById("p2")
 const lightModeLabel = [document.getElementById("label1"), document.getElementById("label2"), document.getElementById("label3"), document.getElementById("label4")];
 const kartu = document.getElementsByClassName("kartu");
 const textBerita = document.getElementsByClassName("text-berita");
+const pembatas = document.getElementsByClassName('pembatas')
 
 // darkmode
 darkMode.addEventListener("click", (event) => {
@@ -106,6 +107,11 @@ darkMode.addEventListener("click", (event) => {
   for (let i = 0; i < textBerita.length; i++) {
     textBerita[i].classList.toggle("text-zinc-800");
     textBerita[i].classList.toggle("text-zinc-200");
+  }
+
+  for (let i = 0; i < pembatas.length; i++) {
+    pembatas[i].classList.toggle("border-t-slate-600");
+    pembatas[i].classList.toggle("border-t-violet-400");
   }
 
   for (let i = 0; i < kartu.length; i++) {
