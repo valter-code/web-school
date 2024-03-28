@@ -1,29 +1,37 @@
 <?php
-require("koneksi.php");
-session_start();
+    require("koneksi.php");
+    session_start();
 
-$berita = query("SELECT * FROM berita");
+    //pagination
+    $maxData = 4;
+    $jumlahData = count(query("SELECT * FROM berita"));
+    $jumlahHalaman = ceil($jumlahData / $maxData);
+    $halamanAktif = (isset($_GET["hal"])) ? $_GET["hal"] : 1;
+    $dataAwal = ($maxData * $halamanAktif) - $maxData;
+    
 
-//cari berita
-if (isset($_GET["cari"])) {
-    $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
-    $statement = mysqli_prepare($koneksi, $query);
-    $keyword = $_GET["keyword"];
+    $berita = query("SELECT * FROM berita LIMIT $dataAwal, $maxData");
 
-    //bind
-    $keyword = "%" . $keyword . "%";
-    mysqli_stmt_bind_param($statement, "s", $keyword);
+    //cari berita
+    if (isset($_GET["cari"])) {
+        $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        $keyword = $_GET["keyword"];
 
-    mysqli_stmt_execute($statement);
-    $result = mysqli_stmt_get_result($statement);
-    $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        //bind
+        $keyword = "%" . $keyword . "%";
+        mysqli_stmt_bind_param($statement, "s", $keyword);
 
-    if (mysqli_num_rows($result) == 0) {
-        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
-    } else {
-        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if (mysqli_num_rows($result) == 0) {
+            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
+        } else {
+            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
+        }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -277,31 +285,49 @@ if (isset($_GET["cari"])) {
             </div>
 
             <!-- pagination -->
-            <div class="flex gap-1 justify-center mt-5" data-aos="fade-down" data-aos-duration="850">
-                <a href="" class="h-10 w-10 bg-zinc-400 border  flex justify-center items-center rounded-md hover:scale-95 transition duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-800 bi-caret-left" viewBox="0 0 16 16">
+            <div class="flex gap-1 justify-center mt-5">
+                
+                <!-- KODE UNTUK PREVIOUS pagination -->
+                <?php if($halamanAktif > 1): ?>
+            
+                <a href="?hal=<?php echo $halamanAktif -1 ?>" class="h-10 w-10 bg-violet-700  border  flex justify-center items-center rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-left" viewBox="0 0 16 16">
                         <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753" />
                     </svg>
                 </a>
-                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">1</h1>
+
+                <?php endif; ?>
+                <!--  END KODE UNTUK PREVIOUS pagination -->
+
+
+                <!-- KODE UNTUK nomor pagination -->
+                <?php for($i = 1; $i <= $jumlahHalaman; $i++): ?>
+
+                <?php if($i == $halamanAktif): ?>
+                <a href="?hal=<?php echo $i ?>" class="bg-violet-700 h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
+                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
                 </a>
-                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">2</h1>
+                <?php else: ?>
+                    <a href="?hal=<?php echo $i ?>" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
+                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
                 </a>
-                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">3</h1>
-                </a>
-                <a href="" class="h-10 hover:-translate-y-1 transition w-10 bg-transparent border hover:border-none border-violet-400 hover:bg-violet-400 group flex justify-center items-center rounded-md">
-                    <h1 class="font-bold text-violet-400 transition duration-300 group-hover:text-white">...</h1>
+                <?php endif; ?>
+
+                <?php endfor; ?>
+                <!-- END KODE UNTUK nomor pagination -->
+
+                <a href="" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md">
+                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white">...</h1>
                 </a>
 
-                <a href="" class="h-10 w-10 bg-violet-400  flex justify-center items-center rounded-md group hover:scale-95 transition duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi text-gray-800 bi-caret-right" viewBox="0 0 16 16">
+                <!-- KODE UNTUK NEXT pagination -->
+                <?php if($halamanAktif < $jumlahHalaman): ?>
+                <a href="?hal=<?php echo $halamanAktif +1 ?>" class="h-10 w-10 bg-violet-700 border flex justify-center items-center rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-right" viewBox="0 0 16 16">
                         <path d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753" />
                     </svg>
                 </a>
-
+                <?php endif; ?>
             </div>
             <!-- pagination end -->
 
