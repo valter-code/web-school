@@ -1,17 +1,17 @@
 <?php
-    require("../koneksi.php");
-    session_start();
+require("../koneksi.php");
+session_start();
 
-    //kick jika belum login
-    if(!isset($_SESSION["session-admin"])){
-        header("Location: login.php");
-        exit;
-    }
+//kick jika belum login
+if (!isset($_SESSION["session-admin"])) {
+    header("Location: login.php");
+    exit;
+}
 
-    $totalAdmin = totalAdmin();
-    $totalGuru = totalGuru();
-    $totalSiswa = totalSiswa();
-    $totalBerita = totalBerita();
+$totalAdmin = totalAdmin();
+$totalGuru = totalGuru();
+$totalSiswa = totalSiswa();
+$totalBerita = totalBerita();
 
 ?>
 
@@ -30,24 +30,11 @@
 
     <div class="sticky flex h-screen flex-row gap- overflow-y-auto rounded-lg sm:overflow-x-hidden">
         <aside class="sidebar-sticky sidebar justify-start">
-            <section class="sidebar-title items-center p-4">
-                <div class="w-12 mr-2">
-                    <div class="avatar rounded-sm bg-transparent bg-tra avatar-md">
-                        <div class="dropdown-container">
-                            <div class="dropdown">
-                                <label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
-                                    <img src="../assets/logo.png" alt="avatar" />
-                                </label>
-                                <div class="dropdown-menu dropdown-menu-bottom-right">
-                                    <a class="dropdown-item text-sm">Profile</a>
-                                    <a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
-                                    <a href="logout.php" tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <section id="profil-admin" class="sidebar-title items-center p-4 ">
+                <div class="border w-10 h-10 rounded-full mr-3 overflow-hidden hover:cursor-pointer">
+                    <img src="../assets/deafult.profil-admin.svg" alt="" class="w-full h-full object-cover">
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col hover:cursor-pointer">
                     <span>Welcome admin</span>
                     <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username-admin"] ?></span>
 
@@ -147,12 +134,12 @@
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalGuru ?></h2>
                     </div>
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
-                        <img class="w-20 rounded-full" src="../assets/berita.svg" alt="">
+                        <img class="w-20 rounded-full" src="../assets/siswa-logo.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Siswa</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalSiswa ?></h2>
                     </div>
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
-                        <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/5d/04/14/5d04141fdc10b958ca9e43d21e350b45.jpg" alt="">
+                        <img class="w-20 rounded-full" src="../assets/berita-logo.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Berita</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalBerita ?></h2>
                     </div>
@@ -170,6 +157,26 @@
     </div>
 
 
+
+    <!-- PROFIL POP UP -->
+    <div id="akun-admin" class="fixed top-16 left-4 shadow-lg py-7 -translate-x-48  transition duration-100 px-5 rounded-lg bg-neutral-900">
+
+        <a href="./account.php" class="mb-3 inline-block">Account Settings</a>
+        <a href="./logout.php">
+            <div class="flex items-center gap-2 border-t pt-2 border-zinc-600">
+                <p>Logout</p>
+                <div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="red" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                    </svg>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- PROFIL POP UP END -->
+    <script src="./profil-admin.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </body>
 

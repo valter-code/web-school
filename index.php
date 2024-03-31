@@ -1,37 +1,37 @@
 <?php
-    require("koneksi.php");
-    session_start();
+require("koneksi.php");
+session_start();
 
-    //pagination
-    $maxData = 4;
-    $jumlahData = count(query("SELECT * FROM berita"));
-    $jumlahHalaman = ceil($jumlahData / $maxData);
-    $halamanAktif = (isset($_GET["hal"])) ? $_GET["hal"] : 1;
-    $dataAwal = ($maxData * $halamanAktif) - $maxData;
-    
+//pagination
+$maxData = 4;
+$jumlahData = count(query("SELECT * FROM berita"));
+$jumlahHalaman = ceil($jumlahData / $maxData);
+$halamanAktif = (isset($_GET["hal"])) ? $_GET["hal"] : 1;
+$dataAwal = ($maxData * $halamanAktif) - $maxData;
 
-    $berita = query("SELECT * FROM berita LIMIT $dataAwal, $maxData");
 
-    //cari berita
-    if (isset($_GET["cari"])) {
-        $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
-        $statement = mysqli_prepare($koneksi, $query);
-        $keyword = $_GET["keyword"];
+$berita = query("SELECT * FROM berita LIMIT $dataAwal, $maxData");
 
-        //bind
-        $keyword = "%" . $keyword . "%";
-        mysqli_stmt_bind_param($statement, "s", $keyword);
+//cari berita
+if (isset($_GET["cari"])) {
+    $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
+    $statement = mysqli_prepare($koneksi, $query);
+    $keyword = $_GET["keyword"];
 
-        mysqli_stmt_execute($statement);
-        $result = mysqli_stmt_get_result($statement);
-        $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    //bind
+    $keyword = "%" . $keyword . "%";
+    mysqli_stmt_bind_param($statement, "s", $keyword);
 
-        if (mysqli_num_rows($result) == 0) {
-            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
-        } else {
-            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
-        }
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if (mysqli_num_rows($result) == 0) {
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
+    } else {
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -68,10 +68,17 @@
             </div>
 
             <?php if (!isset($_SESSION["session-siswa"])) : ?>
-                <div class="flex gap-5 hidden lg:block ">
-                    <a href="./login.php"><button class="bg-green-600 py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">Login</button></a>
-                    <a href="./daftar.php"><button class="bg-transparent py-2 px-6 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">Daftar</button></a>
-                </div>
+                <a href="./login.php" class="hidden lg:block">
+                    <div class="bg-green-600 py-2 flex items-center gap-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">
+                        LOGIN
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                        </svg>
+                    </div>
+                </a>
+
+
 
                 <div class="lg:hidden">
                     <svg id="close" class="w-6 h-6  text-white dark:text-yellow-500 relative hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -88,11 +95,8 @@
             <?php if (isset($_SESSION["session-siswa"])) : ?>
                 <div id="akun" class="gap-5 hidden lg:block ">
                     <div class="flex items-center gap-4">
-                        <a href="#" class="w-10 akun">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-circle   " viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg>
+                        <a href="#" class="w-11 h-11 block rounded-full border-dashed border overflow-hidden border-slate-400 akun">
+                            <img src="./img-berita/goku.jpg" alt="" class="w-full h-full object-cover">
 
                         </a>
 
@@ -152,12 +156,18 @@
             <?php if (!isset($_SESSION["session-siswa"])) : ?>
                 <div class="flex flex-wrap sm:flex-nowrap w-full gap-3 mt-3 ">
 
-                    <a href="./login.php" class="w-full flex  ">
-                        <button class="bg-green-600 w-full text-center py-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">LOGIN </button>
+
+
+                    <a href="./login.php" class=" ">
+                        <div class="bg-green-600 py-2 flex items-center gap-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">
+                            LOGIN
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                            </svg>
+                        </div>
                     </a>
-                    <a href="./daftar.php" class="w-full flex">
-                        <button class="w-full text-center bg-transparent py-2 px-5 border-2 border-green-600 rounded-md hover:bg-green-800 transition duration-300 text-white font-bold">DAFTAR</button>
-                    </a>
+
                 </div>
             <?php endif; ?>
 
@@ -286,47 +296,47 @@
 
             <!-- pagination -->
             <div class="flex gap-1 justify-center mt-5">
-                
+
                 <!-- KODE UNTUK PREVIOUS pagination -->
-                <?php if($halamanAktif > 1): ?>
-            
-                <a href="?hal=<?php echo $halamanAktif -1 ?>" class="h-10 w-10 bg-violet-700  border  flex justify-center items-center rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-left" viewBox="0 0 16 16">
-                        <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753" />
-                    </svg>
-                </a>
+                <?php if ($halamanAktif > 1) : ?>
+
+                    <a href="?hal=<?php echo $halamanAktif - 1 ?> #berita" class="h-10 w-10 bg-violet-700  border  flex justify-center items-center rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-left" viewBox="0 0 16 16">
+                            <path d="M10 12.796V3.204L4.519 8zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753" />
+                        </svg>
+                    </a>
 
                 <?php endif; ?>
                 <!--  END KODE UNTUK PREVIOUS pagination -->
 
 
                 <!-- KODE UNTUK nomor pagination -->
-                <?php for($i = 1; $i <= $jumlahHalaman; $i++): ?>
+                <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
 
-                <?php if($i == $halamanAktif): ?>
-                <a href="?hal=<?php echo $i ?>" class="bg-violet-700 h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
-                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
-                </a>
-                <?php else: ?>
-                    <a href="?hal=<?php echo $i ?>" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
-                    <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
-                </a>
-                <?php endif; ?>
+                    <?php if ($i == $halamanAktif) : ?>
+                        <a href="?hal=<?php echo $i ?> #berita" class="bg-violet-700 h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
+                            <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
+                        </a>
+                    <?php else : ?>
+                        <a href="?hal=<?php echo $i ?> #berita" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
+                            <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
+                        </a>
+                    <?php endif; ?>
 
                 <?php endfor; ?>
                 <!-- END KODE UNTUK nomor pagination -->
 
-                <a href="" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md">
+                <a href="./index.php#berita" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md">
                     <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white">...</h1>
                 </a>
 
                 <!-- KODE UNTUK NEXT pagination -->
-                <?php if($halamanAktif < $jumlahHalaman): ?>
-                <a href="?hal=<?php echo $halamanAktif +1 ?>" class="h-10 w-10 bg-violet-700 border flex justify-center items-center rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-right" viewBox="0 0 16 16">
-                        <path d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753" />
-                    </svg>
-                </a>
+                <?php if ($halamanAktif < $jumlahHalaman) : ?>
+                    <a href="?hal=<?php echo $halamanAktif + 1 ?> #berita" class="h-10 w-10 bg-violet-700 border flex justify-center items-center rounded-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-caret-right" viewBox="0 0 16 16">
+                            <path d="M6 12.796V3.204L11.481 8zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753" />
+                        </svg>
+                    </a>
                 <?php endif; ?>
             </div>
             <!-- pagination end -->

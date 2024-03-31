@@ -1,9 +1,9 @@
 <?php
-    require("../koneksi.php");
-    session_start();
+require("../koneksi.php");
+session_start();
 
-    if(isset($_POST["login"])){
-        if(isset($_POST["role"]) && $_POST["role"] == "admin"){
+if (isset($_POST["login"])) {
+    if (isset($_POST["role"]) && $_POST["role"] == "admin") {
         $username = $_POST["username"];
         $_SESSION["username-admin"] = $username;
         $password = $_POST["password"];
@@ -11,17 +11,17 @@
         //cek username
         $query = "SELECT * FROM admin WHERE username_admin = '$username'";
         $result = mysqli_query($koneksi, $query);
-        if(mysqli_num_rows($result) > 0){
+        if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             //cek password
-            if(password_verify($password, $row["password_admin"])){
+            if (password_verify($password, $row["password_admin"])) {
                 $_SESSION["session-admin"] = true;
                 header("Location: index.php");
                 exit;
             }
         }
         $error = true;
-    }elseif(isset($_POST["role"]) && $_POST["role"] == "guru"){
+    } elseif (isset($_POST["role"]) && $_POST["role"] == "guru") {
         $username = $_POST["username"];
         $_SESSION["username-guru"] = $username;
         $password = $_POST["password"];
@@ -29,10 +29,10 @@
         //cek username
         $query = "SELECT * FROM guru WHERE username_guru = '$username'";
         $result = mysqli_query($koneksi, $query);
-        if(mysqli_num_rows($result) > 0){
+        if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             //cek password
-            if(password_verify($password, $row["password_guru"])){
+            if (password_verify($password, $row["password_guru"])) {
                 $_SESSION["session-guru"] = true;
                 header("Location: ../guru/index.php");
                 exit;
@@ -55,16 +55,16 @@
 </head>
 
 <body>
-    <div class="flex items-center justify-center bg-[url('../assets/1p.png')] bg-cover  h-screen">
-        <div class="p-12 bg-purple-400 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 ">
+    <div class="flex items-center justify-center bg-[url('../assets/bg-login-admin.svg')] bg-center bg-cover  h-screen">
+        <div class="p-12  rounded-lg bg-zinc-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 ">
             <form action="" class="" method="post">
                 <div class="w-20 mx-auto mb-1 ">
                     <img src="../assets/logo.png" alt="">
                 </div>
                 <div class="mb-6">
-                    <h1 class="text-white text-center font-bold">LOGIN ADMIN</h1>
+                    <h1 class="text-white text-center font-bold">LOGIN ADMIN / GURU</h1>
                 </div>
-                <?php if(isset($error)): ?>
+                <?php if (isset($error)) : ?>
                     <p style="color:red;">Username/Password Salah!</p>
                 <?php endif; ?>
                 <div class="border-b-2 mb-10 sm:w-96">

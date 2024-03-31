@@ -90,7 +90,7 @@ const lightModeP = [document.getElementById("p1"), document.getElementById("p2")
 const lightModeLabel = [document.getElementById("label1"), document.getElementById("label2"), document.getElementById("label3"), document.getElementById("label4")];
 const kartu = document.getElementsByClassName("kartu");
 const textBerita = document.getElementsByClassName("text-berita");
-const pembatas = document.getElementsByClassName('pembatas')
+const pembatas = document.getElementsByClassName("pembatas");
 
 // darkmode
 darkMode.addEventListener("click", (event) => {
@@ -180,3 +180,4 @@ window.addEventListener("click", function (event) {
     logout.classList.add("hidden");
   }
 });
+

@@ -1,22 +1,22 @@
 <?php
-    require("../koneksi.php");
-    session_start();
+require("../koneksi.php");
+session_start();
 
-    //kick jika belum login
-    if(!isset($_SESSION["session-guru"])){
-        header("Location: ../admin/login.php");
+//kick jika belum login
+if (!isset($_SESSION["session-guru"])) {
+    header("Location: ../admin/login.php");
+    exit;
+}
+
+if (isset($_POST["tambah"])) {
+    if (tambahBerita($_POST) > 0) {
+        echo "<script>alert('Berhasil menambahkan berita'); document.location.href = 'berita.php'</script>";
+        exit;
+    } else {
+        echo "<script>alert('Gagal menambahkan berita'); document.location.href = 'berita.php'</script>";
         exit;
     }
-
-    if(isset($_POST["tambah"])){
-        if(tambahBerita($_POST) > 0){
-            echo "<script>alert('Berhasil menambahkan berita'); document.location.href = 'berita.php'</script>";
-            exit;
-        }else{
-            echo "<script>alert('Gagal menambahkan berita'); document.location.href = 'berita.php'</script>";
-            exit;
-        }
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,25 +34,12 @@
 
     <div class="sticky flex h-screen flex-row gap-4 overflow-y-auto rounded-lg sm:overflow-x-hidden">
         <aside class="sidebar-sticky sidebar justify-start">
-            <section class="sidebar-title items-center p-4">
-                <div class="w-12 mr-2">
-                    <div class="avatar avatar-ring avatar-md">
-                        <div class="dropdown-container">
-                            <div class="dropdown">
-                                <label class="btn btn-ghost flex cursor-pointer px-0 hover:bg-inherit" tabindex="0">
-                                    <img src="../assets/logo.png" alt="avatar" />
-                                </label>
-                                <div class="dropdown-menu dropdown-menu-bottom-right">
-                                    <a class="dropdown-item text-sm">Profile</a>
-                                    <a tabindex="-1" class="dropdown-item text-sm">Account settings</a>
-                                    <a href="logout.php" tabindex="-1" class="dropdown-item text-sm text-red-600">Logout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <section id="profil-admin" class="sidebar-title items-center p-4 ">
+                <div class="border w-10 h-10 rounded-full mr-3 overflow-hidden hover:cursor-pointer">
+                    <img src="../assets/deafult.profil-admin.svg" alt="" class="w-full h-full object-cover">
                 </div>
-                <div class="flex flex-col">
-                    <span>Welcome guru</span>
+                <div class="flex flex-col hover:cursor-pointer">
+                    <span>Nama Guru</span>
                     <span class="text-xs font-normal text-content2"><?php echo $_SESSION["username-guru"] ?></span>
 
                 </div>
@@ -146,8 +133,8 @@
             <div class="my-10 flex flex-wrap justify-center items-center gap-4 w-full border-neutral-700 border-dashed border-2 rounded-xl p-5">
                 <div class="w-1/3 ">
                     <form action="" method="post" enctype="multipart/form-data">
-                    <h1 class="text-white mb-2 text-center">Judul Berita</h1>
-                    <input name="judul_berita" required type="text" class="input-ghost-secondary input ">
+                        <h1 class="text-white mb-2 text-center">Judul Berita</h1>
+                        <input name="judul_berita" required type="text" class="input-ghost-secondary input ">
                 </div>
 
                 <div class="w-1/3 ">
@@ -166,8 +153,8 @@
                     <label for="" class="font-bold mb-2">Thumbnail Berita</label>
                     <input name="gambar_berita" type="file" class="input-file mb-5 hover:border-violet-500 border-dashed" placeholder="Thumbnail" />
                     <button name="tambah" type="submit" class="btn btn-solid-secondary px-10">Upload</button>
-                </form>
-                </div>  
+                    </form>
+                </div>
                 <!-- CONTENT END -->
 
 
@@ -176,7 +163,26 @@
         </div>
     </div>
 
+    <!-- PROFIL POP UP -->
+    <div id="akun-admin" class="fixed top-16 left-4 shadow-lg py-7 -translate-x-48  transition duration-100 px-5 rounded-lg bg-neutral-900">
 
+        <a href="./account.php" class="mb-3 inline-block">Account Settings</a>
+        <a href="./logout.php">
+            <div class="flex items-center gap-2 border-t pt-2 border-zinc-600">
+                <p>Logout</p>
+                <div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="red" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                    </svg>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- PROFIL POP UP END -->
+
+    <script src="./profil-guru.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </body>
 

@@ -62,7 +62,7 @@ if (isset($_POST["login"])) {
                     LOGIN
                 </button>
 
-                <h1 class="text-white">Belum Punya Akun? <a href="./daftar.php" class="underline font-semibold">Daftar</a></h1>
+
 
                 <div class="w-60 absolute -z-50 brightness-50 opacity-15 top-20">
                     <img src="./assets/logo.png" alt="">

@@ -137,7 +137,7 @@ if (isset($_GET["cari"])) {
             <p id="p2" class="text-zinc-800 text-berita text-base"><?php echo $row["isi_berita"] ?></p>
 
 
-            <div class="flex items-center gap-0 lg:gap-1 mt-28 sm:px-32">
+            <div class="flex items-center gap-0 lg:gap-1 mt-28 sm:px-32 w-full">
                 <div class="border-t-slate-600 pembatas border-t block w-1/2  lg:w-full  "></div>
                 <a href="./index.php#berita" class="text-zinc-800 font-bold text-berita text-center w-full   md:w-1/3 lg:w-1/3 ">lihat berita lainnya</a>
                 <div class="border-t-slate-600 pembatas border-t block w-1/2 lg:w-full  "></div>
