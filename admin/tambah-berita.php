@@ -1,5 +1,6 @@
 <?php
 require("../koneksi.php");
+session_start();
 
 if (isset($_POST["tambah"])) {
     if (tambahBerita($_POST) > 0) {
