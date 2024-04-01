@@ -209,9 +209,9 @@ if (isset($_GET["cari"])) {
                 <?php if (isset($nothing)) : ?>
                     <?php echo $nothing ?>
                 <?php endif; ?>
-                <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="800">
-                    <input name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
-                    <button type="submit" name="cari" class="hidden">cari</button>
+                <form id="cari-berita" action="" class="py-10 px-3 mx-auto max-w-xl" method="get" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="800">
+                    <input id="input-berita" name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
+                    <button id="cari" type="submit" name="cari" value="#berita" class="hidden">cari</button>
                 </form>
 
                 <br>
@@ -462,13 +462,13 @@ if (isset($_GET["cari"])) {
 
 
     <!-- TO TOP -->
-    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-zinc-400  z-50 bottom-4 right-4 p-4 fixed rounded-full">
+    <a id="toTop" href="#" class="translate-x-[5rem] transition opacity-5  duration-500 h-14 w-14 hover:animate-pulse bg-zinc-400  z-50 bottom-4 right-4 p-4 fixed rounded-full">
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
         </svg>
     </a>
 
-    <a id="darkMode" href="#" class="  justify-center items-center h-14 w-14 hover:animate-pulse bg-violet-400  z-50 bottom-20 right-4 p-4 fixed rounded-full">
+    <a id="darkMode" href="#" class="translate-x-[5rem] transition opacity-5  duration-300 justify-center items-center h-14 w-14 hover:animate-pulse bg-violet-400  z-50 bottom-20 right-4 p-4 fixed rounded-full">
         <svg id="moon" class="w-6 h-6 text-gray-800   dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1" height="1" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z" />
         </svg>

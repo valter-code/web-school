@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .bening {
-  @apply bg-gray-400 shadow-sm  bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border-b;
+  @apply bg-black bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-45 transition duration-150  border-b;
 }
 
 .light {
@@ -23,4 +23,3 @@
 .breadcrumb-aktif {
   @apply font-medium underline;
 }
-

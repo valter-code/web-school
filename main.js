@@ -43,15 +43,18 @@ window.onscroll = () => {
   const home = document.getElementsByClassName("Home")[0];
 
   if (x > 0) {
-    darkMode.classList.remove("hidden");
+    darkMode.classList.remove("translate-x-[5rem]");
+    darkMode.classList.remove("opacity-5");
     darkMode.classList.add("flex");
-    toTop.classList.add("fixed");
-    toTop.classList.remove("hidden");
+
+    toTop.classList.remove("translate-x-[5rem]");
+    toTop.classList.remove("opacity-5");
     navbar.classList.add("bening");
   } else {
-    toTop.classList.remove("fixed");
-    toTop.classList.add("hidden");
-    darkMode.classList.add("hidden");
+    toTop.classList.add("translate-x-[5rem]");
+    toTop.classList.add("opacity-5");
+    darkMode.classList.add("translate-x-[5rem]");
+    darkMode.classList.add("opacity-5");
     darkMode.classList.remove("flex");
     navbar.classList.remove("bening");
   }
@@ -181,3 +184,15 @@ window.addEventListener("click", function (event) {
   }
 });
 
+
+// fungsi auto scoll ke section berita jika enter pada input cari berita
+const inputBerita = document.getElementById("input-berita");
+const formBerita = document.getElementById("cari-berita");
+
+formBerita.addEventListener("submit", function (event) {
+  // Mengambil nilai dari input field
+  let inputText = inputBerita.value.trim();
+
+  // Menetapkan hash fragment di URL tanpa memuat ulang halamant h
+  window.location.hash = inputText === "#berita" ? inputText : "berita";
+});
