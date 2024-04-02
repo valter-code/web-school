@@ -133,6 +133,50 @@
         return $newnameFile;
     }
 
+    function uploadAdmin(){
+        global $koneksi;
+        $nameGambar = $_FILES["gambar_berita"]["name"];
+        $sizeGambar = $_FILES["gambar_berita"]["size"];
+        $tmpName = $_FILES["gambar_berita"]["tmp_name"];
+        $error = $_FILES["gambar_berita"]["error"];
+
+        //cek ekstensi file
+        $ekstensiValid = ["jpg", "jpeg", "png"];
+        $ekstensiGambar = explode(".", $nameGambar);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        if(!in_array($ekstensiGambar, $ekstensiValid)){
+            echo "<script>alert('Ekstensi tidak valid');</script>";
+            return false;
+        }
+
+        //cek size
+        if($sizeGambar > 2000000){
+            echo "<script>alert('Size terlalu besar');</script>";
+            return false;
+        }
+
+
+        //ganti nama file
+        $newnameFile = uniqid();
+        $newnameFile .= ".";
+        $newnameFile .= $ekstensiGambar;
+
+        //lolos pengcekan
+        move_uploaded_file( $tmpName, "../img/" . $newnameFile );
+        return $newnameFile;
+        
+    }
+
+    function hapusgambarAdmin($query){
+        global $koneksi;
+        $file = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM admin WHERE id = '$query'"));
+        unlink("./img/" . $file);
+
+        $hapus = "DELETE FROM admin WHERE id = '$query'";
+        mysqli_query($koneksi, $hapus);
+        
+    }
+
     function deleteBerita($id){
         global $koneksi;
         $query = "DELETE FROM berita WHERE id = ?";

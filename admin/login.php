@@ -4,9 +4,9 @@ session_start();
 
 if (isset($_POST["login"])) {
     if (isset($_POST["role"]) && $_POST["role"] == "admin") {
-        $username = $_POST["username"];
+        $username = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["username"]));
         $_SESSION["username-admin"] = $username;
-        $password = $_POST["password"];
+        $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["password"]));
 
         //cek username
         $query = "SELECT * FROM admin WHERE username_admin = '$username'";
@@ -22,9 +22,9 @@ if (isset($_POST["login"])) {
         }
         $error = true;
     } elseif (isset($_POST["role"]) && $_POST["role"] == "guru") {
-        $username = $_POST["username"];
+        $username = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["username"]));
         $_SESSION["username-guru"] = $username;
-        $password = $_POST["password"];
+        $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["password"]));
 
         //cek username
         $query = "SELECT * FROM guru WHERE username_guru = '$username'";
