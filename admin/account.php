@@ -1,3 +1,4 @@
+
 <?php
     require("../koneksi.php");
     session_start();
@@ -22,20 +23,22 @@
         $password2 = $_POST["password2"];
         
         if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
-            $gambar = upload();
+            $gambar = uploadAdmin();
             $query = "UPDATE admin SET gambar_admin = '$gambar' WHERE username_admin = '$username'";
+
+            if(!$gambar){
+                return false;
+            }
+            
             mysqli_query( $koneksi, $query);
             if(mysqli_affected_rows( $koneksi ) > 0){
                 echo "<script>alert('berhasil up gambar'); document.location.href = 'account.php'</script>";
                 exit;
             }
-            
-            if(!$gambar){
-                return false;
-            }
+        
         }else{
             $gimbir = $admin["gambar_admin"];
-            $gambar = "../img-berita/$gimbir";
+            $gambar = "../img/$gimbir";
         }
 
         if(!password_verify($passwordOld, $admin["password_admin"])){
@@ -69,6 +72,7 @@
 
 
     }
+    
 }
 ?>
 
@@ -87,7 +91,7 @@
         <div class="  bg-gray-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 overflow-y-scroll md:overflow-hidden h-screen p-10  ">
             <div class="flex flex-col items-center">
                 <div class="w-16 mb-2  h-16 border rounded-full overflow-hidden ">
-                    <img src="../img-berita/<?php echo $admin["gambar_admin"] ?>" alt="gambar admin" class="w-full h-full object-cover object-center">
+                    <img src="../img/<?php echo $admin["gambar_admin"] ?>" alt="gambar admin" class="w-full h-full object-cover object-center">
                 </div>
 
                 <h1 class="text-white font-bold mb-1"><?php echo $admin["username_admin"] ?></h1>

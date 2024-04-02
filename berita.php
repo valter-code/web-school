@@ -120,7 +120,7 @@ if (isset($_GET["cari"])) {
             </a>
             <li>//</li>
             <a href="#">
-                <li class="breadcrumb-aktif">Berita NamaBerita</li>
+                <li class="breadcrumb-aktif"><?php echo $row["judul_berita"] ?></li>
             </a>
         </ul>
     </div>

@@ -3,9 +3,9 @@ require("koneksi.php");
 session_start();
 
 if (isset($_POST["login"])) {
-    $username = $_POST["username_siswa"];
+    $username = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["username_siswa"]));
     $_SESSION["username-siswa"] = $username;
-    $password = $_POST["password_siswa"];
+    $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["password_siswa"]));
 
     $query = "SELECT * FROM siswa WHERE username_siswa = '$username'";
     $result = mysqli_query($koneksi, $query);
