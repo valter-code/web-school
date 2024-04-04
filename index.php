@@ -6,10 +6,8 @@ session_start();
 $maxData = 4;
 $jumlahData = count(query("SELECT * FROM berita"));
 $jumlahHalaman = ceil($jumlahData / $maxData);
-$halamanAktif = (isset($_GET["hal"])) ? $_GET["hal"] : 1;
-if(!is_numeric($_GET["hal"])){
-    $halamanAktif = 1;
-}
+$halamanAktif = (isset($_GET["hal"]) && is_numeric($_GET["hal"]))  ? $_GET["hal"] : 1;
+
 $dataAwal = ($maxData * $halamanAktif) - $maxData;
 
 
