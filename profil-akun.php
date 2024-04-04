@@ -1,6 +1,20 @@
 <?php
-require("koneksi.php");
-session_start();
+    require("koneksi.php");
+    session_start();
+
+    if(!isset($_SESSION["session-siswa"])){
+        header("Location:login.php");
+        exit;
+    }
+
+    //UNTUK MENYAMAKAN INFORMASI SISWA
+    $nisn = $_SESSION["nisn-siswa"];
+    $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
+    $statement = mysqli_prepare($koneksi, $query);
+    mysqli_stmt_bind_param($statement, "i", $nisn);
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $row = mysqli_fetch_assoc($result);
 
 ?>
 
@@ -10,7 +24,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>profil akun</title>
     <link href="./src/output.css" rel="stylesheet">
 </head>
 
@@ -24,48 +38,48 @@ session_start();
                 </div>
 
                 <div>
-                    <h1 class="text-white text-lg">John doe</h1>
+                    <h1 class="text-white text-lg"><?php echo $row["nama_siswa"] ?></h1>
                     <p class="text-center text-sm font-semibold text-white">Siswa</p>
                 </div>
             </div>
             <div class="flex gap-4 flex-wrap  justify-center ">
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">Nama Lengkap</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">John Doe</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["nama_siswa"] ?></p>
 
                 </div>
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5     bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">Jurusan</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">TKJ</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["jurusan_siswa"] ?></p>
 
                 </div>
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">Gender</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">LAKIK</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["gender_siswa"] ?></p>
                 </div>
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">Agama</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">Buddha</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["agama_siswa"] ?></p>
+                </div>
+                <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
+                    <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">NIS</h1>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["nis_siswa"] ?></p>
                 </div>
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">NISN</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">123456789</p>
-                </div>
-                <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
-                    <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">NIK</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">123456789</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["nisn_siswa"] ?></p>
                 </div>
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">Tempat Lahir</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">Tangerang</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["tempat_lahir_siswa"] ?></p>
                 </div>
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">Tanggal Lahir</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">12 April 1945</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["tanggal_lahir_siswa"] ?></p>
                 </div>
                 <div class="w-full sm:w-1/3 md:w-1/4 text-center lg:w-1/5   bg-white py-3 px-6 shadow-xl rounded-md hover:scale-105 cursor-pointer transition duration-500">
                     <h1 class="text-neutral-900 border-b-2 pb-2 border-zinc-700 font-semibold mb-4">Kelas</h1>
-                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md ">TKJ 1</p>
+                    <p class="bg-neutral-900 shadow-md shadow-neutral-900 border-white font-semibold text-white py-1 px-7 rounded-md "><?php echo $row["kelas_siswa"] ?></p>
                 </div>
             </div>
 

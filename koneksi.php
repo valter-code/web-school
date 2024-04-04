@@ -16,6 +16,7 @@
         return $rows;
     }
 
+
     function totalAdmin(){
         global $koneksi;
         $query = "SELECT id FROM admin";
@@ -133,52 +134,80 @@
         return $newnameFile;
     }
 
-    function uploadAdmin(){
+    function uploadAdmin($id){
         global $koneksi;
+    
+        // Ambil informasi gambar admin sebelumnya
+        $query = "SELECT gambar_admin FROM admin WHERE id = ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        mysqli_stmt_bind_param($statement, "i", $id);
+        mysqli_stmt_execute($statement);
+        mysqli_stmt_bind_result($statement, $gambar_admin);
+        mysqli_stmt_fetch($statement);
+        mysqli_stmt_close($statement);
+    
+        // Jika ada gambar admin sebelumnya, hapus
+        if (!empty($gambar_admin) && file_exists("../img/" . $gambar_admin)) {
+            unlink("../img/" . $gambar_admin);
+        }
+    
+        // Unggah gambar baru
         $nameGambar = $_FILES["gambar_berita"]["name"];
         $sizeGambar = $_FILES["gambar_berita"]["size"];
         $tmpName = $_FILES["gambar_berita"]["tmp_name"];
         $error = $_FILES["gambar_berita"]["error"];
-
-        //cek ekstensi file
-        $ekstensiValid = ["jpg", "jpeg", "png"];
-        $ekstensiGambar = explode(".", $nameGambar);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        if(!in_array($ekstensiGambar, $ekstensiValid)){
-            echo "<script>alert('Ekstensi tidak valid');</script>";
+    
+        // Pastikan gambar baru valid sebelum mengunggah
+        if ($sizeGambar > 0 && $error === 0) {
+            //cek ekstensi file
+            $ekstensiValid = ["jpg", "jpeg", "png"];
+            $ekstensiGambar = strtolower(pathinfo($nameGambar, PATHINFO_EXTENSION));
+            if (!in_array($ekstensiGambar, $ekstensiValid)) {
+                echo "<script>alert('Ekstensi tidak valid');</script>";
+                return false;
+            }
+    
+            //cek size
+            if($sizeGambar > 2000000){
+                echo "<script>alert('Size terlalu besar');</script>";
+                return false;
+            }
+    
+            //ganti nama file
+            $newnameFile = uniqid() . "." . $ekstensiGambar;
+    
+            // Pindahkan gambar baru ke direktori tujuan
+            move_uploaded_file($tmpName, "../img/" . $newnameFile);
+    
+            // Update nama file gambar admin baru ke database
+            $query = "UPDATE admin SET gambar_admin = ? WHERE id = ?";
+            $statement = mysqli_prepare($koneksi, $query);
+            mysqli_stmt_bind_param($statement, "si", $newnameFile, $id);
+            mysqli_stmt_execute($statement);
+            mysqli_stmt_close($statement);
+    
+            return $newnameFile;
+        } else {
+            echo "<script>alert('Gagal mengunggah gambar baru');</script>";
             return false;
         }
-
-        //cek size
-        if($sizeGambar > 2000000){
-            echo "<script>alert('Size terlalu besar');</script>";
-            return false;
-        }
-
-
-        //ganti nama file
-        $newnameFile = uniqid();
-        $newnameFile .= ".";
-        $newnameFile .= $ekstensiGambar;
-
-        //lolos pengcekan
-        move_uploaded_file( $tmpName, "../img/" . $newnameFile );
-        return $newnameFile;
-        
     }
-
-    function hapusgambarAdmin($query){
-        global $koneksi;
-        $file = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM admin WHERE id = '$query'"));
-        unlink("./img/" . $file);
-
-        $hapus = "DELETE FROM admin WHERE id = '$query'";
-        mysqli_query($koneksi, $hapus);
-        
-    }
+    
 
     function deleteBerita($id){
         global $koneksi;
+        //hapus gambar
+        $query = "SELECT * FROM berita WHERE id = ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        mysqli_stmt_bind_param($statement, "s", $id);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        $row = mysqli_fetch_assoc($result);
+        if(file_exists("../img-berita/" . $row["gambar_berita"])){
+            unlink("../img-berita/" . $row["gambar_berita"]);
+        }
+
+
         $query = "DELETE FROM berita WHERE id = ?";
         $statement = mysqli_prepare( $koneksi, $query );
         mysqli_stmt_bind_param( $statement,"i", $id );

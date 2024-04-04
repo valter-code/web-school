@@ -3,11 +3,11 @@ require("koneksi.php");
 session_start();
 
 if (isset($_POST["login"])) {
-    $username = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["username_siswa"]));
-    $_SESSION["username-siswa"] = $username;
+    $nisn = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["nisn_siswa"]));
+    $_SESSION["nisn-siswa"] = $nisn;
     $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["password_siswa"]));
 
-    $query = "SELECT * FROM siswa WHERE username_siswa = '$username'";
+    $query = "SELECT * FROM siswa WHERE nisn_siswa = '$nisn'";
     $result = mysqli_query($koneksi, $query);
     if (mysqli_num_rows($result) == 1) {
         $row = mysqli_fetch_assoc($result);
@@ -45,12 +45,12 @@ if (isset($_POST["login"])) {
                 </div>
 
                 <?php if (isset($error)) : ?>
-                    <p style="color:red;">username/password salah</p>
+                    <p style="color:red;">NISN/password salah</p>
                 <?php endif; ?>
 
                 <div class="border-b-2 mb-10">
-                    <label for="siswa" class="text-white">Nama Siswa</label>
-                    <input name="username_siswa" type="text" id="siswa" class="w-full bg-transparent border-none focus:ring-0 text-white autofill:bg-black">
+                    <label for="siswa" class="text-white">NISN Siswa</label>
+                    <input name="nisn_siswa" type="text" id="siswa" class="w-full bg-transparent border-none focus:ring-0 text-white autofill:bg-black">
                 </div>
 
                 <div class="border-b-2 mb-10 w-full">
