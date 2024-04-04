@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2024 at 11:53 AM
+-- Generation Time: Apr 04, 2024 at 06:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,15 +31,17 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `email_admin` varchar(100) NOT NULL,
   `username_admin` varchar(100) NOT NULL,
-  `password_admin` varchar(355) NOT NULL
+  `password_admin` varchar(355) NOT NULL,
+  `nama_admin` varchar(50) DEFAULT NULL,
+  `gambar_admin` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `email_admin`, `username_admin`, `password_admin`) VALUES
-(1, 'admin@gmail.com', 'admin', '$2y$10$Ux093S9.Ayk2jRU6wxATheA14dtY12EbQo6w73aHP5TYtLhTtKz5e');
+INSERT INTO `admin` (`id`, `email_admin`, `username_admin`, `password_admin`, `nama_admin`, `gambar_admin`) VALUES
+(1, 'admin@gmail.com', 'admin', '$2y$10$sfn0GPdFIu/9knaWcaMsm.cdhjpOM3l8TdkQd861ZSsFfi7fMFnLa', 'root', '660ed03f1b07c.png');
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,7 @@ CREATE TABLE `berita` (
 --
 
 INSERT INTO `berita` (`id`, `judul_berita`, `isi_berita`, `penulis`, `date`, `gambar_berita`) VALUES
-(1, 'berita LKS Cyber Security', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!', 'ferdi', '2024-03-17', NULL),
+(1, 'berita LKS Cyber Securityy', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!', 'ferdi', '2024-03-17', '660241d25a602.png'),
 (2, 'Berita Lomba Futsal', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur repellendus et laudantium? Impedit quod velit atque suscipit ratione maiores distinctio, harum beatae incidunt recusandae earum odio labore exercitationem quae!', 'kevin', '2024-03-17', NULL),
 (16, 'berita geming', 'blablabla', 'firdan', '', ''),
 (17, 'slebew gaming', 'yoyoyo', 'guru A', '', ''),
@@ -69,7 +71,6 @@ INSERT INTO `berita` (`id`, `judul_berita`, `isi_berita`, `penulis`, `date`, `ga
 (19, 'mouse gaming', 'efjisdochef jbf', 'firdan', '22-03-2024', ''),
 (20, 'est', 'test gambar', 'gambarte', '22-03-2024', 'Screenshot (161).png'),
 (21, 'cers', 's', 's', '22-03-2024', 'Screenshot (3).png'),
-(22, 'test', 'ajsd', 'di', '22-03-2024', '6db.png'),
 (23, 'puter jari', 'test sahaja', 'nibba', '23-03-2024', 'default.JPG');
 
 -- --------------------------------------------------------
@@ -104,30 +105,29 @@ CREATE TABLE `siswa` (
   `nama_siswa` varchar(50) NOT NULL,
   `jurusan_siswa` varchar(10) NOT NULL,
   `password_siswa` varchar(400) NOT NULL,
-  `gender` varchar(30) DEFAULT NULL,
-  `agama` varchar(50) DEFAULT NULL,
-  `nis` varchar(50) DEFAULT NULL,
-  `nik` varchar(50) DEFAULT NULL,
-  `tempat_lahir` varchar(100) DEFAULT NULL,
-  `tanggal_lahir` varchar(100) DEFAULT NULL,
-  `username_siswa` varchar(50) DEFAULT NULL,
-  `foto` varchar(555) DEFAULT NULL,
-  `kelas` varchar(20) DEFAULT NULL
+  `gender_siswa` varchar(100) DEFAULT NULL,
+  `agama_siswa` varchar(50) DEFAULT NULL,
+  `nis_siswa` varchar(50) DEFAULT NULL,
+  `nisn_siswa` varchar(255) DEFAULT NULL,
+  `tempat_lahir_siswa` varchar(255) DEFAULT NULL,
+  `tanggal_lahir_siswa` varchar(255) DEFAULT NULL,
+  `foto_siswa` varchar(355) DEFAULT NULL,
+  `kelas_siswa` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `nama_siswa`, `jurusan_siswa`, `password_siswa`, `gender`, `agama`, `nis`, `nik`, `tempat_lahir`, `tanggal_lahir`, `username_siswa`, `foto`, `kelas`) VALUES
-(3, 'ferdi', 'MP', '$2y$10$nCkkuqV3SCLeyqMZ0NH6suCevWnoxR6R7M1QXZzn1Y9C7I0eOUqh6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 'kevin', 'BD', '$2y$10$jew7nZ1rqvzd3kgVdvd/TuHczR.vkEEWyJ.xus8oU3qDyzFNyxneK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(9, 'firdan', 'rpl', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'tets', 'MP', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 'rendi', 'MP', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(14, 'nada', 'TKJ', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(17, 'yooy', 'TKJ', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(18, 'rendi nurfauzan', 'TKJ', '$2y$10$dQOkgNds5MUszAAXMU88lOKUXKXYNr5PEFuuj/MlqGfiD5mgGHggi', 'L', 'islam', '0101', '0202', 'jakarta', '27-09-2003', 'rendiz', 'default.JPG', '11');
+INSERT INTO `siswa` (`id_siswa`, `nama_siswa`, `jurusan_siswa`, `password_siswa`, `gender_siswa`, `agama_siswa`, `nis_siswa`, `nisn_siswa`, `tempat_lahir_siswa`, `tanggal_lahir_siswa`, `foto_siswa`, `kelas_siswa`) VALUES
+(3, 'ferdi', 'MP', '$2y$10$nCkkuqV3SCLeyqMZ0NH6suCevWnoxR6R7M1QXZzn1Y9C7I0eOUqh6', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 'kevin', 'BD', '$2y$10$jew7nZ1rqvzd3kgVdvd/TuHczR.vkEEWyJ.xus8oU3qDyzFNyxneK', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(9, 'firdan', 'rpl', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 'tets', 'MP', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'rendi', 'MP', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(14, 'nada', 'TKJ', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(17, 'yooy', 'TKJ', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'rendi nurfauzan', 'TKJ', '$2y$10$dQOkgNds5MUszAAXMU88lOKUXKXYNr5PEFuuj/MlqGfiD5mgGHggi', 'L', 'islam', '0101', '0202', 'jakarta', '27-09-2003', 'default.JPG', '11');
 
 --
 -- Indexes for dumped tables
@@ -171,7 +171,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `guru`
