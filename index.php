@@ -112,7 +112,7 @@
                 <div id="akun" class="gap-5 hidden lg:block ">
                     <div class="flex items-center gap-4">
                         <a href="#" class="w-11 h-11 block rounded-full border-dashed border overflow-hidden border-slate-400 akun">
-                            <img src="./img-berita/goku.jpg" alt="" class="w-full h-full object-cover">
+                            <img src="./src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
 
                         </a>
 
