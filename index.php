@@ -11,6 +11,8 @@
     $result = mysqli_stmt_get_result($statement);
     $row = mysqli_fetch_assoc($result);
 
+    
+
     //pagination
     $maxData = 4;
     $jumlahData = count(query("SELECT * FROM berita"));
@@ -187,7 +189,7 @@
 
                 <a href="#" class="">
                     <h1 class="text-white text-lg mt-2">Selamat datang,</h1>
-                    <p class="text-white text-lg font-bold"><?php echo $_SESSION["username-siswa"] ?></p>
+                    <p class="text-white text-lg font-bold"><?php echo $_SESSION["nama_siswa"] ?></p>
                 </a>
 
                 <div class="flex flex-wrap gap-2  mt-5 sm:flex-nowrap">
