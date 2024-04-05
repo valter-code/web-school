@@ -8,6 +8,7 @@
         exit;
     }
 
+    $id = $_SESSION["username-admin"];
     $username = $_SESSION["username-admin"];
 
     $query = "SELECT * FROM admin WHERE username_admin = '$username'";
@@ -23,7 +24,7 @@
         $password2 = $_POST["password2"];
         
         if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
-            $gambar = uploadAdmin();
+            $gambar = uploadAdmin($id);
             $query = "UPDATE admin SET gambar_admin = '$gambar' WHERE username_admin = '$username'";
 
             if(!$gambar){
@@ -32,7 +33,7 @@
             
             mysqli_query( $koneksi, $query);
             if(mysqli_affected_rows( $koneksi ) > 0){
-                echo "<script>alert('berhasil up gambar'); document.location.href = 'account.php'</script>";
+                echo "<script>alert('berhasil up gambar');</script>";
                 exit;
             }
         

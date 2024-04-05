@@ -1,38 +1,47 @@
 <?php
-require("koneksi.php");
-session_start();
+    require("koneksi.php");
+    session_start();
 
-//pagination
-$maxData = 4;
-$jumlahData = count(query("SELECT * FROM berita"));
-$jumlahHalaman = ceil($jumlahData / $maxData);
-$halamanAktif = (isset($_GET["hal"]) && is_numeric($_GET["hal"]))  ? $_GET["hal"] : 1;
-
-$dataAwal = ($maxData * $halamanAktif) - $maxData;
-
-
-$berita = query("SELECT * FROM berita LIMIT $dataAwal, $maxData");
-
-//cari berita
-if (isset($_GET["cari"])) {
-    $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
+    //query siswa
+    $nisn = $_SESSION["nisn-siswa"];
+    $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
     $statement = mysqli_prepare($koneksi, $query);
-    $keyword = $_GET["keyword"];
-
-    //bind
-    $keyword = "%" . $keyword . "%";
-    mysqli_stmt_bind_param($statement, "s", $keyword);
-
+    mysqli_stmt_bind_param($statement, "i", $nisn);
     mysqli_stmt_execute($statement);
     $result = mysqli_stmt_get_result($statement);
-    $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $row = mysqli_fetch_assoc($result);
 
-    if (mysqli_num_rows($result) == 0) {
-        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
-    } else {
-        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
+    //pagination
+    $maxData = 4;
+    $jumlahData = count(query("SELECT * FROM berita"));
+    $jumlahHalaman = ceil($jumlahData / $maxData);
+    $halamanAktif = (isset($_GET["hal"]) && is_numeric($_GET["hal"])) ? $_GET["hal"] : 1;
+
+    $dataAwal = ($maxData * $halamanAktif) - $maxData;
+
+
+    $berita = query("SELECT * FROM berita LIMIT $dataAwal, $maxData");
+
+    //cari berita
+    if (isset($_GET["cari"])) {
+        $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        $keyword = $_GET["keyword"];
+
+        //bind
+        $keyword = "%" . $keyword . "%";
+        mysqli_stmt_bind_param($statement, "s", $keyword);
+
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if (mysqli_num_rows($result) == 0) {
+            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
+        } else {
+            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
+        }
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -103,7 +112,7 @@ if (isset($_GET["cari"])) {
 
                         <a href="#" class="akun">
                             <h1 class="text-white">Selamat datang,</h1>
-                            <p class="text-white font-bold"><?php echo $_SESSION["username-siswa"] ?></p>
+                            <p class="text-white font-bold"><?php echo $row["nama_siswa"] ?></p>
                         </a>
 
 
