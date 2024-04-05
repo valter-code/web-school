@@ -1,48 +1,48 @@
 <?php
-require("../koneksi.php");
-session_start();
+    require("../koneksi.php");
+    session_start();
 
-//kick jika belum login
-if (!isset($_SESSION["session-admin"])) {
-    header("Location: login.php");
-    exit();
-}
-
-//query
-$siswa = query("SELECT * FROM siswa");
-
-//fungsi pencarian siswa
-if (isset($_GET["cari"])) {
-    $query = "SELECT * FROM siswa WHERE nama_siswa LIKE ? OR jurusan_siswa LIKE ?";
-    $statement = mysqli_prepare($koneksi, $query);
-    $keyword = htmlspecialchars($_GET["keyword"]);
-
-    //bind
-    $keyword = "%" . $keyword . "%";
-    mysqli_stmt_bind_param($statement, "ss", $keyword, $keyword);
-
-    //execute
-    mysqli_stmt_execute($statement);
-
-    //result
-    $result = mysqli_stmt_get_result($statement);
-
-    //simpan data kedalam array
-    $siswa = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    if (mysqli_num_rows($result) === 0) {
-        $nothing = "Pencarian Anda : " . htmlspecialchars($_GET["keyword"]) . " tidak ada";
-    } else {
-        $some = "Pecarian Anda : " . htmlspecialchars($_GET["keyword"]);
+    //kick jika belum login
+    if (!isset($_SESSION["session-admin"])) {
+        header("Location: login.php");
+        exit();
     }
-}
 
-if (isset($_POST["tambah"])) {
-    if (tambahSiswa($_POST) > 0) {
-        echo "<script>alert('Berhasil tambah data siswa'); document.location.href = 'siswa.php'</script>";
-        exit;
+    //query
+    $siswa = query("SELECT * FROM siswa");
+
+    //fungsi pencarian siswa
+    if (isset($_GET["cari"])) {
+        $query = "SELECT * FROM siswa WHERE nama_siswa LIKE ? OR jurusan_siswa LIKE ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        $keyword = htmlspecialchars($_GET["keyword"]);
+
+        //bind
+        $keyword = "%" . $keyword . "%";
+        mysqli_stmt_bind_param($statement, "ss", $keyword, $keyword);
+
+        //execute
+        mysqli_stmt_execute($statement);
+
+        //result
+        $result = mysqli_stmt_get_result($statement);
+
+        //simpan data kedalam array
+        $siswa = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+        if (mysqli_num_rows($result) === 0) {
+            $nothing = "Pencarian Anda : " . htmlspecialchars($_GET["keyword"]) . " tidak ada";
+        } else {
+            $some = "Pecarian Anda : " . htmlspecialchars($_GET["keyword"]);
+        }
     }
-}
+
+    if (isset($_POST["tambah"])) {
+        if (tambahSiswa($_POST) > 0) {
+            echo "<script>alert('Berhasil tambah data siswa'); document.location.href = 'siswa.php'</script>";
+            exit;
+        }
+    }
 
 ?>
 
@@ -192,10 +192,10 @@ if (isset($_POST["tambah"])) {
                                 <th>gender</th>
                                 <th>agama</th>
                                 <th>nis</th>
-                                <th>nik</th>
+                                <th>nisn</th>
                                 <th>tempat-lahir</th>
                                 <th>tanggal-lahir</th>
-                                <th>username</th>
+                                <th>kelas</th>
                                 <th>foto</th>
                                 <th>Action</th>
                             </tr>
@@ -207,14 +207,14 @@ if (isset($_POST["tambah"])) {
                                     <th><?php echo $no ?></th>
                                     <th><?php echo $siswa["nama_siswa"] ?></th>
                                     <th><?php echo $siswa["jurusan_siswa"] ?></th>
-                                    <th><?php echo $siswa["gender"] ?></th>
-                                    <th><?php echo $siswa["agama"] ?></th>
-                                    <th><?php echo $siswa["nis"] ?></th>
-                                    <th><?php echo $siswa["nik"] ?></th>
-                                    <th><?php echo $siswa["tempat_lahir"] ?></th>
-                                    <th><?php echo $siswa["tanggal_lahir"] ?></th>
-                                    <th><?php echo $siswa["username_siswa"] ?></th>
-                                    <th><?php echo $siswa["foto"] ?></th>
+                                    <th><?php echo $siswa["gender_siswa"] ?></th>
+                                    <th><?php echo $siswa["agama_siswa"] ?></th>
+                                    <th><?php echo $siswa["nis_siswa"] ?></th>
+                                    <th><?php echo $siswa["nisn_siswa"] ?></th>
+                                    <th><?php echo $siswa["tempat_lahir_siswa"] ?></th>
+                                    <th><?php echo $siswa["tanggal_lahir_siswa"] ?></th>
+                                    <th><?php echo $siswa["kelas_siswa"] ?></th>
+                                    <th><img src="../img-siswa/<?php echo $siswa["foto_siswa"] ?>"  alt=""></th>
                                     <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>
@@ -330,7 +330,7 @@ if (isset($_POST["tambah"])) {
 
     <!-- POP UP TAMBAH SISWA -->
     <div id="tambah-wrapper" class="fixed bg-zinc-900 bg-opacity-45 scale-0  flex   px-96 w-full h-full top-0  justify-center py-3">
-        <form id="tambah-form" action="" class="bg-neutral-900 px-2 scale-0 py-5 transition duration-200 overflow-y-scroll rounded-lg shadow-md ">
+        <form id="tambah-form" action="" method="post" enctype="multipart/form-data" class="bg-neutral-900 px-2 scale-0 py-5 transition duration-200 overflow-y-scroll rounded-lg shadow-md ">
 
             <a href="#" id="close-btn-tambah" class="flex justify-center items-center h-10 w-10 rounded-full hover:bg-neutral-800  transition ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
@@ -347,53 +347,53 @@ if (isset($_POST["tambah"])) {
 
                 <div class=" mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Nama Lengkap</label>
-                    <input type="text" placeholder="contoh: John Doe" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="nama_siswa" type="text" placeholder="contoh: John Doe" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Jurusan</label>
-                    <select name="" id="" class="w-full border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
-                        <option value="" class="bg-neutral-900 text-zinc-100">TKJ</option>
-                        <option value="" class="bg-neutral-900 text-zinc-100">MP</option>
-                        <option value="" class="bg-neutral-900 text-zinc-100">BD</option>
+                    <select name="jurusan_siswa" id="" class="w-full border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="TKJ" class="bg-neutral-900 text-zinc-100">TKJ</option>
+                        <option value="MP" class="bg-neutral-900 text-zinc-100">MP</option>
+                        <option value="BD" class="bg-neutral-900 text-zinc-100">BD</option>
                     </select>
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Password</label>
-                    <input type="password" placeholder="Masukkan password yang kuat" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="password_siswa" type="password" placeholder="Masukkan password yang kuat" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <input type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="agama_siswa" type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                </div>
+                <div class="mb-7 w-1/3">
+                    <label for="" class="text-zinc-100 text-sm">NIS</label>
+                    <input name="nis_siswa" type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NISN</label>
-                    <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
-                </div>
-                <div class="mb-7 w-1/3">
-                    <label for="" class="text-zinc-100 text-sm">NIK</label>
-                    <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="nisn_siswa" type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tempat Lahir</label>
-                    <input type="text" placeholder="contoh: Tangerang" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="tempat_lahir_siswa" type="text" placeholder="contoh: Tangerang" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tanggal Lahir</label>
-                    <input type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="tanggal_lahir_siswa" type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Kelas</label>
-                    <input type="text" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="kelas_siswa" type="text" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <input type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="gender_siswa" type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
 
                 <div class="mb-3 w-1/3   ">
                     <label for="" class="text-zinc-100 text-sm">Pilih Foto Profil</label>
 
-                    <input type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
+                    <input name="gambar_siswa" type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
                 </div>
 
             </div>
@@ -410,7 +410,7 @@ if (isset($_POST["tambah"])) {
             </div>
 
             <div class=" mt-8 w-full flex gap-5 px-20">
-                <button class="text-white font-bold w-full hover:bg-blue-600 transition  bg-blue-500 px-7 py-2 rounded-md">TAMBAH</button>
+                <button type="submit" name="tambah" class="text-white font-bold w-full hover:bg-blue-600 transition  bg-blue-500 px-7 py-2 rounded-md">TAMBAH</button>
                 <button class="text-red-600 font-bold w-full hover:text-white hover:bg-red-500 transition bg-transparent border-red-500 border px-10 py-2  rounded-md">BATAL</button>
             </div>
 
