@@ -134,12 +134,12 @@ $totalBerita = totalBerita();
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalGuru ?></h2>
                     </div>
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
-                        <img class="w-20 rounded-full" src="../assets/siswa-logo.jpg" alt="">
+                        <img class="w-20 rounded-full" src="../src/assets/siswa-logo.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Siswa</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalSiswa ?></h2>
                     </div>
                     <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
-                        <img class="w-20 rounded-full" src="../assets/berita-logo.jpg" alt="">
+                        <img class="w-20 rounded-full" src="../src/assets/berita-logo.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Berita</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalBerita ?></h2>
                     </div>

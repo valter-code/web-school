@@ -3,15 +3,15 @@
     session_start();
 
     //query siswa
-    $nisn = $_SESSION["nisn-siswa"];
-    $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
-    $statement = mysqli_prepare($koneksi, $query);
-    mysqli_stmt_bind_param($statement, "i", $nisn);
-    mysqli_stmt_execute($statement);
-    $result = mysqli_stmt_get_result($statement);
-    $row = mysqli_fetch_assoc($result);
-
-    
+    if(isset($_SESSION["nisn-siswa"])){
+        $nisn = $_SESSION["nisn-siswa"]; 
+        $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        mysqli_stmt_bind_param($statement, "i", $nisn);
+        mysqli_stmt_execute($statement);
+        $result = mysqli_stmt_get_result($statement);
+        $row = mysqli_fetch_assoc($result);
+    }
 
     //pagination
     $maxData = 4;
@@ -65,7 +65,7 @@
     <nav class=" bg-transparent fixed z-50 w-full" data-aos="fade-down" data-aos-duration="1000">
         <div class='px-5 py-4 flex items-center justify-between'>
             <div class="flex items-center justify-center gap-2">
-                <img class="w-10" src="./assets/logo.png" alt="">
+                <img class="w-10" src="./src/assets/logo.png" alt="">
                 <h2 class="text-white font-poppins  sm:text-xl md:text-2xl ">SMK Trimulia Jakarta</h2>
             </div>
 
@@ -79,6 +79,7 @@
                 </ul>
             </div>
 
+            <!-- Jika siswa belum login tampilkan button login -->
             <?php if (!isset($_SESSION["session-siswa"])) : ?>
                 <a href="./login.php" class="hidden lg:block">
                     <div class="bg-green-600 py-2 flex items-center gap-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">
@@ -103,7 +104,10 @@
 
                 </div>
             <?php endif; ?>
+            <!-- Akhir Jika siswa belum login tampilkan button login -->
 
+
+            <!-- Jika siswa sudah login -->
             <?php if (isset($_SESSION["session-siswa"])) : ?>
                 <div id="akun" class="gap-5 hidden lg:block ">
                     <div class="flex items-center gap-4">
@@ -119,8 +123,6 @@
 
 
                     </div>
-
-
 
                 </div>
 
@@ -144,6 +146,7 @@
                     </div>
                 </div>
             <?php endif; ?>
+            <!-- Akhir jika siswa sudah login -->
 
         </div>
 
@@ -164,48 +167,9 @@
             </ul>
 
 
-            <!-- Jika siswa belum login -->
-            <?php if (!isset($_SESSION["session-siswa"])) : ?>
-                <div class="flex flex-wrap sm:flex-nowrap w-full gap-3 mt-3 ">
+           
 
-
-
-                    <a href="./login.php" class=" ">
-                        <div class="bg-green-600 py-2 flex items-center gap-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md font-bold text-white">
-                            LOGIN
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
-                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                            </svg>
-                        </div>
-                    </a>
-
-                </div>
-            <?php endif; ?>
-
-
-            <!-- jika siswa sudah login -->
-            <?php if (isset($_SESSION["session-siswa"])) : ?>
-
-                <a href="#" class="">
-                    <h1 class="text-white text-lg mt-2">Selamat datang,</h1>
-                    <p class="text-white text-lg font-bold"><?php echo $_SESSION["nama_siswa"] ?></p>
-                </a>
-
-                <div class="flex flex-wrap gap-2  mt-5 sm:flex-nowrap">
-
-                    <a href="./profil-akun.php" class="w-full  ">
-                        <button class="w-full bg-neutral-800 py-2 px-4 border-2 border-neutral-600 rounded-md hover:bg-opacity-75  transition duration-300 text-white font-bold">LIHAT PROFIL</button>
-                    </a>
-
-
-                    <a href="./logout.php" class="w-full ">
-                        <button class="w-full bg-transparent py-2 px-9 border-2 border-red-800 rounded-md hover:bg-red-800 transition duration-300 text-white font-bold">LOGOUT</button>
-                    </a>
-                </div>
-
-
-            <?php endif; ?>
+           
         </div>
     </nav>
 
@@ -214,7 +178,7 @@
 
     <!-- HERO -->
     <section id="home" class="h-screen mb-36">
-        <div class="bg-[url('../assets/banner.svg')]  bg-cover bg-center w-full h-full">
+        <div class="bg-[url('./assets/banner.svg')]  bg-cover bg-center w-full h-full">
             <div class="text-white text-center py-52 ">
                 <h1 class="text-xl font-bold mb-2" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">WELCOME</h1>
                 <h2 class="text-4xl font-bold mb-10" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="700">SMK Trimulia Jakarta</h2>
@@ -250,20 +214,20 @@
 
             <div class="flex overflow-hidden space-x-2 group" data-aos="flip-up" data-aos-delay="300" data-aos-duration="1000">
                 <div class="flex group-hover:paused space-x-2 gap-1 items-center  animate-loop-scroll">
-                    <img class="max-w-none" src="./assets/dummy1.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy2.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy3.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy4.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy5.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy6.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy1.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy2.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy3.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy4.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy5.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy6.png" alt="">
                 </div>
                 <div aria-hidden="true" class=" flex group-hover:paused  space-x-2 items-center gap-1 animate-loop-scroll">
-                    <img class="max-w-none" src="./assets/dummy1.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy2.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy3.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy4.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy5.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy6.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy1.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy2.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy3.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy4.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy5.png" alt="">
+                    <img class="max-w-none" src="./src/assets/dummy6.png" alt="">
                 </div>
             </div>
         </div>
