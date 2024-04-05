@@ -51,7 +51,7 @@ if (isset($_GET["cari"])) {
         <aside class="sidebar-sticky sidebar justify-start">
             <section id="profil-admin" class="sidebar-title items-center p-4 ">
                 <div class="border w-10 h-10 rounded-full mr-3 overflow-hidden hover:cursor-pointer">
-                    <img src="../assets/deafult.profil-admin.svg" alt="" class="w-full h-full object-cover">
+                    <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col hover:cursor-pointer">
                     <span>Nama Guru</span>

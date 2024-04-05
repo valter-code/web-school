@@ -63,7 +63,7 @@ if (isset($_POST["tambah"])) {
         <aside class="sidebar-sticky sidebar justify-start">
             <section id="profil-admin" class="sidebar-title items-center p-4 ">
                 <div class="border w-10 h-10 rounded-full mr-3 overflow-hidden hover:cursor-pointer">
-                    <img src="../assets/deafult.profil-admin.svg" alt="" class="w-full h-full object-cover">
+                    <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col hover:cursor-pointer">
                     <span>Nama Guru</span>
@@ -298,7 +298,7 @@ if (isset($_POST["tambah"])) {
                 <div class="bg-neutral-800  p-4 w-1/3  shadow-lg rounded-xl">
 
                     <div class="mx-auto mb-3 h-14 mt-3 w-14 border-dashed border border-zinc-950 shadow-lg rounded-full overflow-hidden">
-                        <img src="../img-berita/default.jpg" alt="" class="w-full h-full object-cover">
+                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
                     </div>
                     <h1 class="text-center font-bold">Preview Profil</h1>
                     <p class="text-center text-sm">Siswa</p>
@@ -389,7 +389,7 @@ if (isset($_POST["tambah"])) {
                 <div class="bg-neutral-800  p-4 w-1/3  shadow-lg rounded-xl">
 
                     <div class="mx-auto mb-3 h-14 mt-3 w-14 border-dashed border border-zinc-950 shadow-lg rounded-full overflow-hidden">
-                        <img src="../img-berita/goku.jpg" alt="" class="w-full h-full object-cover">
+                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
                     </div>
                     <h1 class="text-center font-bold">Preview Profil</h1>
                     <p class="text-center text-sm">Siswa</p>
