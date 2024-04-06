@@ -37,12 +37,30 @@
         }
     }
 
+    //jika tambah siswa
     if (isset($_POST["tambah"])) {
         if (tambahSiswa($_POST) > 0) {
             echo "<script>alert('Berhasil tambah data siswa'); document.location.href = 'siswa.php'</script>";
             exit;
         }
     }
+
+
+    //jika edit siswa
+    // $query = "SELECT * FROM siswa WHERE id_siswa = $id";
+    // $result = mysqli_query($koneksi, $query);
+    // $row = mysqli_fetch_assoc($result);
+
+    if (isset($_POST["edit"])) {
+        if (editSiswa($_POST) > 0) {
+            echo "<script>alert('Berhasil edit data siswa'); document.location.href = 'siswa.php'</script>";
+            exit;
+        }
+    }
+
+
+    //untuk memanggil gambar
+    $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
 
 ?>
 
@@ -63,7 +81,7 @@
         <aside class="sidebar-sticky sidebar justify-start">
             <section id="profil-admin" class="sidebar-title items-center p-4 ">
                 <div class="border w-10 h-10 rounded-full mr-3 overflow-hidden hover:cursor-pointer">
-                    <img src="../src/img-admin/default-admin.svg" alt="" class="w-full h-full object-cover">
+                    <img src="../src/img-admin/<?php echo $gambarAdmin ?>" alt="" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col hover:cursor-pointer">
                     <span>Welcome admin</span>
@@ -214,11 +232,11 @@
                                     <th><?php echo $siswa["tempat_lahir_siswa"] ?></th>
                                     <th><?php echo $siswa["tanggal_lahir_siswa"] ?></th>
                                     <th><?php echo $siswa["kelas_siswa"] ?></th>
-                                    <th><img src="../img-siswa/<?php echo $siswa["foto_siswa"] ?>"  alt=""></th>
+                                    <th><img src="../src/img-siswa/<?php echo $siswa["foto_siswa"] ?>"  alt=""></th>
                                     <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
@@ -240,74 +258,78 @@
 
     <!-- POP UP EDIT SISWA -->
     <div id="edit-wrapper" class="fixed bg-zinc-900 bg-opacity-45 scale-0  flex   px-96 w-full h-full top-0  justify-center py-3">
-        <form id="editsiswa" action="" class="bg-neutral-900 px-2 py-5 scale-0 transition duration-200 overflow-y-scroll rounded-lg shadow-md ">
+        <form id="editsiswa" action="" method="post" enctype="multipart/form-data" class="bg-neutral-900 px-2 py-5 scale-0 transition duration-200 overflow-y-scroll rounded-lg shadow-md ">
 
-            <a href="#" id="close-btn" class="flex justify-center items-center h-10 w-10 rounded-full hover:bg-neutral-800  transition ">
+        <a href="#" id="close-btn-tambah" class="flex justify-center items-center h-10 w-10 rounded-full hover:bg-neutral-800  transition ">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                     <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
                 </svg>
             </a>
 
             <div class="text-center mb-7">
-                <h1 class="text-white text-2xl font-bold mb-1">Edit Siswa</h1>
+                <h1 class="text-white text-3xl font-bold mb-1">Edit Siswa</h1>
                 <p class="text-white text-sm">SMK Trimulia Jakarta</p>
             </div>
 
             <div class="flex justify-evenly gap-2 flex-wrap">
 
+                <div class="mb-7 w-1/3">
+                    <input type="text" name="id_siswa" value="" >
+                </div>
                 <div class=" mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Nama Lengkap</label>
-                    <input type="text" placeholder="contoh: John Doe" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input value="est" name="nama_siswa" type="text" placeholder="contoh: John Doe" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Jurusan</label>
-                    <select name="" id="" class="w-full border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
-                        <option value="" class="bg-neutral-900 text-zinc-100">TKJ</option>
-                        <option value="" class="bg-neutral-900 text-zinc-100">MP</option>
-                        <option value="" class="bg-neutral-900 text-zinc-100">BD</option>
+                    <select name="jurusan_siswa" id="" class="w-full border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="TKJ" class="bg-neutral-900 text-zinc-100">TKJ</option>
+                        <option value="MP" class="bg-neutral-900 text-zinc-100">MP</option>
+                        <option value="BD" class="bg-neutral-900 text-zinc-100">BD</option>
                     </select>
                 </div>
                 <div class="mb-7 w-1/3">
-                    <label for="" class="text-zinc-100 text-sm">Ganti Password</label>
-                    <input type="password" placeholder="Masukkan password yang kuat" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <label for="" class="text-zinc-100 text-sm">Password</label>
+                    <input name="password_siswa" type="password" placeholder="Masukkan password yang kuat" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <input type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="agama_siswa" type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                </div>
+                <div class="mb-7 w-1/3">
+                    <label for="" class="text-zinc-100 text-sm">NIS</label>
+                    <input name="nis_siswa" type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NISN</label>
-                    <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
-                </div>
-                <div class="mb-7 w-1/3">
-                    <label for="" class="text-zinc-100 text-sm">NIK</label>
-                    <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="nisn_siswa" type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tempat Lahir</label>
-                    <input type="text" placeholder="contoh: Tangerang" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="tempat_lahir_siswa" type="text" placeholder="contoh: Tangerang" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tanggal Lahir</label>
-                    <input type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="tanggal_lahir_siswa" type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Kelas</label>
-                    <input type="text" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="kelas_siswa" type="text" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <input type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input name="gender_siswa" type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
-                <div class="mb-3 w-1/3   ">
-                    <label for="" class="text-zinc-100 text-sm">Ganti Foto Profil</label>
 
-                    <input type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
+                <div class="mb-3 w-1/3   ">
+                    <label for="" class="text-zinc-100 text-sm">Pilih Foto Profil</label>
+
+                    <input name="gambar_siswa" type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
                 </div>
 
             </div>
 
-            <div class="flex justify-center mb-7 ">
+            <div class="flex justify-center mb-7  ">
                 <div class="bg-neutral-800  p-4 w-1/3  shadow-lg rounded-xl">
 
                     <div class="mx-auto mb-3 h-14 mt-3 w-14 border-dashed border border-zinc-950 shadow-lg rounded-full overflow-hidden">
@@ -319,7 +341,7 @@
             </div>
 
             <div class=" mt-8 w-full flex gap-5 px-20">
-                <button class="text-white font-bold w-full hover:bg-blue-600 transition  bg-blue-500 px-7 py-2 rounded-md">UBAH PROFIL</button>
+                <button type="submit" name="tambah" class="text-white font-bold w-full hover:bg-blue-600 transition  bg-blue-500 px-7 py-2 rounded-md">TAMBAH</button>
                 <button class="text-red-600 font-bold w-full hover:text-white hover:bg-red-500 transition bg-transparent border-red-500 border px-10 py-2  rounded-md">BATAL</button>
             </div>
 

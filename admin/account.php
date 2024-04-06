@@ -33,13 +33,13 @@
             
             mysqli_query( $koneksi, $query);
             if(mysqli_affected_rows( $koneksi ) > 0){
-                echo "<script>alert('berhasil up gambar');</script>";
+                echo "<script>alert('berhasil up gambar'); document.location.href = 'account.php'</script>";
                 exit;
             }
         
         }else{
             $gimbir = $admin["gambar_admin"];
-            $gambar = "../img/$gimbir";
+            $gambar = "../src/img-admin/$gimbir";
         }
 
         if(!password_verify($passwordOld, $admin["password_admin"])){
@@ -92,7 +92,7 @@
         <div class="  bg-gray-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 overflow-y-scroll md:overflow-hidden h-screen p-10  ">
             <div class="flex flex-col items-center">
                 <div class="w-16 mb-2  h-16 border rounded-full overflow-hidden ">
-                    <img src="../img/<?php echo $admin["gambar_admin"] ?>" alt="gambar admin" class="w-full h-full object-cover object-center">
+                    <img src="../src/img-admin/<?php echo $admin["gambar_admin"] ?>" alt="gambar admin" class="w-full h-full object-cover object-center">
                 </div>
 
                 <h1 class="text-white font-bold mb-1"><?php echo $admin["username_admin"] ?></h1>
