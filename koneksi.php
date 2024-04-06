@@ -21,7 +21,6 @@
         global $koneksi;
         $query = "SELECT id FROM admin";
         $result = mysqli_query($koneksi, $query);
-        $row = mysqli_fetch_assoc($result);
         return mysqli_num_rows($result);
     }
 
@@ -29,7 +28,6 @@
         global $koneksi;
         $query = "SELECT id_guru FROM guru";
         $result = mysqli_query($koneksi, $query);
-        $row = mysqli_fetch_assoc($result);
         return mysqli_num_rows($result);
     }
 
@@ -37,7 +35,6 @@
         global $koneksi;
         $query = "SELECT id_siswa FROM siswa";
         $result = mysqli_query($koneksi, $query);
-        $row = mysqli_fetch_assoc($result);
         return mysqli_num_rows($result);
     }
 
@@ -45,7 +42,6 @@
         global $koneksi;
         $query = "SELECT id FROM berita";
         $result = mysqli_query($koneksi, $query);
-        $row = mysqli_fetch_assoc($result);
         return mysqli_num_rows($result);
     }
 
@@ -71,13 +67,45 @@
                 return false;
             }
         }else{
-            $gambar = "../img-siswa/default.JPG";
+            $gambar = "../src/img-siswa/default.JPG";
         }
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         //query
         $query = "INSERT INTO siswa VALUES ('', '$nama', '$jurusan', '$password', '$gender','$agama', '$nis', '$nisn', '$tempatLahir', '$tanggalLahir', '$gambar', '$kelas')";
+        $result = mysqli_query($koneksi, $query);
+        return mysqli_affected_rows( $koneksi );
+    }
+
+    //function edit siswa
+    function editSiswa(){
+        global $koneksi;
+        $nama = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["nama_siswa"]));
+        $jurusan = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["jurusan_siswa"]));
+        $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["password_siswa"]));
+        $agama = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["agama_siswa"]));
+        $nis = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["nis_siswa"]));
+        $nisn = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["nisn_siswa"]));
+        $tempatLahir = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["tempat_lahir_siswa"]));
+        $tanggalLahir = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["tanggal_lahir_siswa"]));
+        $kelas = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["kelas_siswa"]));
+        $gender = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["gender_siswa"]));
+
+        if(isset($_FILES["gambar_siswa"]) && $_FILES["gambar_siswa"]["error"] !== 4){
+            $gambar = uploadSiswa();
+
+            if(!$gambar){
+                return false;
+            }
+        }else{
+            $gambar = "../src/img-siswa/default.JPG";
+        }
+
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        //query
+        $query = "UPDATE siswa SET nama_siswa = '$nama', jurusan_siswa = '$jurusan', password_siswa = '$password', gender_siswa = '$gender', agama_siswa = '$agama', nis_siswa = '$nis', nisn_siswa '$nisn', tempat_lahir_siswa = '$tempatLahir', tanggal_lahir_siswa = '$tanggalLahir', gambar_siswa = '$gambar', kelas_siswa = '$kelas'";
         $result = mysqli_query($koneksi, $query);
         return mysqli_affected_rows( $koneksi );
     }
@@ -106,7 +134,7 @@
         }
 
         $newfileName = uniqid() . "." . $ekstensiGambar;
-        move_uploaded_file($tmpName, "../img-siswa/" . $newfileName);
+        move_uploaded_file($tmpName, "../src/img-siswa/" . $newfileName);
         return $newfileName;
 
     }
@@ -121,8 +149,8 @@
         mysqli_stmt_execute( $statement );
         $result = mysqli_stmt_get_result($statement);
         $row = mysqli_fetch_assoc($result);
-        if(file_exists("../img-siswa/" . $row["foto_siswa"])){
-            unlink("../img-siswa/" . $row["foto_siswa"]);
+        if(file_exists("../src/img-siswa/" . $row["foto_siswa"])){
+            unlink("../src/img-siswa/" . $row["foto_siswa"]);
         }
 
         $query = "DELETE FROM siswa WHERE id_siswa = ?";
@@ -134,10 +162,10 @@
 
     function tambahBerita(){
         global $koneksi;
-        $judul = mysqli_real_escape_string($koneksi, $_POST["judul_berita"]);
-        $isi = mysqli_real_escape_string($koneksi, $_POST["isi_berita"]);
-        $penulis = mysqli_real_escape_string($koneksi, $_POST["penulis"]);
-        $date = date('d-m-Y');
+        $judul = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["judul_berita"]));
+        $isi = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["isi_berita"]));
+        $penulis = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["penulis"]));
+        $date = htmlspecialchars(mysqli_real_escape_string($koneksi, date('d-m-Y')));
         
         if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
             $gambar = upload();
@@ -189,7 +217,7 @@
         $newnameFile .= $ekstensiGambar;
 
         //lolos pengcekan
-        move_uploaded_file( $tmpName, "../img-berita/" . $newnameFile );
+        move_uploaded_file( $tmpName, "../src/img-berita/" . $newnameFile );
         return $newnameFile;
     }
 
@@ -206,8 +234,8 @@
         mysqli_stmt_close($statement);
     
         // Jika ada gambar admin sebelumnya, hapus
-        if (!empty($gambar_admin) && file_exists("../img/" . $gambar_admin)) {
-            unlink("../img/" . $gambar_admin);
+        if (!empty($gambar_admin) && file_exists("../src/img-admin/" . $gambar_admin)) {
+            unlink("../src/img-admin/" . $gambar_admin);
         }
     
         // Unggah gambar baru
@@ -236,7 +264,7 @@
             $newnameFile = uniqid() . "." . $ekstensiGambar;
     
             // Pindahkan gambar baru ke direktori tujuan
-            move_uploaded_file($tmpName, "../img/" . $newnameFile);
+            move_uploaded_file($tmpName, "../src/img-admin/" . $newnameFile);
     
             // Update nama file gambar admin baru ke database
             $query = "UPDATE admin SET gambar_admin = ? WHERE id = ?";
@@ -262,8 +290,8 @@
         mysqli_stmt_execute($statement);
         $result = mysqli_stmt_get_result($statement);
         $row = mysqli_fetch_assoc($result);
-        if(file_exists("../img-berita/" . $row["gambar_berita"])){
-            unlink("../img-berita/" . $row["gambar_berita"]);
+        if(file_exists("../src/img-berita/" . $row["gambar_berita"])){
+            unlink("../src/img-berita/" . $row["gambar_berita"]);
         }
 
 
@@ -300,5 +328,16 @@
         mysqli_query( $koneksi, $query);
 
         return mysqli_affected_rows( $koneksi );
+    }
+
+    //function admin
+    function gambarAdmin($koneksi, $username){
+        $query = "SELECT gambar_admin FROM admin WHERE username_admin = ?";
+        $statement = mysqli_prepare($koneksi, $query);
+        mysqli_stmt_bind_param($statement, "s", $username);
+        mysqli_stmt_execute($statement);
+        mysqli_stmt_bind_result($statement, $gambarAdmin);
+        mysqli_stmt_fetch($statement);
+        return $gambarAdmin;
     }
 ?>

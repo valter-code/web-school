@@ -5,12 +5,19 @@
     //query siswa
     if(isset($_SESSION["nisn-siswa"])){
         $nisn = $_SESSION["nisn-siswa"]; 
-        $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
+        $query = "SELECT nama_siswa, foto_siswa FROM siswa WHERE nisn_siswa = ?";
         $statement = mysqli_prepare($koneksi, $query);
-        mysqli_stmt_bind_param($statement, "i", $nisn);
+        mysqli_stmt_bind_param($statement, "s", $nisn);
         mysqli_stmt_execute($statement);
-        $result = mysqli_stmt_get_result($statement);
-        $row = mysqli_fetch_assoc($result);
+        mysqli_stmt_bind_result($statement, $nama_siswa,  $foto_siswa);
+        mysqli_stmt_fetch($statement);
+        mysqli_stmt_free_result($statement);
+        // $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
+        // $statement = mysqli_prepare($koneksi, $query);
+        // mysqli_stmt_bind_param($statement, "i", $nisn);
+        // mysqli_stmt_execute($statement);
+        // $result = mysqli_stmt_get_result($statement);
+        // $row = mysqli_fetch_assoc($result);
     }
 
     //pagination
@@ -112,13 +119,13 @@
                 <div id="akun" class="gap-5 hidden lg:block ">
                     <div class="flex items-center gap-4">
                         <a href="#" class="w-11 h-11 block rounded-full border-dashed border overflow-hidden border-slate-400 akun">
-                            <img src="./src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
+                            <img src="./src/img-siswa/<?php echo $foto_siswa ?>" alt="" class="w-full h-full object-cover">
 
                         </a>
 
                         <a href="#" class="akun">
                             <h1 class="text-white">Selamat datang,</h1>
-                            <p class="text-white font-bold"><?php echo $row["nama_siswa"] ?></p>
+                            <p class="text-white font-bold"><?php echo $nama_siswa ?></p>
                         </a>
 
 
@@ -251,7 +258,7 @@
                     <div class=" sm:w-1/2  lg:w-1/4 w-full px-2 " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="500">
                         <div class="w-full mb-4 hover:cursor-pointer hover:-translate-y-1 transition   border border-slate-500 rounded-lg overflow-hidden">
                             <div class=" h-52 hover:scale-105 transition duration-300 ">
-                                <img src="./img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover w-full h-full ">
+                                <img src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover w-full h-full ">
                             </div>
 
                             <div class="p-3 h-60 flex flex-col justify-between ">

@@ -130,7 +130,7 @@ if (isset($_GET["cari"])) {
     <section id="berita" class="pt-10 pb-80">
         <div class="container  ">
             <div class="border float-left mb-2 mr-4  h-60 max-w-sm w-full overflow-hidden">
-                <img class="object-cover w-full h-full" src="img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
+                <img class="object-cover w-full h-full" src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
             </div>
             <h1 id="2" class="text-berita font-bold text-zinc-800 text-4xl    "><?php echo $row["judul_berita"] ?></h1>
             <h3 class="text-berita mb-5 text-zinc-800">Autor - 24 April 2007</h3>
