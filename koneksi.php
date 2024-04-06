@@ -330,6 +330,7 @@
         return mysqli_affected_rows( $koneksi );
     }
 
+    //function admin
     function gambarAdmin($koneksi, $username){
         $query = "SELECT gambar_admin FROM admin WHERE username_admin = ?";
         $statement = mysqli_prepare($koneksi, $query);
