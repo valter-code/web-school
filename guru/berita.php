@@ -184,10 +184,17 @@ if (isset($_GET["cari"])) {
                                 <tr class="text-violet-500">
                                     <th><?php echo $no ?></th>
                                     <th><?php echo $berita["judul_berita"] ?></th>
-                                    <th class=""><?php echo $berita["isi_berita"] ?></th>
+                                    <th>
+                                        <p class="w-80 truncate"><?php echo $berita["isi_berita"] ?></p>
+                                    </th>
                                     <th><?php echo $berita["penulis"] ?></th>
                                     <th><?php echo $berita["date"] ?></th>
-                                    <th><?php echo $berita["gambar_berita"] ?></th>
+                                    <th>
+                                        <div class="w-16 h-10 border-2 border-zinc-600 rounded-md overflow-hidden">
+                                            <img src="../src/img-berita/<?php echo $berita["gambar_berita"] ?>" alt="" class="w-full h-full object-cover object-center">
+                                        </div>
+                                        
+                                    </th>
                                     <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>

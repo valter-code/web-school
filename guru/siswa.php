@@ -196,7 +196,7 @@ if (isset($_POST["tambah"])) {
                             <?php $no = 1 ?>
                             <?php foreach ($siswa as $siswa) : ?>
                                 <tr>
-                                    <th><?php echo $no ?></th>
+                                    <th class="text-violet-900"><?php echo $no ?></th>
                                     <th><?php echo $siswa["nama_siswa"] ?></th>
                                     <th><?php echo $siswa["jurusan_siswa"] ?></th>
                                     <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>

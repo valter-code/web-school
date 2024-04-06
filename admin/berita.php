@@ -54,7 +54,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
         <aside class="sidebar-sticky sidebar justify-start">
             <section id="profil-admin" class="sidebar-title items-center p-4 ">
                 <div class="border w-10 h-10 rounded-full mr-3 overflow-hidden hover:cursor-pointer">
-                    <img src="../src/img-admin/<?php echo $gambarAdmin?>" alt="" class="w-full h-full object-cover">
+                    <img src="../src/img-admin/<?php echo $gambarAdmin ?>" alt="" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col hover:cursor-pointer">
                     <span>Welcome admin</span>
@@ -187,10 +187,19 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                                 <tr>
                                     <th><?php echo $no ?></th>
                                     <th><?php echo $berita["judul_berita"] ?></th>
-                                    <th><?php echo $berita["isi_berita"] ?></th>
+                                    <th>
+                                        <p class="w-80 truncate"><?php echo $berita["isi_berita"] ?></p>
+                                    </th>
                                     <th><?php echo $berita["penulis"] ?></th>
                                     <th><?php echo $berita["date"] ?></th>
-                                    <th><?php echo $berita["gambar_berita"] ?></th>
+                                    <th>
+                                        <div class="w-14 h-10  border-zinc-600 border-2 rounded-md overflow-hidden">
+                                            <img src="../src/img-berita/<?php echo $berita["gambar_berita"] ?>" alt="" class="w-full h-full object-cover object-center">
+                                        </div>
+                                        
+                                    
+
+                                    </th>
                                     <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>
@@ -233,8 +242,8 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
     </div>
     <!-- PROFIL POP UP END -->
 
-     <!-- EDIT BERITA POPUP -->
-     <div id="berita-wrapper" class="fixed bg-zinc-900 bg-opacity-45   flex scale-0   px-96 w-full h-full top-0  justify-center py-3">
+    <!-- EDIT BERITA POPUP -->
+    <div id="berita-wrapper" class="fixed bg-zinc-900 bg-opacity-45   flex scale-0   px-96 w-full h-full top-0  justify-center py-3">
         <form id="berita-form" action="" class="bg-neutral-900 px-10 py-5 scale-0  transition duration-200 overflow-y-scroll rounded-lg shadow-md ">
 
             <a href="#" id="close-btn" class="flex  justify-center items-center h-10 w-10 rounded-full hover:bg-neutral-800  transition ">

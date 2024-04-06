@@ -467,7 +467,7 @@
 
 
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    
     <script src="./node_modules/preline/dist/preline.js"></script>
     <script src="./main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
