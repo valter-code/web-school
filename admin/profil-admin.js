@@ -13,3 +13,4 @@ window.addEventListener("click", function (event) {
     profilPopUp.classList.add("-translate-x-48");
   }
 });
+

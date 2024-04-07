@@ -163,3 +163,5 @@ formBerita.addEventListener("submit", function (event) {
   // Menetapkan hash fragment di URL tanpa memuat ulang halamant h
   window.location.hash = inputText === "#berita" ? inputText : "berita";
 });
+
+

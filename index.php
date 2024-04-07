@@ -1,56 +1,56 @@
 <?php
-    require("koneksi.php");
-    session_start();
+require("koneksi.php");
+session_start();
 
-    //query siswa
-    if(isset($_SESSION["nisn-siswa"])){
-        $nisn = $_SESSION["nisn-siswa"]; 
-        $query = "SELECT nama_siswa, foto_siswa FROM siswa WHERE nisn_siswa = ?";
-        $statement = mysqli_prepare($koneksi, $query);
-        mysqli_stmt_bind_param($statement, "s", $nisn);
-        mysqli_stmt_execute($statement);
-        mysqli_stmt_bind_result($statement, $nama_siswa,  $foto_siswa);
-        mysqli_stmt_fetch($statement);
-        mysqli_stmt_free_result($statement);
-        // $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
-        // $statement = mysqli_prepare($koneksi, $query);
-        // mysqli_stmt_bind_param($statement, "i", $nisn);
-        // mysqli_stmt_execute($statement);
-        // $result = mysqli_stmt_get_result($statement);
-        // $row = mysqli_fetch_assoc($result);
+//query siswa
+if (isset($_SESSION["nisn-siswa"])) {
+    $nisn = $_SESSION["nisn-siswa"];
+    $query = "SELECT nama_siswa, foto_siswa FROM siswa WHERE nisn_siswa = ?";
+    $statement = mysqli_prepare($koneksi, $query);
+    mysqli_stmt_bind_param($statement, "s", $nisn);
+    mysqli_stmt_execute($statement);
+    mysqli_stmt_bind_result($statement, $nama_siswa,  $foto_siswa);
+    mysqli_stmt_fetch($statement);
+    mysqli_stmt_free_result($statement);
+    // $query = "SELECT * FROM siswa WHERE nisn_siswa = ?";
+    // $statement = mysqli_prepare($koneksi, $query);
+    // mysqli_stmt_bind_param($statement, "i", $nisn);
+    // mysqli_stmt_execute($statement);
+    // $result = mysqli_stmt_get_result($statement);
+    // $row = mysqli_fetch_assoc($result);
+}
+
+//pagination
+$maxData = 4;
+$jumlahData = count(query("SELECT * FROM berita"));
+$jumlahHalaman = ceil($jumlahData / $maxData);
+$halamanAktif = (isset($_GET["hal"]) && is_numeric($_GET["hal"])) ? $_GET["hal"] : 1;
+
+$dataAwal = ($maxData * $halamanAktif) - $maxData;
+
+
+$berita = query("SELECT * FROM berita LIMIT $dataAwal, $maxData");
+
+//cari berita
+if (isset($_GET["cari"])) {
+    $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
+    $statement = mysqli_prepare($koneksi, $query);
+    $keyword = $_GET["keyword"];
+
+    //bind
+    $keyword = "%" . $keyword . "%";
+    mysqli_stmt_bind_param($statement, "s", $keyword);
+
+    mysqli_stmt_execute($statement);
+    $result = mysqli_stmt_get_result($statement);
+    $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if (mysqli_num_rows($result) == 0) {
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
+    } else {
+        $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
     }
-
-    //pagination
-    $maxData = 4;
-    $jumlahData = count(query("SELECT * FROM berita"));
-    $jumlahHalaman = ceil($jumlahData / $maxData);
-    $halamanAktif = (isset($_GET["hal"]) && is_numeric($_GET["hal"])) ? $_GET["hal"] : 1;
-
-    $dataAwal = ($maxData * $halamanAktif) - $maxData;
-
-
-    $berita = query("SELECT * FROM berita LIMIT $dataAwal, $maxData");
-
-    //cari berita
-    if (isset($_GET["cari"])) {
-        $query = "SELECT * FROM berita WHERE judul_berita LIKE ?";
-        $statement = mysqli_prepare($koneksi, $query);
-        $keyword = $_GET["keyword"];
-
-        //bind
-        $keyword = "%" . $keyword . "%";
-        mysqli_stmt_bind_param($statement, "s", $keyword);
-
-        mysqli_stmt_execute($statement);
-        $result = mysqli_stmt_get_result($statement);
-        $berita = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-        if (mysqli_num_rows($result) == 0) {
-            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]) . " Tidak ada";
-        } else {
-            $nothing = "Pencarian anda " . htmlspecialchars($_GET["keyword"]);
-        }
-    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -174,9 +174,9 @@
             </ul>
 
 
-           
 
-           
+
+
         </div>
     </nav>
 
@@ -250,26 +250,26 @@
             </div>
 
 
-            <div class="flex flex-wrap justify-start items-center ">
+            <div class="flex px-5 flex-wrap  justify-start    items-center ">
 
                 <?php $delay = 300 ?>
                 <?php foreach ($berita as $row) : ?>
 
-                    <div class=" sm:w-1/2  lg:w-1/4 w-full px-2 " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="500">
-                        <div class="w-full mb-4 hover:cursor-pointer hover:-translate-y-1 transition   border border-slate-500 rounded-lg overflow-hidden">
-                            <div class=" h-52 hover:scale-105 transition duration-300 ">
-                                <img src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover w-full h-full ">
-                            </div>
-
-                            <div class="p-3 h-60 flex flex-col justify-between ">
-                                <a href="berita.php?id=<?php echo $row["id"] ?>">
-                                    <h1 class="text-berita font-bold text-zinc-800 text-2xl  line-clamp-1 h-1/3   "><?php echo $row["judul_berita"] ?></h1>
-                                    <p class="text-zinc-800 text-berita  line-clamp-1 mb-10 h-full  py-2"> <?php echo $row["isi_berita"] ?></p>
-
-                                    <a href="berita.php?id=<?php echo $row["id"] ?>"><button class="w-full    hover:translate-x-1 hover:shadow-sm hover:shadow-zinc-700 transition duration-500 bg-zinc-700 text-white px-7 py-2 rounded-md font-bold">Baca Selengkapnya</button></a>
+                    <a href="berita.php?id=<?php echo $row["id"] ?>" class="block">
+                        <div class="w-full sm:w-1/2 mb-10 sm:mb-0 sm:p-2  lg:w-1/4  " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="500">
+                            <div class="h-[30rem] group w-full rounded-md  overflow-hidden border bg-cover bg-center " style="background-image: url('./src/img-berita/<?php echo $row["gambar_berita"] ?>')">
+                                <div class="bg-zinc-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50  border-gray-100 h-full  w-full px-5 pt-24 opacity-0 group-hover:opacity-100 transition duration-700 ">
+                                    <h1 class="text-white truncate   h-9  font-bold text-2xl"><?php echo $row["judul_berita"] ?></h1>
+                                    <p class="h-36 line-clamp-6 mb-5 text-white font-light "><?php echo $row["isi_berita"] ?></p>
+                                    <a href="berita.php?id=<?php echo $row["id"] ?>" class="block" class=" ">
+                                        <button class="group shadow-xl   group-hover:before:duration-500 group-hover:after:duration-500 after:duration-500 hover:border-rose-300 hover:before:[box-shadow:_20px_20px_20px_30px_#a21caf] duration-500 before:duration-500 hover:duration-500 underline underline-offset-2 hover:after:-right-8 hover:before:right-12 hover:before:-bottom-8 hover:before:blur hover:underline hover:underline-offset-4  origin-left hover:decoration-2 hover:text-rose-300 relative bg-neutral-800 h-14 w-full border text-left px-4  text-gray-50 text-base font-bold rounded-lg  overflow-hidden  before:absolute before:w-12 before:h-12 before:content[''] before:right-1 before:top-1 before:z-10 before:bg-violet-500 before:rounded-full before:blur-lg  after:absolute after:z-10 after:w-20 after:h-20 after:content['']  after:bg-rose-300 after:right-8 after:top-3 after:rounded-full after:blur-lg">
+                                            Baca Selengkapnya
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <?php $delay += 100 ?>
                 <?php endforeach; ?>
 
@@ -467,7 +467,7 @@
 
 
 
-    
+
     <script src="./node_modules/preline/dist/preline.js"></script>
     <script src="./main.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
