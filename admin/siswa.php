@@ -224,7 +224,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                             <?php foreach ($siswa as $siswa) : ?>
                                 <tr>
                                     <th><?php echo $no ?></th>
-                                    <th class="underline text-black"><?php echo $siswa["nama_siswa"] ?></th>
+                                    <th><?php echo $siswa["nama_siswa"] ?></th>
                                     <th><?php echo $siswa["jurusan_siswa"] ?></th>
                                     <th><?php echo $siswa["gender_siswa"] ?></th>
                                     <th><?php echo $siswa["agama_siswa"] ?></th>
@@ -238,7 +238,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                                             <img src="../src/img-siswa/<?php echo $siswa["foto_siswa"] ?>" alt="" class="w-full h-full object-cover object-center">
                                         </div>
                                     </th>
-                                    <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
+                                    <th><a class="text-sky-500 edit" href="">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>
                             <?php endforeach; ?>
@@ -370,11 +370,11 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
 
                 <div class=" mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Nama Lengkap</label>
-                    <input name="nama_siswa" type="text" placeholder="contoh: John Doe" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="nama_siswa" type="text" placeholder="contoh: John Doe" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Jurusan</label>
-                    <select name="jurusan_siswa" id="" class="w-full border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                    <select required name="jurusan_siswa" id="" class="w-full border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
                         <option value="TKJ" class="bg-neutral-900 text-zinc-100">TKJ</option>
                         <option value="MP" class="bg-neutral-900 text-zinc-100">MP</option>
                         <option value="BD" class="bg-neutral-900 text-zinc-100">BD</option>
@@ -382,15 +382,15 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Password</label>
-                    <input name="password_siswa" type="password" placeholder="Masukkan password yang kuat" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="password_siswa" type="password" placeholder="Masukkan password yang kuat" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <input name="agama_siswa" type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="agama_siswa" type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NIS</label>
-                    <input name="nis_siswa" type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="nis_siswa" type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NISN</label>
@@ -398,25 +398,25 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tempat Lahir</label>
-                    <input name="tempat_lahir_siswa" type="text" placeholder="contoh: Tangerang" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="tempat_lahir_siswa" type="text" placeholder="contoh: Tangerang" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tanggal Lahir</label>
-                    <input name="tanggal_lahir_siswa" type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="tanggal_lahir_siswa" type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Kelas</label>
-                    <input name="kelas_siswa" type="text" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="kelas_siswa" type="text" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <input name="gender_siswa" type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="gender_siswa" type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
 
                 <div class="mb-3 w-1/3   ">
                     <label for="" class="text-zinc-100 text-sm">Pilih Foto Profil</label>
 
-                    <input name="gambar_siswa" type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
+                    <input name="gambar_siswa" type="file" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
                 </div>
 
             </div>
