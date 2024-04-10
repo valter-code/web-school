@@ -188,7 +188,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                                     <th><?php echo $no ?></th>
                                     <th><?php echo $berita["judul_berita"] ?></th>
                                     <th>
-                                        <p class="w-80 truncate"><?php echo $berita["isi_berita"] ?></p>
+                                        <p class="w-64 truncate"><?php echo $berita["isi_berita"] ?></p>
                                     </th>
                                     <th><?php echo $berita["penulis"] ?></th>
                                     <th><?php echo $berita["date"] ?></th>

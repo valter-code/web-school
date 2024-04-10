@@ -250,26 +250,31 @@ if (isset($_GET["cari"])) {
             </div>
 
 
-            <div class="flex px-5 flex-wrap  justify-start    items-center ">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ">
 
                 <?php $delay = 300 ?>
                 <?php foreach ($berita as $row) : ?>
 
-                    <a href="berita.php?id=<?php echo $row["id"] ?>" class="block">
-                        <div class="w-full sm:w-1/2 mb-10 sm:mb-0 sm:p-2  lg:w-1/4  " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="500">
-                            <div class="h-[30rem] group w-full rounded-md  overflow-hidden border bg-cover bg-center " style="background-image: url('./src/img-berita/<?php echo $row["gambar_berita"] ?>')">
-                                <div class="bg-zinc-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-50  border-gray-100 h-full  w-full px-5 pt-24 opacity-0 group-hover:opacity-100 transition duration-700 ">
-                                    <h1 class="text-white truncate   h-9  font-bold text-2xl"><?php echo $row["judul_berita"] ?></h1>
-                                    <p class="h-36 line-clamp-6 mb-5 text-white font-light "><?php echo $row["isi_berita"] ?></p>
-                                    <a href="berita.php?id=<?php echo $row["id"] ?>" class="block" class=" ">
-                                        <button class="group shadow-xl   group-hover:before:duration-500 group-hover:after:duration-500 after:duration-500 hover:border-rose-300 hover:before:[box-shadow:_20px_20px_20px_30px_#a21caf] duration-500 before:duration-500 hover:duration-500 underline underline-offset-2 hover:after:-right-8 hover:before:right-12 hover:before:-bottom-8 hover:before:blur hover:underline hover:underline-offset-4  origin-left hover:decoration-2 hover:text-rose-300 relative bg-neutral-800 h-14 w-full border text-left px-4  text-gray-50 text-base font-bold rounded-lg  overflow-hidden  before:absolute before:w-12 before:h-12 before:content[''] before:right-1 before:top-1 before:z-10 before:bg-violet-500 before:rounded-full before:blur-lg  after:absolute after:z-10 after:w-20 after:h-20 after:content['']  after:bg-rose-300 after:right-8 after:top-3 after:rounded-full after:blur-lg">
-                                            Baca Selengkapnya
-                                        </button>
+                    <div class="  w-full   px-2 " data-aos="flip-right" data-aos-delay=<?php echo $delay ?> data-aos-duration="500">
+                        <div class="w-full   mb-4 hover:cursor-pointer hover:-translate-y-1 transition   border border-slate-500 rounded-md overflow-hidden">
+                            <div class=" h-40 hover:scale-105 transition duration-300 ">
+                                <img src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover w-full h-full ">
+                            </div>
+
+                            <div class="p-3 h-36 flex flex-col justify-between ">
+                                <a href="berita.php?id=<?php echo $row["id"] ?>">
+                                    <h1 class="text-berita  font-poppins font-semibold    text-zinc-800 text-xl  line-clamp-1 h-7   "><?php echo $row["judul_berita"] ?></h1>
+                                    <p class="text-zinc-800 text-berita font-thin  line-clamp-2  h-14 py-2 font-poppins  "> <?php echo $row["isi_berita"] ?></p>
+
+                                    <a href="berita.php?id=<?php echo $row["id"] ?>" class="font-poppins flex items-center justify-between text-zinc-800 text-sm text-berita">
+                                        <p>Baca Selengkapnya</p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5" />
+                                            <path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z" />
+                                        </svg>
                                     </a>
-                                </div>
                             </div>
                         </div>
-                    </a>
+                    </div>
                     <?php $delay += 100 ?>
                 <?php endforeach; ?>
 
@@ -297,11 +302,11 @@ if (isset($_GET["cari"])) {
                 <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
 
                     <?php if ($i == $halamanAktif) : ?>
-                        <a href="?hal=<?php echo $i ?> #berita" class="bg-violet-700 h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
-                            <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
+                        <a href="?hal=<?php echo $i ?> #berita" class="bg-violet-700 h-10 w-10 bg-transparent border  hover:bg-violet-700 group flex justify-center items-center rounded-md ">
+                            <h1 class="font-bold text-white transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
                         </a>
                     <?php else : ?>
-                        <a href="?hal=<?php echo $i ?> #berita" class="h-10 w-10 bg-transparent border border-zinc-800 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
+                        <a href="?hal=<?php echo $i ?> #berita" class="h-10 w-10 bg-transparent border border-r-violet-200 hover:bg-violet-700 group flex justify-center items-center rounded-md ">
                             <h1 class="font-bold text-violet-700 transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
                         </a>
                     <?php endif; ?>

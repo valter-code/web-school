@@ -45,3 +45,27 @@ tambahWrapper.addEventListener("click", (event) => {
     tambahForm.classList.add("scale-0");
   }
 });
+
+
+////////////////// Preview Profil Siswa ////////////////////
+const inputTambahSiswa = document.querySelectorAll(".input-preview-siswa");
+const previewImgTambahSiswa = document.querySelectorAll(".img-preview-siswa");
+
+console.log(previewImgTambahSiswa[0])
+
+const previewImg = (input, img) => {
+  input.addEventListener("change", () => {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        img.src = e.target.result;
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  });
+};
+
+previewImg(inputTambahSiswa[0], previewImgTambahSiswa[0])
+previewImg(inputTambahSiswa[1], previewImgTambahSiswa[1])

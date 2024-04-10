@@ -259,14 +259,21 @@ if (isset($_POST["tambah"])) {
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <input type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Protestan" class="bg-neutral-900 text-zinc-100">Protestan</option>
+                        <option value="Khatolik" class="bg-neutral-900 text-zinc-100">Khatolik</option>
+                        <option value="Islam" class="bg-neutral-900 text-zinc-100">Islam</option>
+                        <option value="Buddha" class="bg-neutral-900 text-zinc-100">Buddha</option>
+                        <option value="Hindu" class="bg-neutral-900 text-zinc-100">Hindu</option>
+                        <option value="Konghucu" class="bg-neutral-900 text-zinc-100">Konghucu</option>
+                    </select>
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NISN</label>
                     <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
-                    <label for="" class="text-zinc-100 text-sm">NIK</label>
+                    <label for="" class="text-zinc-100 text-sm">NIS</label>
                     <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
@@ -275,7 +282,7 @@ if (isset($_POST["tambah"])) {
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tanggal Lahir</label>
-                    <input type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input type="date" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Kelas</label>
@@ -283,13 +290,17 @@ if (isset($_POST["tambah"])) {
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <input type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Laki-laki" class="bg-neutral-900 text-zinc-100">Laki-laki</option>
+                        <option value="Perempuan" class="bg-neutral-900 text-zinc-100">Perempuan</option>
+                 
+                    </select>
                 </div>
 
                 <div class="mb-3 w-1/3   ">
                     <label for="" class="text-zinc-100 text-sm">Pilih Foto Profil</label>
 
-                    <input type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
+                    <input type="file" placeholder="contoh: 11 TKJ 1" class="w-full input-preview-siswa mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
                 </div>
 
             </div>
@@ -298,7 +309,7 @@ if (isset($_POST["tambah"])) {
                 <div class="bg-neutral-800  p-4 w-1/3  shadow-lg rounded-xl">
 
                     <div class="mx-auto mb-3 h-14 mt-3 w-14 border-dashed border border-zinc-950 shadow-lg rounded-full overflow-hidden">
-                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
+                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full img-preview-siswa h-full object-cover">
                     </div>
                     <h1 class="text-center font-bold">Preview Profil</h1>
                     <p class="text-center text-sm">Siswa</p>
@@ -351,14 +362,21 @@ if (isset($_POST["tambah"])) {
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <input type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Protestan" class="bg-neutral-900 text-zinc-100">Protestan</option>
+                        <option value="Khatolik" class="bg-neutral-900 text-zinc-100">Khatolik</option>
+                        <option value="Islam" class="bg-neutral-900 text-zinc-100">Islam</option>
+                        <option value="Buddha" class="bg-neutral-900 text-zinc-100">Buddha</option>
+                        <option value="Hindu" class="bg-neutral-900 text-zinc-100">Hindu</option>
+                        <option value="Konghucu" class="bg-neutral-900 text-zinc-100">Konghucu</option>
+                    </select>
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NISN</label>
                     <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
-                    <label for="" class="text-zinc-100 text-sm">NIK</label>
+                    <label for="" class="text-zinc-100 text-sm">NIS</label>
                     <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
@@ -367,7 +385,7 @@ if (isset($_POST["tambah"])) {
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tanggal Lahir</label>
-                    <input type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input type="date" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Kelas</label>
@@ -375,12 +393,16 @@ if (isset($_POST["tambah"])) {
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <input type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Laki-laki" class="bg-neutral-900 text-zinc-100">Laki-laki</option>
+                        <option value="Perempuan" class="bg-neutral-900 text-zinc-100">Perempuan</option>
+
+                    </select>
                 </div>
                 <div class="mb-3 w-1/3   ">
                     <label for="" class="text-zinc-100 text-sm">Ganti Foto Profil</label>
 
-                    <input type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
+                    <input type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 input-preview-siswa bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
                 </div>
 
             </div>
@@ -389,7 +411,7 @@ if (isset($_POST["tambah"])) {
                 <div class="bg-neutral-800  p-4 w-1/3  shadow-lg rounded-xl">
 
                     <div class="mx-auto mb-3 h-14 mt-3 w-14 border-dashed border border-zinc-950 shadow-lg rounded-full overflow-hidden">
-                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
+                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full img-preview-siswa h-full object-cover">
                     </div>
                     <h1 class="text-center font-bold">Preview Profil</h1>
                     <p class="text-center text-sm">Siswa</p>

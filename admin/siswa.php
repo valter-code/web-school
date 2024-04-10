@@ -238,7 +238,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                                             <img src="../src/img-siswa/<?php echo $siswa["foto_siswa"] ?>" alt="" class="w-full h-full object-cover object-center">
                                         </div>
                                     </th>
-                                    <th><a class="text-sky-500 edit" href="">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
+                                    <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-siswa.php?id_siswa=<?php echo $siswa["id_siswa"] ?>">Delete</a></th>
                                 </tr>
                                 <?php $no++ ?>
                             <?php endforeach; ?>
@@ -296,14 +296,21 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <input type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Protestan" class="bg-neutral-900 text-zinc-100">Protestan</option>
+                        <option value="Khatolik" class="bg-neutral-900 text-zinc-100">Khatolik</option>
+                        <option value="Islam" class="bg-neutral-900 text-zinc-100">Islam</option>
+                        <option value="Buddha" class="bg-neutral-900 text-zinc-100">Buddha</option>
+                        <option value="Hindu" class="bg-neutral-900 text-zinc-100">Hindu</option>
+                        <option value="Konghucu" class="bg-neutral-900 text-zinc-100">Konghucu</option>
+                    </select>
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NISN</label>
                     <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
-                    <label for="" class="text-zinc-100 text-sm">NIK</label>
+                    <label for="" class="text-zinc-100 text-sm">NIS</label>
                     <input type="text" placeholder="contoh: 1234567" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
@@ -312,7 +319,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tanggal Lahir</label>
-                    <input type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input type="date" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Kelas</label>
@@ -320,12 +327,16 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <input type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Laki-laki" class="bg-neutral-900 text-zinc-100">Laki-laki</option>
+                        <option value="Perempuan" class="bg-neutral-900 text-zinc-100">Perempuan</option>
+
+                    </select>
                 </div>
                 <div class="mb-3 w-1/3   ">
                     <label for="" class="text-zinc-100 text-sm">Ganti Foto Profil</label>
 
-                    <input type="file" placeholder="contoh: 11 TKJ 1" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
+                    <input type="file" class="w-full input-preview-siswa mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
                 </div>
 
             </div>
@@ -334,7 +345,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 <div class="bg-neutral-800  p-4 w-1/3  shadow-lg rounded-xl">
 
                     <div class="mx-auto mb-3 h-14 mt-3 w-14 border-dashed border border-zinc-950 shadow-lg rounded-full overflow-hidden">
-                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
+                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full img-preview-siswa p h-full object-cover">
                     </div>
                     <h1 class="text-center font-bold">Preview Profil</h1>
                     <p class="text-center text-sm">Siswa</p>
@@ -374,7 +385,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Jurusan</label>
-                    <select required name="jurusan_siswa" id="" class="w-full border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
                         <option value="TKJ" class="bg-neutral-900 text-zinc-100">TKJ</option>
                         <option value="MP" class="bg-neutral-900 text-zinc-100">MP</option>
                         <option value="BD" class="bg-neutral-900 text-zinc-100">BD</option>
@@ -386,7 +397,14 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <input required name="agama_siswa" type="text" placeholder="contoh: Protestan" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Protestan" class="bg-neutral-900 text-zinc-100">Protestan</option>
+                        <option value="Khatolik" class="bg-neutral-900 text-zinc-100">Khatolik</option>
+                        <option value="Islam" class="bg-neutral-900 text-zinc-100">Islam</option>
+                        <option value="Buddha" class="bg-neutral-900 text-zinc-100">Buddha</option>
+                        <option value="Hindu" class="bg-neutral-900 text-zinc-100">Hindu</option>
+                        <option value="Konghucu" class="bg-neutral-900 text-zinc-100">Konghucu</option>
+                    </select>
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">NIS</label>
@@ -402,7 +420,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Tanggal Lahir</label>
-                    <input required name="tanggal_lahir_siswa" type="text" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <input required name="tanggal_lahir_siswa" type="date" placeholder="contoh: 24 April 2007" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Kelas</label>
@@ -410,13 +428,17 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <input required name="gender_siswa" type="text" placeholder="contoh: Laki-laki" class="w-full mt-1 bg-transparent px-2 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700 py-1 border-2">
+                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                        <option value="Laki-laki" class="bg-neutral-900 text-zinc-100">Laki-laki</option>
+                        <option value="Perempuan" class="bg-neutral-900 text-zinc-100">Perempuan</option>
+
+                    </select>
                 </div>
 
                 <div class="mb-3 w-1/3   ">
                     <label for="" class="text-zinc-100 text-sm">Pilih Foto Profil</label>
 
-                    <input name="gambar_siswa" type="file" class="w-full mt-1 bg-transparent  file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
+                    <input name="gambar_siswa" type="file" id="input-tambah-siswa" class="w-full input-preview-siswa mt-1 bg-transparent   file:bg-zinc-800 file:text-neutral-400 file:h-full file:py-1 file:border-none text-zinc-300 placeholder:text-neutral-600 focus:outline-none placeholder:text-sm  rounded-lg border-neutral-700  border-2 ">
                 </div>
 
             </div>
@@ -425,7 +447,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 <div class="bg-neutral-800  p-4 w-1/3  shadow-lg rounded-xl">
 
                     <div class="mx-auto mb-3 h-14 mt-3 w-14 border-dashed border border-zinc-950 shadow-lg rounded-full overflow-hidden">
-                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="w-full h-full object-cover">
+                        <img src="../src/img-siswa/default-siswa.svg" alt="" class="img-preview-siswa w-full  h-full object-cover">
                     </div>
                     <h1 class="text-center font-bold">Preview Profil</h1>
                     <p class="text-center text-sm">Siswa</p>
