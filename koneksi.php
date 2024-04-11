@@ -67,7 +67,7 @@
                 return false;
             }
         }else{
-            $gambar = "../src/img-siswa/default.JPG";
+            $gambar = "default-siswa.svg";
         }
 
         $password = password_hash($password, PASSWORD_DEFAULT);

@@ -34,7 +34,7 @@
 
             <div class="mb-10 flex flex-col items-center">
                 <div class="mb-3 border border-dashed border-white h-16 w-16 overflow-hidden  rounded-full">
-                    <img src="./img-berita/goku.jpg" alt="" class="w-full h-full object-cover">
+                    <img src="./src/img-siswa/<?php echo $row["foto_siswa"] ?>" alt="" class="w-full h-full object-cover">
                 </div>
 
                 <div>
