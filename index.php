@@ -60,6 +60,7 @@ if (isset($_GET["cari"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMK Trimulia Jakarta</title>
+    <link rel="shortcut icon" href="./src/assets/logo.png" type="image/x-icon">
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -82,6 +83,7 @@ if (isset($_GET["cari"])) {
                     <li><a href="#home" class="Home">Home</a></li>
                     <li><a href="#jurusan" class="jurusan">Mitra</a></li>
                     <li><a href="#berita" class="berita">Berita</a></li>
+                    <li><a href="#gallery" class="gallery">gallery</a></li>
                     <li><a href="#kontak" class="kontak">Kontak</a></li>
                 </ul>
             </div>
@@ -331,6 +333,97 @@ if (isset($_GET["cari"])) {
 
     </section>
     <!-- BERITA END -->
+
+
+
+    <!-- GALLERY -->
+    <section id="gallery" class="container mb-44">
+
+        <div class="text-center my-10">
+            <h1 data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" id="6" class="font-bold text-slate-900 text-3xl mb-7">Gallery</h1>
+            <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="000" id="p6" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
+        </div>
+
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 " data-aos-delay="200" data-aos="fade-right" data-aos-duration="1000">
+            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden  ">
+                <img src="./src/img-gallery/2.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/1.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/5.JPG" alt="" class="absolute h-full w-full object- object-cover">
+            </div>
+            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+                <img src="./src/img-gallery/4.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+            <div class="bg-blue-500 rounded-md sm:col-span-2 sm:row-span-2   relative overflow-hidden ">
+                <img src="./src/img-gallery/6.JPG" alt="" class="absolute h-full w-full object-cover ">
+            </div>
+
+            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+                <img src="./src/img-gallery/3.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/9.JPG" alt="" class="absolute h-full w-full object-top top-0 object-cover">
+            </div>
+
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/8.JPG" alt="" class="absolute h-full w-full object-center object-cover">
+            </div>
+            <div class="bg-blue-500 rounded-md relative sm:col-span-2 overflow-hidden ">
+                <img src="./src/img-gallery/7.JPG" alt="" class="absolute h-full w-full object-center object-cover">
+            </div>
+            <div class="bg-blue-500 rounded-md relative sm:hidden overflow-hidden ">
+                <img src="./src/img-gallery/7.JPG" alt="" class="absolute h-full w-full object-center object-cover">
+            </div>
+
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 " data-aos-delay="300" data-aos="fade-right" data-aos-duration="1000">
+            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden  ">
+                <img src="./src/img-gallery/10.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/11.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/15.JPG" alt="" class="absolute h-full w-full object- object-cover">
+            </div>
+            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+                <img src="./src/img-gallery/13.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+            <div class="bg-blue-500 rounded-md sm:col-span-2 sm:row-span-2   relative overflow-hidden ">
+                <img src="./src/img-gallery/18.JPG" alt="" class="absolute h-full w-full object-cover ">
+            </div>
+
+            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+                <img src="./src/img-gallery/16.JPG" alt="" class="absolute h-full w-full object-cover object-center">
+            </div>
+
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/14.JPG" alt="" class="absolute h-full w-full object-top top-0 object-cover">
+            </div>
+
+            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+                <img src="./src/img-gallery/17.JPG" alt="" class="absolute h-full w-full object-center object-cover">
+            </div>
+            <div class="bg-blue-500 rounded-md relative sm:col-span-2 overflow-hidden ">
+                <img src="./src/img-gallery/7.JPG" alt="" class="absolute h-full w-full object-center object-cover">
+            </div>
+            <div class="bg-blue-500 rounded-md relative sm:hidden overflow-hidden ">
+                <img src="./src/img-gallery/7.JPG" alt="" class="absolute h-full w-full object-center object-cover">
+            </div>
+
+        </div>
+
+    </section>
+    <!-- GALLERY END -->
+
+
 
 
     <!-- CONTACT -->

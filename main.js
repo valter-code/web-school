@@ -10,6 +10,8 @@ window.onscroll = () => {
   const kontak = document.getElementsByClassName("kontak")[0];
   const home = document.getElementsByClassName("Home")[0];
 
+
+  console.log(x)
   if (x > 0) {
     darkMode.classList.remove("translate-x-[5rem]");
     darkMode.classList.remove("opacity-5");
@@ -27,25 +29,25 @@ window.onscroll = () => {
     navbar.classList.remove("bening");
   }
 
-  if (x >= 0 && x < 635) {
+  if (x >= 0 && x < 507) {
     home.classList.add("aktif");
   } else {
     home.classList.remove("aktif");
   }
 
-  if (x > 635 && x < 1058) {
+  if (x > 507 && x <= 1015) {
     jurusan.classList.add("aktif");
   } else {
     jurusan.classList.remove("aktif");
   }
 
-  if (x > 1063 && x < 2015) {
+  if (x > 1015 && x < 3469) {
     berita.classList.add("aktif");
   } else {
     berita.classList.remove("aktif");
   }
 
-  if (x > 2015 && x < 2643) {
+  if (x > 3469) {
     kontak.classList.add("aktif");
   } else {
     kontak.classList.remove("aktif");
@@ -56,8 +58,8 @@ window.onscroll = () => {
 
 // data element
 const darkMode = document.getElementById("darkMode");
-const lightMode = [document.getElementById("1"), document.getElementById("2"), document.getElementById("3")];
-const lightModeP = [document.getElementById("p1"), document.getElementById("p2"), document.getElementById("p3")];
+const lightMode = [document.getElementById("1"), document.getElementById("2"), document.getElementById("3"), document.getElementById("6")];
+const lightModeP = [document.getElementById("p1"), document.getElementById("p2"), document.getElementById("p3"), document.getElementById("p6")];
 const lightModeLabel = [document.getElementById("label1"), document.getElementById("label2"), document.getElementById("label3"), document.getElementById("label4")];
 const kartu = document.getElementsByClassName("kartu");
 const textBerita = document.getElementsByClassName("text-berita");
