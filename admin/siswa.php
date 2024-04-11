@@ -397,7 +397,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Agama</label>
-                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                    <select required name="agama_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
                         <option value="Protestan" class="bg-neutral-900 text-zinc-100">Protestan</option>
                         <option value="Khatolik" class="bg-neutral-900 text-zinc-100">Khatolik</option>
                         <option value="Islam" class="bg-neutral-900 text-zinc-100">Islam</option>
@@ -428,7 +428,7 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                 </div>
                 <div class="mb-7 w-1/3">
                     <label for="" class="text-zinc-100 text-sm">Gender</label>
-                    <select required name="jurusan_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
+                    <select required name="gender_siswa" id="" class="w-full mt-1 border-2 bg-transparent border-neutral-700 focus:outline-none rounded-lg py-1 px-2 text-zinc-100">
                         <option value="Laki-laki" class="bg-neutral-900 text-zinc-100">Laki-laki</option>
                         <option value="Perempuan" class="bg-neutral-900 text-zinc-100">Perempuan</option>
 
