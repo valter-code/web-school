@@ -25,17 +25,24 @@
         
         if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
             $gambar = uploadAdmin($id);
-            $query = "UPDATE admin SET gambar_admin = '$gambar' WHERE username_admin = '$username'";
-
+            $query = "UPDATE admin SET gambar_admin = '$gambar' WHERE username_admin = '$id'";
+        
             if(!$gambar){
                 return false;
             }
-            
+        
             mysqli_query( $koneksi, $query);
+        
+            // Hapus gambar lama jika ada
+            if(file_exists("../src/img-admin/" . $admin["gambar_admin"])){
+                unlink("../src/img-admin/" . $admin["gambar_admin"]);
+            }
+
             if(mysqli_affected_rows( $koneksi ) > 0){
                 echo "<script>alert('berhasil up gambar'); document.location.href = 'account.php'</script>";
                 exit;
             }
+        
         
         }else{
             $gimbir = $admin["gambar_admin"];
