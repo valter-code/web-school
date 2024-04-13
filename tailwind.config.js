@@ -42,5 +42,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("rippleui"), require("preline/plugin"), require("daisyui"), require("flowbite/plugin")],
+  plugins: [require("rippleui"), require("daisyui"), require("flowbite/plugin")],
 };

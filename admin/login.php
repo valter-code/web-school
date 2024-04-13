@@ -55,7 +55,7 @@ if (isset($_POST["login"])) {
 </head>
 
 <body>
-    <div class="flex items-center justify-center bg-[url('../assets/bg-login-admin.svg')] bg-center bg-cover  h-screen">
+    <div class="flex items-center justify-center bg-[url('../src/assets/banner-login-admin.webp')] bg-center bg-cover  h-screen">
         <div class="p-12  rounded-lg bg-zinc-900 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 ">
             <form action="" class="" method="post">
                 <div class="w-20 mx-auto mb-1 ">
