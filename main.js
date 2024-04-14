@@ -10,8 +10,6 @@ window.onscroll = () => {
   const kontak = document.getElementsByClassName("kontak")[0];
   const home = document.getElementsByClassName("Home")[0];
 
-
-  console.log(x)
   if (x > 0) {
     darkMode.classList.remove("translate-x-[5rem]");
     darkMode.classList.remove("opacity-5");
@@ -57,54 +55,81 @@ window.onscroll = () => {
 };
 
 // data element
+
 const darkMode = document.getElementById("darkMode");
-const lightMode = [document.getElementById("1"), document.getElementById("2"), document.getElementById("3"), document.getElementById("6")];
-const lightModeP = [document.getElementById("p1"), document.getElementById("p2"), document.getElementById("p3"), document.getElementById("p6")];
-const lightModeLabel = [document.getElementById("label1"), document.getElementById("label2"), document.getElementById("label3"), document.getElementById("label4")];
-const kartu = document.getElementsByClassName("kartu");
-const textBerita = document.getElementsByClassName("text-berita");
-const pembatas = document.getElementsByClassName("pembatas");
+
+function toggleDarkMode(e) {
+  e.preventDefault();
+  const elementsToToggle = [
+    { selector: "#moon, #sun", classes: "hidden" },
+    { selector: "body", classes: ["bg-white", "bg-neutral-900"] },
+    { selector: ".motto-text", classes: ["gradient-text", "text-zinc-900"] },
+    { selector: ".motto-title", classes: ["text-white", "text-zinc-800"] },
+    { selector: ".motto-sekolah", classes: ["gradient-motto", "text-zinc-800"] },
+    { selector: ".judul", classes: ["text-zinc-300", "text-slate-900"] },
+    { selector: ".sub-judul", classes: ["text-zinc-400", "text-slate-700"] },
+    { selector: "label + [placeholder]", classes: "placeholder:text-violet-300" },
+    { selector: ".kartu", classes: ["border-dark", "border-light"] },
+    { selector: ".judul-berita", classes: ["text-zinc-800", "text-zinc-200"] },
+    { selector: ".baca-selengkapnya", classes: ["text-zinc-800", "text-zinc-200"] },
+    { selector: ".isi-berita", classes: ["text-zinc-700", "text-zinc-400"] },
+    { selector: ".ekskul", classes: "ekskul-dark" },
+  ];
+
+  elementsToToggle.forEach(({ selector, classes }) => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((element) => {
+      if (Array.isArray(classes)) {
+        classes.forEach((className) => element.classList.toggle(className));
+      } else {
+        element.classList.toggle(classes);
+      }
+    });
+  });
+}
+
+darkMode.addEventListener("click", toggleDarkMode);
 
 // darkmode
-darkMode.addEventListener("click", (event) => {
-  event.preventDefault();
+// darkMode.addEventListener("click", (event) => {
+//   event.preventDefault();
 
-  const moon = document.getElementById("moon");
-  const sun = document.getElementById("sun");
+//   const moon = document.getElementById("moon");
+//   const sun = document.getElementById("sun");
 
-  moon.classList.toggle("hidden");
-  sun.classList.toggle("hidden");
-  document.body.classList.toggle("bg-white");
-  document.body.classList.toggle("bg-neutral-900");
+//   moon.classList.toggle("hidden");
+//   sun.classList.toggle("hidden");
+//   document.body.classList.toggle("bg-white");
+//   document.body.classList.toggle("bg-neutral-900");
 
-  for (let i = 0; i < textBerita.length; i++) {
-    textBerita[i].classList.toggle("text-zinc-800");
-    textBerita[i].classList.toggle("text-zinc-200");
-  }
+//   for (let i = 0; i < textBerita.length; i++) {
+//     textBerita[i].classList.toggle("text-zinc-800");
+//     textBerita[i].classList.toggle("text-zinc-200");
+//   }
 
-  for (let i = 0; i < pembatas.length; i++) {
-    pembatas[i].classList.toggle("border-t-slate-600");
-    pembatas[i].classList.toggle("border-t-violet-400");
-  }
+//   for (let i = 0; i < pembatas.length; i++) {
+//     pembatas[i].classList.toggle("border-t-slate-600");
+//     pembatas[i].classList.toggle("border-t-violet-400");
+//   }
 
-  for (let i = 0; i < kartu.length; i++) {
-    kartu[i].classList.toggle("bg-zinc-900");
-  }
+//   for (let i = 0; i < kartu.length; i++) {
+//     kartu[i].classList.toggle("bg-zinc-900");
+//   }
 
-  for (let i = 0; i < lightModeLabel.length; i++) {
-    lightModeLabel[i].classList.toggle("text-slate-900");
-    lightModeLabel[i].classList.toggle("text-white");
-  }
+//   for (let i = 0; i < lightModeLabel.length; i++) {
+//     lightModeLabel[i].classList.toggle("text-slate-900");
+//     lightModeLabel[i].classList.toggle("text-white");
+//   }
 
-  for (let i = 0; i < lightMode.length; i++) {
-    lightMode[i].classList.toggle("text-white");
-  }
+//   for (let i = 0; i < lightMode.length; i++) {
+//     lightMode[i].classList.toggle("text-white");
+//   }
 
-  for (let i = 0; i < lightModeP.length; i++) {
-    lightModeP[i].classList.toggle("text-slate-700");
-    lightModeP[i].classList.toggle("text-slate-400");
-  }
-});
+//   for (let i = 0; i < lightModeP.length; i++) {
+//     lightModeP[i].classList.toggle("text-slate-700");
+//     lightModeP[i].classList.toggle("text-slate-400");
+//   }
+// });
 
 // Toggle navbar
 const buka = document.getElementById("open");
@@ -165,7 +190,6 @@ formBerita.addEventListener("submit", function (event) {
   // Menetapkan hash fragment di URL tanpa memuat ulang halamant h
   window.location.hash = inputText === "#berita" ? inputText : "berita";
 });
-
 
 // document.addEventListener("DOMContentLoaded", function() {
 //   let lazyBackgrounds = [].slice.call(document.querySelectorAll(".lazy-background"));

@@ -1,21 +1,21 @@
 <?php
-    require("../koneksi.php");
-    session_start();
+require("../koneksi.php");
+session_start();
 
-    //kick jika belum login
-    if (!isset($_SESSION["session-admin"])) {
-        header("Location: login.php");
-        exit;
-    }
+//kick jika belum login
+if (!isset($_SESSION["session-admin"])) {
+    header("Location: login.php");
+    exit;
+}
 
-    $totalAdmin = totalAdmin();
-    $totalGuru = totalGuru();
-    $totalSiswa = totalSiswa();
-    $totalBerita = totalBerita();
+$totalAdmin = totalAdmin();
+$totalGuru = totalGuru();
+$totalSiswa = totalSiswa();
+$totalBerita = totalBerita();
 
-    $username = $_SESSION["username-admin"];
+$username = $_SESSION["username-admin"];
 
-    $gambarAdmin = gambarAdmin($koneksi, $username);
+$gambarAdmin = gambarAdmin($koneksi, $username);
 
 ?>
 
@@ -25,7 +25,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>ADMIN</title>
+    <link rel="icon" href="../src/assets/logo.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui@1.12.1/dist/css/styles.css" />
 </head>
 
@@ -116,33 +117,40 @@
         <div class="flex w-full flex-row flex-wrap   justify-center">
 
 
-            <div class="text-center">
-                <h1 class="font-bold text-3xl">Welcome Admin</h1>
-                <br>
-                <h2 class="font-bold text-lg">SMK Trimulia Jakarta</h2>
-            </div>
+
 
             <div class="my-4 w-full gap-4">
 
                 <!-- Content -->
 
+
+                <div class="bg-zinc-600 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 h-64 m-5 flex flex-col justify-center items-center">
+                    <h1 class="font-poppins font-bold text-2xl ">WELCOME ADMIN</h1>
+                    <p class="font-poppins text-sm mb-5 ">SMK Trimulia Jakarta</p>
+                    <div class=" p-3">
+                        <h1 id="clock" class="text-center font-poppins mb-4 font-bold text-7xl"></h1>
+                        <p id="date" class="text-center font-poppins text-2xl"></p>
+
+                    </div>
+                </div>
+
                 <div class="flex  gap-3 mx-5">
-                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-zinc-600 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/4f/a9/f9/4fa9f9916731730fa5530958d3082548.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Admin</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalAdmin ?></h2>
                     </div>
-                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-zinc-600 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="https://i.pinimg.com/564x/f5/3d/3f/f53d3f0e5624f46450dc2ee4c0025092.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Guru</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalGuru ?></h2>
                     </div>
-                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-zinc-600 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="../src/assets/siswa-logo.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Siswa</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalSiswa ?></h2>
                     </div>
-                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-indigo-900 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
+                    <div class="hover:cursor-pointer hover:-translate-y-2 transition duration-200 bg-zinc-600 rounded-3xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 border border-gray-100 w-1/3 p-10 flex flex-col justify-center items-center">
                         <img class="w-20 rounded-full" src="../src/assets/berita-logo.jpg" alt="">
                         <span class="badge bg-zinc-700 border-none mt-3">Berita</span>
                         <h2 class="mt-2 font-bold text-white"><?php echo $totalBerita ?></h2>

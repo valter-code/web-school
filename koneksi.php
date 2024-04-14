@@ -178,7 +178,7 @@
         }
         
         //queury
-        $query = "INSERT INTO berita VALUES ('', '$judul', '$isi', '$penulis', '$date', '$gambar')";
+        $query = "INSERT INTO berita VALUES (NULL, '$judul', '$isi', '$penulis', '$date', '$gambar')";
         mysqli_query( $koneksi, $query );
         return mysqli_affected_rows( $koneksi );
 

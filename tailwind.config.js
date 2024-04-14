@@ -15,6 +15,7 @@ module.exports = {
     "./admin/siswa.php",
     "./admin/account.php",
     "./guru/berita.php",
+    "./admin/berita.php",
   ],
   theme: {
     container: {

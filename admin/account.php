@@ -91,6 +91,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account settings</title>
+    <link rel="icon" href="../src/assets/logo.svg">
     <link rel="stylesheet" href="../src/output.css">
 </head>
 

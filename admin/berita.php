@@ -43,7 +43,8 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita</title>
+    <title>Data Berita</title>
+    <link rel="icon" href="../src/assets/logo.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui@1.12.1/dist/css/styles.css" />
 </head>
 
@@ -145,7 +146,9 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
             </div>
 
             <div class="my-4 grid w-full  gap-4">
-                <a href="tambah-berita.php" class="px-7 py-2 font-bold rounded-md bg-blue-600 w-1/5 text-center">TAMBAH BERITA</a>
+                <a href="./tambah-berita.php" class="w-1/5 block">
+                    <button class="bg-blue-700 font-bold py-2 rounded-lg w-full ">TAMBAH BERITA</button>
+                </a>
                 <form action="" method="get">
                     <input type="text" name="keyword" placeholder="Search" class="p-2 border-white focus:outline-none shadow-sm border-b-2 bg-transparent">
                     <button class="" type="submit" name="cari">
@@ -196,8 +199,8 @@ $gambarAdmin = gambarAdmin($koneksi, $_SESSION["username-admin"]);
                                         <div class="w-14 h-10  border-zinc-600 border-2 rounded-md overflow-hidden">
                                             <img src="../src/img-berita/<?php echo $berita["gambar_berita"] ?>" alt="" class="w-full h-full object-cover object-center">
                                         </div>
-                                        
-                                    
+
+
 
                                     </th>
                                     <th><a class="text-sky-500 edit" href="#">Edit</a> | <a class="text-red-600" href="delete-berita.php?id=<?php echo $berita["id"] ?>">Delete</a></th>

@@ -62,7 +62,7 @@ if (isset($_GET["cari"])) {
     <title>SMK Trimulia Jakarta</title>
     <link rel="shortcut icon" href="./src/assets/logo.svg" type="image/x-icon">
     <link href="./src/output.css" rel="stylesheet">
-    
+
 
 </head>
 
@@ -70,7 +70,7 @@ if (isset($_GET["cari"])) {
 
 
     <!-- NAV -->
-    <nav class=" bg-transparent fixed z-50 w-full" >
+    <nav class=" bg-transparent fixed z-50 w-full">
         <div class='px-5 py-4 flex items-center justify-between'>
             <div class="flex items-center justify-center gap-2">
                 <img class="w-10" src="./src/assets/logo.svg" alt="" loading="lazy">
@@ -82,7 +82,7 @@ if (isset($_GET["cari"])) {
                 <ul class="flex gap-10 text-white  font-bold  text-lg">
                     <li><a href="#" class="Home">Home</a></li>
                     <li><a href="#profil-sekolah" class="Profil-sekolah">Profil</a></li>
-                    <li><a href="#ekskul" class="ekskul">Ekskul</a></li>
+                    <li><a href="#ekskul" class="ekskul-nav">Ekskul</a></li>
                     <li><a href="#berita" class="berita">Berita</a></li>
                     <li><a href="#gallery" class="gallery">Gallery</a></li>
                     <li><a href="#kontak" class="kontak">Kontak</a></li>
@@ -164,70 +164,70 @@ if (isset($_GET["cari"])) {
 
         <!-- JIKA SISWA SUDAH LOGIN (MOBILE) -->
         <?php if (isset($_SESSION["session-siswa"])) : ?>
-        <div id="nav-menu" class="lg:hidden hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
-            <ul class="flex flex-col gap-4 text-xl  ">
-                <a href="#">
-                    <li>Home</li>
-                </a>
-                <a href="#profil-sekolah">
-                    <li>Profil</li>
-                </a>
-                <a href="#ekskul">
-                    <li>Ekskul</li>
-                </a>
-                <a href="#berita">
-                    <li>Berita</li>
-                </a>
-                <a href="#gallery">
-                    <li>Gallery</li>
-                </a>
-                <a href="#kontak">
-                    <li>Kontak</li>
-                </a>
-                <a href="./profil-akun.php" class="max-w-40 border text-center py-2 rounded-md bg-zinc-900 bg-opacity-75 text-base font-poppins font-bold hover:scale-95 transition duration-300  ">
-                    LIHAT PROFIL
-                </a>
-                <a href="./profil-akun.php" class="max-w-40 border text-center py-2 rounded-md bg-red-900 bg-opacity-75 text-base font-poppins font-bold hover:scale-95 transition duration-300  ">
-                    LOGOUT
-                </a>
-            </ul>
-        </div>
+            <div id="nav-menu" class="lg:hidden hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
+                <ul class="flex flex-col gap-4 text-xl  ">
+                    <a href="#">
+                        <li>Home</li>
+                    </a>
+                    <a href="#profil-sekolah">
+                        <li>Profil</li>
+                    </a>
+                    <a href="#ekskul">
+                        <li>Ekskul</li>
+                    </a>
+                    <a href="#berita">
+                        <li>Berita</li>
+                    </a>
+                    <a href="#gallery">
+                        <li>Gallery</li>
+                    </a>
+                    <a href="#kontak">
+                        <li>Kontak</li>
+                    </a>
+                    <a href="./profil-akun.php" class="max-w-40 border text-center py-2 rounded-md bg-zinc-900 bg-opacity-75 text-base font-poppins font-bold hover:scale-95 transition duration-300  ">
+                        LIHAT PROFIL
+                    </a>
+                    <a href="./profil-akun.php" class="max-w-40 border text-center py-2 rounded-md bg-red-900 bg-opacity-75 text-base font-poppins font-bold hover:scale-95 transition duration-300  ">
+                        LOGOUT
+                    </a>
+                </ul>
+            </div>
         <?php endif; ?>
         <!-- JIKA SISWA SUDAH LOGIN (MOBILE) END -->
-        
+
         <!-- JIKA SISWA BELUM LOGIN (MOBILE) -->
         <?php if (!isset($_SESSION["session-siswa"])) : ?>
-        <div id="nav-menu" class="lg:hidden hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
-            <ul class="flex flex-col gap-4 text-xl  ">
-                <a href="#">
-                    <li>Home</li>
-                </a>
-                <a href="#profil-sekolah">
-                    <li>Profil</li>
-                </a>
-                <a href="#ekskul">
-                    <li>Ekskul</li>
-                </a>
-                <a href="#berita">
-                    <li>Berita</li>
-                </a>
-                <a href="#gallery">
-                    <li>Gallery</li>
-                </a>
-                <a href="#kontak">
-                    <li>Kontak</li>
-                </a>
-                <a href="./login.php" class="max-w-36  ">
-                    <div class="bg-green-600 py-2 flex justify-center items-center gap-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md w-full font-bold text-white">
-                        LOGIN
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
-                            <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                        </svg>
-                    </div>
-                </a>
-            </ul>
-        </div>
+            <div id="nav-menu" class="lg:hidden hidden absolute z-40 text-white  bg-zinc-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-60 border border-gray-100 w-full   p-6 ">
+                <ul class="flex flex-col gap-4 text-xl  ">
+                    <a href="#">
+                        <li>Home</li>
+                    </a>
+                    <a href="#profil-sekolah">
+                        <li>Profil</li>
+                    </a>
+                    <a href="#ekskul">
+                        <li>Ekskul</li>
+                    </a>
+                    <a href="#berita">
+                        <li>Berita</li>
+                    </a>
+                    <a href="#gallery">
+                        <li>Gallery</li>
+                    </a>
+                    <a href="#kontak">
+                        <li>Kontak</li>
+                    </a>
+                    <a href="./login.php" class="max-w-36  ">
+                        <div class="bg-green-600 py-2 flex justify-center items-center gap-2 px-7 border-2 hover:bg-green-500 hover:border-green-500 transition duration-300 border-green-600 rounded-md w-full font-bold text-white">
+                            LOGIN
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                            </svg>
+                        </div>
+                    </a>
+                </ul>
+            </div>
         <?php endif; ?>
         <!-- JIKA SISWA BELUM LOGIN (MOBILE) END -->
     </nav>
@@ -238,24 +238,24 @@ if (isset($_GET["cari"])) {
 
 
     <!-- HERO -->
-    
+
     <section id="home" class="h-screen mb-24">
-        <div  class="bg-[url('./assets/banner.webp')] lazy-background  bg-cover bg-center w-full h-full">
+        <div class="bg-[url('./assets/banner.webp')] lazy-background  bg-cover bg-center w-full h-full">
             <div class="text-white text-center py-52 ">
-                <h1 class="text-xl font-bold mb-2" >WELCOME</h1>
-                <h2 class="text-4xl font-bold mb-10" >SMK Trimulia Jakarta</h2>
+                <h1 class="text-xl font-bold mb-2">WELCOME</h1>
+                <h2 class="text-4xl font-bold mb-10">SMK Trimulia Jakarta</h2>
                 <?php if (isset($nothing)) : ?>
                     <?php echo $nothing ?>
                 <?php endif; ?>
-                <form id="cari-berita" action="" class="py-10 px-3 mx-auto max-w-xl" method="get" >
-                    <input id="input-berita" name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
+                <form id="cari-berita" action="" class="py-10 px-3 mx-auto max-w-xl" method="get">
+                    <input id="input-berita" name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white bg-neutral-800  placeholder-white placeholder:font-semibold w-full bg-opacity-55 border-white border-2 rounded-lg">
                     <button id="cari" type="submit" name="cari" value="#berita" class="hidden">cari</button>
                 </form>
 
                 <br>
-                <div >
+                <div>
 
-                    <a href="#kontak"><button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
+                    <a href="#kontak"><button class="hover:bg-white bg-neutral-800 hover:text-black font-semibold transition duration-300 bg-opacity-45 border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
                 </div>
 
 
@@ -272,29 +272,29 @@ if (isset($_GET["cari"])) {
     <section id="profil-sekolah" class="mb-36">
         <div class="container">
             <div>
-                <h1 class="mb-2 text-center font-bold font-poppins text-zinc-800">MOTTO SEKOLAH</h1>
-                <h2 class="mb-36 font-poppins text-center font-extrabold text-xl sm:text-3xl md:text-4xl text-zinc-900">JUJUR. DISIPLIN. BERAKHLAK MULIA</h2>
-                <h2 class=" text-zinc-800 font-poppins text-center font-medium text-2xl mb-20 lg:mb-5 underline-offset-8 underline ">Visi & Misi</h2>
+                <h1 class="mb-2 text-center motto-sekolah text-zinc-800  font-bold font-poppins ">MOTTO SEKOLAH</h1>
+                <h2 class="mb-36 font-poppins text-center font-extrabold text-xl text-zinc-900 sm:text-3xl md:text-4xl motto-text">JUJUR. DISIPLIN. BERAKHLAK MULIA</h2>
+                <h2 class=" text-zinc-800 motto-title font-poppins text-center font-medium text-2xl mb-20 lg:mb-5 underline-offset-8 underline ">Visi & Misi</h2>
             </div>
 
 
             <div class="md:flex items-center  ">
                 <div class=" hidden lg:block  lg:w-1/2 p-14">
-                    <img src="./src/assets/logo.svg" alt="" class=" loading="lazy">
+                    <img src="./src/assets/logo.svg" alt="" class=" loading=" lazy">
                 </div>
 
                 <div class="px-5 lg:w-1/2">
 
                     <div class="mb-10">
-                        <h1 class="font-poppins  text-slate-900 font-semibold text-xl">Visi Sekolah.</h1>
-                        <p class="font-poppins text-slate-700">Unggul Dalam Iman , Taqwa, Berakhlak Mulia Serta siap Berkompetisi Di Dunia Usaha dan Dunia Industri.</p>
+                        <h1 class="font-poppins  text-slate-900  judul font-semibold text-xl">Visi Sekolah.</h1>
+                        <p class="font-poppins text-slate-700 sub-judul ">Unggul Dalam Iman , Taqwa, Berakhlak Mulia Serta siap Berkompetisi Di Dunia Usaha dan Dunia Industri.</p>
                     </div>
                     <div>
-                        <h1 class="font-poppins text-xl text-slate-900 font-semibold">Misi Sekolah.</h1>
+                        <h1 class="font-poppins text-xl text-slate-900 judul font-semibold">Misi Sekolah.</h1>
                         <ul class="flex flex-col gap-4">
-                            <li class="list-decimal font-poppins text-slate-700">Menyelenggarakan Layanan Pendidikan Bermutu dengan ditunjang oleh Orgaanisasi Sekolah yang Kondusif, Transparan, Akuntabel dan Nyaman.</li>
-                            <li class="list-decimal font-poppins text-slate-700">Menyelenggarakan Pendidikan Yang Mampu Menumbuhkan dan Mengembangkan Sikap serta Pribadi yang Bertaqwa, Berkarakter, Berdaya Saing dan Mandiri dalam Diri Peserta Didik sebagai Bekal untuk Melanjutkan Pendidikan, Mampu Memasuki Dunia Kerja Maupun Berwirausaha.</li>
-                            <li class="list-decimal font-poppins text-slate-700 ">Melayani Dengan Hati.</li>
+                            <li class="list-decimal font-poppins text-slate-700 sub-judul">Menyelenggarakan Layanan Pendidikan Bermutu dengan ditunjang oleh Orgaanisasi Sekolah yang Kondusif, Transparan, Akuntabel dan Nyaman.</li>
+                            <li class="list-decimal font-poppins text-slate-700 sub-judul">Menyelenggarakan Pendidikan Yang Mampu Menumbuhkan dan Mengembangkan Sikap serta Pribadi yang Bertaqwa, Berkarakter, Berdaya Saing dan Mandiri dalam Diri Peserta Didik sebagai Bekal untuk Melanjutkan Pendidikan, Mampu Memasuki Dunia Kerja Maupun Berwirausaha.</li>
+                            <li class="list-decimal font-poppins text-slate-700 sub-judul ">Melayani Dengan Hati.</li>
                         </ul>
                     </div>
                 </div>
@@ -308,11 +308,11 @@ if (isset($_GET["cari"])) {
         <div class="container">
 
             <div class="text-center mb-0">
-                <h1 id="1" class="font-bold text-slate-900  text-3xl mb-7">Ekstrakulikuler</h1>
-                <p id="p1" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora a</p>
+                <h1 class="font-bold text-slate-900 judul  text-3xl mb-7">Ekstrakulikuler</h1>
+                <p class="text-slate-700 sub-judul text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora a</p>
             </div>
 
-            <div class="w-full p-10 inline-flex overflow-hidden scale-90 lg:scale-100    group flex-nowrap">
+            <div class="w-full p-10 inline-flex overflow-hidden scale-90 lg:scale-100 ekskul   group flex-nowrap">
                 <ul class="flex items-center  justify-center md:justify-start group-hover:paused [&_li]:mx-8 [&_img]:max-w-none animate-loop-scroll">
                     <li>
                         <img src="./src/img-ekskul/akustik.svg" alt="Facebook" loading="lazy" />
@@ -352,6 +352,7 @@ if (isset($_GET["cari"])) {
                     </li>
 
                 </ul>
+
                 <ul class="flex items-center  justify-center md:justify-start group-hover:paused [&_li]:mx-8 [&_img]:max-w-none animate-loop-scroll" aria-hidden="true">
                     <li>
                         <img src="./src/img-ekskul/akustik.svg" alt="Facebook" loading="lazy" />
@@ -390,6 +391,8 @@ if (isset($_GET["cari"])) {
                         <p class="text-center font-bold mt-5 text-zinc-950">PRAMUKA</p>
                     </li>
                 </ul>
+
+
             </div>
         </div>
     </section>
@@ -403,37 +406,42 @@ if (isset($_GET["cari"])) {
     <section id="berita" class="my-40">
         <div class="container">
             <div class="text-center my-10">
-                <h1 id="2" class="font-bold text-slate-900 text-3xl mb-7">Berita Terkini</h1>
-                <p  id="p2" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
+                <h1 class="font-bold text-slate-900 judul text-3xl mb-7">Berita Terkini</h1>
+                <p class="text-slate-700 sub-judul text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
             </div>
 
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ">
 
-                
+
                 <?php foreach ($berita as $row) : ?>
 
-                    <div class="  w-full   px-2 " >
-                        <div class="w-full   mb-4 hover:cursor-pointer hover:-translate-y-1 transition   border border-slate-500 rounded-md overflow-hidden">
-                            <div class=" h-40 hover:scale-105 transition duration-300 ">
-                                <img src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover w-full h-full " loading="lazy">
+                    <div class="  w-full   px-2 ">
+                        <div class="w-full   mb-4 hover:cursor-pointer hover:-translate-y-1 transition shadow-xl border-light  kartu rounded-md overflow-hidden">
+                            <div class=" h-40 group overflow-hidden ">
+                                <img src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt="" class="object-cover group-hover:scale-110 group-hover:rotate-2 transition-all  w-full h-full  " loading="lazy">
                             </div>
-
                             <div class="p-3 h-36 flex flex-col justify-between ">
                                 <a href="berita.php?id=<?php echo $row["id"] ?>">
-                                    <h1 class="text-berita  font-poppins font-semibold    text-zinc-800 text-xl  line-clamp-1 h-7   "><?php echo $row["judul_berita"] ?></h1>
-                                    <p class="text-zinc-800 text-berita font-thin  line-clamp-2  h-14 py-2 font-poppins  "> <?php echo $row["isi_berita"] ?></p>
+                                    <h1 class="  font-poppins font-semibold judul-berita   text-zinc-800 text-xl  line-clamp-1 h-7   "><?php echo $row["judul_berita"] ?></h1>
+                                    <p class="text-zinc-700  font-thin isi-berita  line-clamp-2  h-14 py-2 font-poppins  "> <?php echo $row["isi_berita"] ?></p>
 
-                                    <a href="berita.php?id=<?php echo $row["id"] ?>" class="font-poppins flex items-center justify-between text-zinc-800 text-sm text-berita">
+                                    <a href="berita.php?id=<?php echo $row["id"] ?>" class="font-poppins flex items-center baca-selengkapnya  justify-between text-zinc-800 font-bold text-sm ">
                                         <p>Baca Selengkapnya</p> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-up-right" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd" d="M6.364 13.5a.5.5 0 0 0 .5.5H13.5a1.5 1.5 0 0 0 1.5-1.5v-10A1.5 1.5 0 0 0 13.5 1h-10A1.5 1.5 0 0 0 2 2.5v6.636a.5.5 0 1 0 1 0V2.5a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H6.864a.5.5 0 0 0-.5.5" />
                                             <path fill-rule="evenodd" d="M11 5.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793l-8.147 8.146a.5.5 0 0 0 .708.708L10 6.707V10.5a.5.5 0 0 0 1 0z" />
                                         </svg>
                                     </a>
+
+
+                                </a>
                             </div>
+
                         </div>
+
+
                     </div>
-                    
+
                 <?php endforeach; ?>
 
 
@@ -460,7 +468,7 @@ if (isset($_GET["cari"])) {
                 <?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
 
                     <?php if ($i == $halamanAktif) : ?>
-                        <a href="?hal=<?php echo $i ?> #berita"  class="bg-violet-700 h-10 w-10 bg-transparent border  hover:bg-violet-700 group flex justify-center items-center rounded-md ">
+                        <a href="?hal=<?php echo $i ?> #berita" class="bg-violet-700 h-10 w-10 bg-transparent border  hover:bg-violet-700 group flex justify-center items-center rounded-md ">
                             <h1 class="font-bold text-white transition duration-300 group-hover:text-white"><?php echo $i ?></h1>
                         </a>
                     <?php else : ?>
@@ -496,12 +504,12 @@ if (isset($_GET["cari"])) {
     <section id="gallery" class="container mb-44">
 
         <div class="text-center my-10">
-            <h1  id="6" class="font-bold text-slate-900 text-3xl mb-7">Gallery</h1>
-            <p id="p6" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
+            <h1 class="font-bold text-slate-900 judul text-3xl mb-7">Gallery</h1>
+            <p class="text-slate-700 sub-judul text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
         </div>
 
 
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 " >
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 ">
             <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden  ">
                 <img src="./src/img-gallery/2.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
@@ -538,7 +546,7 @@ if (isset($_GET["cari"])) {
             </div>
 
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 " >
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 ">
             <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden  ">
                 <img src="./src/img-gallery/10.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
@@ -587,37 +595,37 @@ if (isset($_GET["cari"])) {
     <section id="kontak" class="mb-10">
         <div class="conatiner">
             <div class="text-center mb-10">
-                <h1 id="3" class="font-bold text-slate-900 text-3xl mb-5">Contact Us</h1>
-                <p  id="p3" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetu</p>
+                <h1 class="font-bold text-slate-900 judul text-3xl mb-5">Contact Us</h1>
+                <p class="text-slate-700 sub-judul text-base">Lorem ipsum dolor sit amet consectetu</p>
             </div>
 
 
 
             <form action="" method="get" class="pb-10">
                 <div class="max-w-xl mx-auto">
-                    <div class="w-full px-4 mb-8" >
-                        <label id="label1" for="" class="text-slate-900 font-semibold">Nama</label>
-                        <input placeholder="Contoh: kevin" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
+                    <div class="w-full px-4 mb-8">
+                        <label for="" class="text-slate-900 judul font-semibold">Nama</label>
+                        <input placeholder="Contoh: kevin" type="text" class="w-full bg-zinc-700  text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
 
-                    <div class="w-full px-4 mb-8" >
-                        <label id="label2" for="" class="text-slate-900 font-semibold">Email</label>
+                    <div class="w-full px-4 mb-8">
+                        <label for="" class="text-slate-900 judul font-semibold">Email</label>
                         <input placeholder="Contoh: kevin@gmail.com" type="email" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
-                    <div class="w-full px-4 mb-8" >
-                        <label id="label3" for="" class="text-slate-900 font-semibold">Subject</label>
+                    <div class="w-full px-4 mb-8">
+                        <label for="" class="text-slate-900 judul font-semibold">Subject</label>
                         <input placeholder="Contoh: Judul" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
                     </div>
 
 
-                    <div class="w-full px-4 mb-8" >
-                        <label id="label4" for="" class="text-slate-900 font-semibold">Pesan</label>
+                    <div class="w-full px-4 mb-8">
+                        <label for="" class="text-slate-900 judul font-semibold">Pesan</label>
                         <textarea placeholder="Pesan..." class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500"></textarea>
                     </div>
 
-                    <div class="flex justify-center" >
+                    <div class="flex justify-center">
                         <button class="hover:bg-violet-600 hover:shadow-md transition hover:scale-105 duration-300 hover:shadow-violet-600 bg-violet-500 text-white py-2 px-10 rounded-lg">Kirim</button>
 
                     </div>
@@ -658,13 +666,8 @@ if (isset($_GET["cari"])) {
                     </div>
                 </div>
 
-                <div class="mb-14 w-full  sm:w-1/4">
-                    <div>
-                        <h2 class="mb-3 text-zinc-200 font-bold text-2xl">Tautan</h2>
-                        <p class="text-slate-200 text-base mb-3">.....</p>
-                        <p class="text-slate-200 text-base mb-3">.....</p>
-                        <p class="text-slate-200 text-base mb-3">.....</p>
-                    </div>
+                <div class="mb-14 w-full rounded-lg  sm:w-1/4">
+                    <iframe class="rounded-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.193898342303!2d106.745141409519!3d-6.238155461058475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f0c064cd04ef%3A0xa48b08eb6a408393!2sSMK%20TRIMULIA%20JAKARTA!5e0!3m2!1sid!2sid!4v1713013624611!5m2!1sid!2sid" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
@@ -694,6 +697,9 @@ if (isset($_GET["cari"])) {
 
                 <p class="text-white text-center mt-5">Made with ❤️ by <a href="" class="underline"><span class="text-white font-bold">Forbidden</span> <span class="font-bold text-cyan-500">Team</span></a> </p>
             </div>
+
+
+
     </section>
     <!-- FOOTER -->
 
@@ -722,9 +728,9 @@ if (isset($_GET["cari"])) {
 
 
 
-    
+
     <script src="./main.js"></script>
-    
+
 </body>
 
 </html>

@@ -43,7 +43,7 @@ if (isset($_GET["cari"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMK Trimulia Jakarta</title>
-    <link rel="shortcut icon" href="./src/assets/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./src/assets/logo.svg" type="image/x-icon">
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -52,66 +52,7 @@ if (isset($_GET["cari"])) {
 <body class=" bg-white">
 
 
-    <!-- NAV -->
 
-    <!-- NAV END -->
-
-    <!-- HERO -->
-    <!-- <section id="home" class="h-screen mb-36">
-        <div class="bg-[url('../assets/banner.svg')]  bg-cover bg-center w-full h-full">
-            <div class="text-white text-center py-52 ">
-                <h1 class="text-xl font-bold mb-2" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">WELCOME</h1>
-                <h2 class="text-4xl font-bold mb-10" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="700">SMK Trimulia Jakarta</h2>
-                <?php if (isset($nothing)) : ?>
-                    <?php echo $nothing ?>
-                <?php endif; ?>
-                <form action="" class="py-10 px-3 mx-auto max-w-xl" method="get" data-aos="fade-down" data-aos-duration="1000" data-aos-delay="800">
-                    <input name="keyword" placeholder="Cari Berita Terkini" type="text" class="focus:ring-0 focus:border-white  placeholder-white placeholder:font-semibold w-full bg-transparent border-white border-2 rounded-lg">
-                    <button type="submit" name="cari" class="hidden">cari</button>
-                </form>
-
-                <br>
-                <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="900">
-
-                    <a href="#kontak"><button class="hover:bg-white hover:text-black font-semibold transition duration-300 bg-transparent border-2 rounded-lg border-white py-2 px-7">CONTACT US</button></a>
-                </div>
-
-            </div>
-
-        </div>
-    </section> -->
-    <!-- HERO END -->
-
-
-    <!-- JURUSAN -->
-    <!-- <section id="jurusan" class="jurusan">
-        <div class="container">
-            <div class="text-center mb-10">
-                <h1 id="1" class="font-bold text-slate-900  text-3xl mb-7" data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000">Kami bekerja sama dengan</h1>
-                <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000" id="p1" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero animi fuga nihil. Est tempora adipisci nihil quas ipsa nisi quis nesciunt commodi quasi, qui suscipit aliquam tempore eveniet</p>
-            </div>
-
-            <div class="flex overflow-hidden space-x-2 group" data-aos="flip-up" data-aos-delay="300" data-aos-duration="1000">
-                <div class="flex group-hover:paused space-x-2 gap-1 items-center  animate-loop-scroll">
-                    <img class="max-w-none" src="./assets/dummy1.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy2.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy3.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy4.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy5.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy6.png" alt="">
-                </div>
-                <div aria-hidden="true" class=" flex group-hover:paused  space-x-2 items-center gap-1 animate-loop-scroll">
-                    <img class="max-w-none" src="./assets/dummy1.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy2.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy3.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy4.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy5.png" alt="">
-                    <img class="max-w-none" src="./assets/dummy6.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- JURUSAN END -->
 
     <!-- BREADCRUMB -->
     <div class="container pt-20">
@@ -130,8 +71,8 @@ if (isset($_GET["cari"])) {
     <!-- BERITA -->
     <section id="berita" class="pt-10 pb-80">
         <div class="container  ">
-            <div class="border float-left mb-2 mr-4  h-60 max-w-sm w-full overflow-hidden">
-                <img class="object-cover w-full h-full" src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
+            <div class="border float-left mb-2 mr-4 group  h-60 max-w-sm w-full overflow-hidden">
+                <img class="object-cover w-full h-full group-hover:scale-110 group-hover:rotate-1 transition-all" src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
             </div>
             <h1 id="2" class="text-berita font-bold text-zinc-800 text-4xl    "><?php echo $row["judul_berita"] ?></h1>
             <h3 class="text-berita mb-5 text-zinc-800">Autor - 24 April 2007</h3>

@@ -53,6 +53,7 @@ if (isset($_POST["tambah"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Siswa</title>
+    <link rel="icon" href="../src/assets/logo.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/rippleui@1.12.1/dist/css/styles.css" />
 </head>
 

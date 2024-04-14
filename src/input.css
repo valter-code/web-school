@@ -31,3 +31,24 @@
     margin: 0;
   }
 }
+
+.gradient-text {
+  @apply bg-gradient-to-r from-fuchsia-500 to-cyan-500 text-transparent bg-clip-text;
+}
+
+.gradient-motto {
+  @apply bg-gradient-to-r from-neutral-300 to-stone-400 bg-clip-text text-transparent;
+}
+
+.border-dark {
+  @apply border border-zinc-800;
+}
+
+.border-light {
+  @apply border border-zinc-300;
+}
+
+
+.ekskul-dark {
+  @apply bg-gray-100 rounded-lg mt-5 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-gray-100
+}
