@@ -187,7 +187,7 @@ if (isset($_GET["cari"])) {
                     <a href="./profil-akun.php" class="max-w-40 border text-center py-2 rounded-md bg-zinc-900 bg-opacity-75 text-base font-poppins font-bold hover:scale-95 transition duration-300  ">
                         LIHAT PROFIL
                     </a>
-                    <a href="./profil-akun.php" class="max-w-40 border text-center py-2 rounded-md bg-red-900 bg-opacity-75 text-base font-poppins font-bold hover:scale-95 transition duration-300  ">
+                    <a href="./logout.php" class="max-w-40 border text-center py-2 rounded-md bg-red-900 bg-opacity-75 text-base font-poppins font-bold hover:scale-95 transition duration-300  ">
                         LOGOUT
                     </a>
                 </ul>
@@ -242,7 +242,7 @@ if (isset($_GET["cari"])) {
     <section id="home" class="h-screen mb-24">
         <div class="bg-[url('./assets/banner.webp')] lazy-background  bg-cover bg-center w-full h-full">
             <div class="text-white text-center py-52 ">
-                <h1 class="text-xl font-bold mb-2">WELCOME</h1>
+                <h1 class="text-xl font-bold mb-2 ">WELCOME</h1>
                 <h2 class="text-4xl font-bold mb-10">SMK Trimulia Jakarta</h2>
                 <?php if (isset($nothing)) : ?>
                     <?php echo $nothing ?>
@@ -510,75 +510,75 @@ if (isset($_GET["cari"])) {
 
 
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 ">
-            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden  ">
+            <div class="bg-gray-600 rounded-md sm:row-span-2  relative overflow-hidden  ">
                 <img src="./src/img-gallery/2.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
 
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/1.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/5.webp" loading="lazy" alt="" class="absolute h-full w-full object- object-cover">
             </div>
-            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md sm:row-span-2  relative overflow-hidden ">
                 <img src="./src/img-gallery/4.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
-            <div class="bg-blue-500 rounded-md sm:col-span-2 sm:row-span-2   relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md sm:col-span-2 sm:row-span-2   relative overflow-hidden ">
                 <img src="./src/img-gallery/6.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover ">
             </div>
 
-            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md sm:row-span-2  relative overflow-hidden ">
                 <img src="./src/img-gallery/3.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
 
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/9.webp" loading="lazy" alt="" class="absolute h-full w-full object-top top-0 object-cover">
             </div>
 
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/8.webp" loading="lazy" alt="" class="absolute h-full w-full object-center object-cover">
             </div>
-            <div class="bg-blue-500 rounded-md relative sm:col-span-2 overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative sm:col-span-2 overflow-hidden ">
                 <img src="./src/img-gallery/7.webp" loading="lazy" alt="" class="absolute h-full w-full object-center object-cover">
             </div>
-            <div class="bg-blue-500 rounded-md relative sm:hidden overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative sm:hidden overflow-hidden ">
                 <img src="./src/img-gallery/7.webp" loading="lazy" alt="" class="absolute h-full w-full object-center object-cover">
             </div>
 
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-5  h-screen p-3 ">
-            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden  ">
+            <div class="bg-gray-600 rounded-md sm:row-span-2  relative overflow-hidden  ">
                 <img src="./src/img-gallery/10.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
 
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/11.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/15.webp" loading="lazy" alt="" class="absolute h-full w-full object- object-cover">
             </div>
-            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md sm:row-span-2  relative overflow-hidden ">
                 <img src="./src/img-gallery/13.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
-            <div class="bg-blue-500 rounded-md sm:col-span-2 sm:row-span-2   relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md sm:col-span-2 sm:row-span-2   relative overflow-hidden ">
                 <img src="./src/img-gallery/18.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover ">
             </div>
 
-            <div class="bg-blue-500 rounded-md sm:row-span-2  relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md sm:row-span-2  relative overflow-hidden ">
                 <img src="./src/img-gallery/16.webp" loading="lazy" alt="" class="absolute h-full w-full object-cover object-center">
             </div>
 
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/14.webp" loading="lazy" alt="" class="absolute h-full w-full object-top top-0 object-cover">
             </div>
 
-            <div class="bg-blue-500 rounded-md relative overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative overflow-hidden ">
                 <img src="./src/img-gallery/17.webp" loading="lazy" alt="" class="absolute h-full w-full object-center object-cover">
             </div>
-            <div class="bg-blue-500 rounded-md relative sm:col-span-2 overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative sm:col-span-2 overflow-hidden ">
                 <img src="./src/img-gallery/7.webp" loading="lazy" alt="" class="absolute h-full w-full object-center object-cover">
             </div>
-            <div class="bg-blue-500 rounded-md relative sm:hidden overflow-hidden ">
+            <div class="bg-gray-600 rounded-md relative sm:hidden overflow-hidden ">
                 <img src="./src/img-gallery/7.webp" loading="lazy" alt="" class="absolute h-full w-full object-center object-cover">
             </div>
 

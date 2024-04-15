@@ -74,6 +74,7 @@ function toggleDarkMode(e) {
     { selector: ".baca-selengkapnya", classes: ["text-zinc-800", "text-zinc-200"] },
     { selector: ".isi-berita", classes: ["text-zinc-700", "text-zinc-400"] },
     { selector: ".ekskul", classes: "ekskul-dark" },
+    { selector: ".pembatas", classes: ["border-t-zinc-700", "border-t-slate-600"] },
   ];
 
   elementsToToggle.forEach(({ selector, classes }) => {

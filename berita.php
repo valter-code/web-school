@@ -42,11 +42,9 @@ if (isset($_GET["cari"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMK Trimulia Jakarta</title>
+    <title><?php echo $row["judul_berita"] ?></title>
     <link rel="shortcut icon" href="./src/assets/logo.svg" type="image/x-icon">
     <link href="./src/output.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 </head>
 
 <body class=" bg-white">
@@ -56,7 +54,7 @@ if (isset($_GET["cari"])) {
 
     <!-- BREADCRUMB -->
     <div class="container pt-20">
-        <ul class="flex gap-2 items-center md:text-xl text-zinc-800 text-berita">
+        <ul class="flex gap-2 items-center md:text-xl judul text-slate-900 text-berita">
             <a href="./index.php#berita">
                 <li>Home</li>
             </a>
@@ -71,17 +69,15 @@ if (isset($_GET["cari"])) {
     <!-- BERITA -->
     <section id="berita" class="pt-10 pb-80">
         <div class="container  ">
-            <div class="border float-left mb-2 mr-4 group  h-60 max-w-sm w-full overflow-hidden">
-                <img class="object-cover w-full h-full group-hover:scale-110 group-hover:rotate-1 transition-all" src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
+            <div class=" float-left mb-2 mr-4 group kartu border-light   h-60 max-w-sm w-full overflow-hidden">
+                <img class="object-cover w-full h-full group-hover:scale-110 group-hover:rotate-1 duration-300 transition-all" src="./src/img-berita/<?php echo $row["gambar_berita"] ?>" alt=""><br>
             </div>
-            <h1 id="2" class="text-berita font-bold text-zinc-800 text-4xl    "><?php echo $row["judul_berita"] ?></h1>
-            <h3 class="text-berita mb-5 text-zinc-800">Autor - 24 April 2007</h3>
-            <p id="p2" class="text-zinc-800 text-berita text-base"><?php echo $row["isi_berita"] ?></p>
-
-
+            <h1 id="2" class="text-berita font-bold text-zinc-800 text-4xl judul-berita    "><?php echo $row["judul_berita"] ?></h1>
+            <h3 class="text-berita mb-5 text-zinc-800 judul-berita">Autor - 24 April 2007</h3>
+            <p id="p2" class="text-zinc-700 isi-berita text-berita text-base"><?php echo $row["isi_berita"] ?></p>
             <div class="flex items-center gap-0 lg:gap-1 mt-28 sm:px-32 w-full">
-                <div class="border-t-slate-600 pembatas border-t block w-1/2  lg:w-full  "></div>
-                <a href="./index.php#berita" class="text-zinc-800 font-bold text-berita text-center w-full   md:w-1/3 lg:w-1/3 ">lihat berita lainnya</a>
+                <div class="border-t-slate-600  pembatas border-t block w-1/2  lg:w-full  "></div>
+                <a href="./index.php#berita" class="text-slate-900 judul font-bold text-berita text-center w-full   md:w-1/3 lg:w-1/3 ">lihat berita lainnya</a>
                 <div class="border-t-slate-600 pembatas border-t block w-1/2 lg:w-full  "></div>
             </div>
         </div>
@@ -92,55 +88,6 @@ if (isset($_GET["cari"])) {
     <!-- BERITA END -->
 
 
-    <!-- CONTACT -->
-
-    <!-- <section id="kontak" class="mb-10">
-        <div class="conatiner">
-            <div class="text-center mb-10">
-                <h1 data-aos="fade-down" data-aos-delay="100" data-aos-duration="1000" id="3" class="font-bold text-slate-900 text-3xl mb-5">Contact Us</h1>
-                <p data-aos="fade-down" data-aos-delay="200" data-aos-duration="1000" id="p3" class="text-slate-700 text-base">Lorem ipsum dolor sit amet consectetu</p>
-            </div>
-
-
-
-            <form action="" method="get" class="pb-10">
-                <div class="max-w-xl mx-auto">
-                    <div class="w-full px-4 mb-8" data-aos="fade-right">
-                        <label id="label1" for="" class="text-slate-900 font-semibold">Nama</label>
-                        <input placeholder="Contoh: kevin" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
-                    </div>
-
-
-                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-duration="500" data-aos-delay="200">
-                        <label id="label2" for="" class="text-slate-900 font-semibold">Email</label>
-                        <input placeholder="Contoh: kevin@gmail.com" type="email" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
-                    </div>
-
-                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="300">
-                        <label id="label3" for="" class="text-slate-900 font-semibold">Subject</label>
-                        <input placeholder="Contoh: Judul" type="text" class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500">
-                    </div>
-
-
-                    <div class="w-full px-4 mb-8" data-aos="fade-right" data-aos-delay="400">
-                        <label id="label4" for="" class="text-slate-900 font-semibold">Pesan</label>
-                        <textarea placeholder="Pesan..." class="w-full bg-zinc-700 text-white rounded-md p-3 border-none focus:ring-0 hover:scale-105 transition focus:scale-105 duration-500"></textarea>
-                    </div>
-
-                    <div class="flex justify-center" data-aos="fade-right" data-aos-delay="500">
-                        <button class="hover:bg-violet-600 hover:shadow-md transition hover:scale-105 duration-300 hover:shadow-violet-600 bg-violet-500 text-white py-2 px-10 rounded-lg">Kirim</button>
-
-                    </div>
-
-
-
-                </div>
-            </form>
-
-        </div>
-    </section> -->
-
-    <!-- CONTACT END -->
 
 
     <!-- FOOTER -->
@@ -209,13 +156,13 @@ if (isset($_GET["cari"])) {
 
 
     <!-- TO TOP -->
-    <a id="toTop" href="#" class="hidden h-14 w-14 hover:animate-pulse bg-zinc-400  z-50 bottom-4 right-4 p-4 fixed rounded-full">
+    <a id="toTop" href="#" class="translate-x-[5rem] transition opacity-5  duration-500 h-14 w-14 hover:animate-pulse bg-zinc-400  z-50 bottom-4 right-4 p-4 fixed rounded-full">
         <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 15 7-7 7 7" />
         </svg>
     </a>
 
-    <a id="darkMode" href="#" class="  justify-center items-center h-14 w-14 hover:animate-pulse bg-violet-400  z-50 bottom-20 right-4 p-4 fixed rounded-full">
+    <a id="darkMode" href="#" class="translate-x-[5rem] transition opacity-5  duration-300 justify-center items-center h-14 w-14 hover:animate-pulse bg-violet-400  z-50 bottom-20 right-4 p-4 fixed rounded-full">
         <svg id="moon" class="w-6 h-6 text-gray-800   dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="1" height="1" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21a9 9 0 0 1-.5-17.986V3c-.354.966-.5 1.911-.5 3a9 9 0 0 0 9 9c.239 0 .254.018.488 0A9.004 9.004 0 0 1 12 21Z" />
         </svg>
@@ -231,13 +178,7 @@ if (isset($_GET["cari"])) {
 
 
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script src="./node_modules/preline/dist/preline.js"></script>
     <script src="./main.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 </body>
 
 </html>
