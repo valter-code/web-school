@@ -16,6 +16,10 @@ $totalBerita = totalBerita();
 $username = $_SESSION["username-admin"];
 
 $gambarAdmin = gambarAdmin($koneksi, $username);
+//ternary operator untuk mengecek gambar admin ada atau tidak
+$gambarAdminURL = (file_exists("../src/img-admin/" . $gambarAdmin) ? $gambarAdmin : "default-admin.svg");
+
+
 
 ?>
 
@@ -37,7 +41,7 @@ $gambarAdmin = gambarAdmin($koneksi, $username);
         <aside class="sidebar-sticky sidebar justify-start">
             <section id="profil-admin" class="sidebar-title items-center p-4 ">
                 <div class="border w-10 h-10 rounded-full mr-3 overflow-hidden hover:cursor-pointer">
-                    <img src="../src/img-admin/<?php echo $gambarAdmin ?>" alt="" class="w-full h-full object-cover">
+                    <img src="../src/img-admin/<?php echo $gambarAdminURL ?>" alt="" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col hover:cursor-pointer">
                     <span>Welcome admin</span>

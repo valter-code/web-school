@@ -224,20 +224,6 @@
     function uploadAdmin($id){
         global $koneksi;
     
-        // Ambil informasi gambar admin sebelumnya
-        $query = "SELECT gambar_admin FROM admin WHERE id = ?";
-        $statement = mysqli_prepare($koneksi, $query);
-        mysqli_stmt_bind_param($statement, "i", $id);
-        mysqli_stmt_execute($statement);
-        mysqli_stmt_bind_result($statement, $gambar_admin);
-        mysqli_stmt_fetch($statement);
-        mysqli_stmt_close($statement);
-    
-        // Jika ada gambar admin sebelumnya, hapus
-        if (!empty($gambar_admin) && file_exists("../src/img-admin/" . $gambar_admin)) {
-            unlink("../src/img-admin/" . $gambar_admin);
-        }
-    
         // Unggah gambar baru
         $nameGambar = $_FILES["gambar_berita"]["name"];
         $sizeGambar = $_FILES["gambar_berita"]["size"];
@@ -274,9 +260,6 @@
             mysqli_stmt_close($statement);
     
             return $newnameFile;
-        } else {
-            echo "<script>alert('Gagal mengunggah gambar baru');</script>";
-            return false;
         }
     }
     

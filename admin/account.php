@@ -17,65 +17,65 @@ $admin = mysqli_fetch_assoc($result);
 $err = "";
 $succ = "";
 
-if (isset($_POST["ganti"])) {
-    $passwordOld = $_POST["passwordOld"];
-    $password = $_POST["password"];
-    $password2 = $_POST["password2"];
+//ubah password
+if(isset($_POST["ubahProfil"])){
+    $username = htmlspecialchars($_POST["username"]);
+    $email = htmlspecialchars($_POST["email"]);
+    
+    if(isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4){
+        $gambar = uploadAdmin($id);        
 
-    if (isset($_FILES["gambar_berita"]) && $_FILES["gambar_berita"]["error"] !== 4) {
-        $gambar = uploadAdmin($id);
-        $query = "UPDATE admin SET gambar_admin = '$gambar' WHERE username_admin = '$id'";
-
-        if (!$gambar) {
-            return false;
-        }
-
-        mysqli_query($koneksi, $query);
-
-        // Hapus gambar lama jika ada
-        if (file_exists("../src/img-admin/" . $admin["gambar_admin"])) {
+        if($admin["gambar_admin"] !== "default-admin.svg" && file_exists("../src/img-admin/" . $admin["gambar_admin"])){
             unlink("../src/img-admin/" . $admin["gambar_admin"]);
         }
 
-        if (mysqli_affected_rows($koneksi) > 0) {
-            echo "<script>alert('berhasil up gambar'); document.location.href = 'account.php'</script>";
-            exit;
+        //jika gambar ada yg gagal
+        if(!$gambar){
+            return false;
         }
-    } else {
-        $gimbir = $admin["gambar_admin"];
-        $gambar = "../src/img-admin/$gimbir";
+    }else{
+        $gambar = $admin["gambar_admin"];
     }
 
-    if (!password_verify($passwordOld, $admin["password_admin"])) {
-        $err = "Password lama salah!";
-    } else {
+    $query = "UPDATE admin SET username_admin = '$username', email_admin = '$email', gambar_admin = '$gambar'";
+    mysqli_query($koneksi, $query);
+    if(mysqli_affected_rows($koneksi) > 0){
+        echo "<script>alert('berhasil yey'); document.location.href = 'account.php'</script>";
+    }
+    
+}
 
-        if ($password !== $password2) {
-            $err = "Konfirmasi Password Tidak Sama";
+//ubah sandi
+if (isset($_POST["ubahSandi"])) {
+    $passwordOld = htmlspecialchars($_POST["passwordOld"]);
+    $password = htmlspecialchars($_POST["password"]);
+    $password2 = htmlspecialchars($_POST["password2"]);
+
+    if(!password_verify($password, $admin["password_admin"])){
+        $err = "Password lama salah";
+    }else{
+
+        if(strlen($password) < 3){
+            $err = "panjang";
         }
 
-        if (!preg_match("/[A-Z]/", $password)) {
-            $err = "Password harus mengandung setidaknya 1 huruf kapital";
+        if($password !== $password2){
+            $err = "Konfirmasi";
         }
 
-        if (!preg_match("/[!@#$%^&*()\-_=+{};:,<.>]/", $password)) {
-            $err = "Password harus mengandung setidaknya 1 simbol seperti !@#$%^&*()\-_=+{};:,<.>";
-        }
-
-        if (strlen($password) < 3) {
-            $err = "Password kurang dari 3 digit!";
-        }
-
-        if (empty($err)) {
+        if(empty($err)){
             $password = password_hash($password, PASSWORD_DEFAULT);
-            $query = "UPDATE admin SET password_admin = '$password', gambar_admin = '$gambar' WHERE username_admin = '$username'";
-            $result = mysqli_query($koneksi, $query);
-            if (mysqli_affected_rows($koneksi) > 0) {
-                $succ = "Berhasil update status";
+            $query = "UPDATE admin SET password_admin = '$password' WHERE username_admin = '$username'";
+            mysqli_query($koneksi, $query);
+            if(mysqli_affected_rows($koneksi) > 0){
+                echo "<script>alert('berhasil')</script>";
             }
         }
     }
 }
+
+$gambarAdminURL = (file_exists("../src/img-admin/" . $admin["gambar_admin"]) ? $admin["gambar_admin"] : "default-admin.svg");
+
 ?>
 
 <!DOCTYPE html>
@@ -104,10 +104,10 @@ if (isset($_POST["ganti"])) {
             </a>
             <div class="flex flex-col items-center">
                 <div class="w-16 mb-2  h-16 border rounded-full overflow-hidden ">
-                    <img src="../src/img-admin/<?php echo $admin["gambar_admin"] ?>" alt="gambar admin" class="w-full h-full object-cover object-center">
+                    <img src="../src/img-admin/<?php echo $gambarAdminURL ?>" alt="gambar admin" class="w-full h-full object-cover object-center">
                 </div>
 
-                <h1 class="text-white font-bold mb-1">UserNameAdmin</h1>
+                <h1 class="text-white font-bold mb-1"><?php echo $admin["username_admin"] ?></h1>
                 <p class="text-white font-normal text-sm">Role</p>
             </div>
 
@@ -116,7 +116,7 @@ if (isset($_POST["ganti"])) {
             <div class="flex justify-evenly w-full mt-3">
 
                 <!-- FORM UBAH PROFIL -->
-                <form action="" class="p-5 bg-zinc-900  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-75 border border-gray-100">
+                <form action="" method="post" enctype="multipart/form-data" class="p-5 bg-zinc-900  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-75 border border-gray-100">
                     <div class="absolute -top-12     rotate-12 right-40 h-20 w-20 object-cover grid">
                         <h1 class="w-full text-5xl self-center text-center  object-fill">🗃️</h1>
                     </div>
@@ -125,24 +125,24 @@ if (isset($_POST["ganti"])) {
                     </div>
                     <div class="mb-7 w-full mt-5 ">
                         <label for="" class="text-white font-semibold ">Username</label>
-                        <input type="text" value="UsernameSekarang" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <input name="username" type="text" value="<?php echo $admin["username_admin"] ?>" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                     </div>
                     <div class="mb-7 w-full ">
                         <label for="" class="text-white font-semibold ">Email</label>
-                        <input type="email" value="EmailSekarang@gmal.com" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <input name="email" type="email" value="<?php echo $admin["email_admin"] ?>" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                     </div>
                     <div class="mb-7 w-full ">
                         <label for="" class="text-white font-semibold ">Ganti Foto</label>
                         <input name="gambar_berita" type="file" class="w-full file:bg-violet-500 bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                     </div>
                     <div class="w-full">
-                        <button type="submit" name="ganti" class="font-bold text-emerald-200 px-7 py-2  w-full rounded-md bg-gray-700 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border-2 hover:bg-opacity-75 transition border-gray-100">SIMPAN PERUBAHAN</button>
+                        <button type="submit" name="ubahProfil" class="font-bold text-emerald-200 px-7 py-2  w-full rounded-md bg-gray-700 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border-2 hover:bg-opacity-75 transition border-gray-100">SIMPAN PERUBAHAN</button>
                     </div>
                 </form>
                 <!-- FORM UBAH PROFIL END -->
 
                 <!-- FORM UBAH PASSWORD -->
-                <form action="" class="p-5 bg-zinc-900  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-75 border border-gray-100">
+                <form action="" method="post" class="p-5 bg-zinc-900  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-75 border border-gray-100">
                     <div class="absolute -top-12 rotate-12 right-40 h-20 w-20 object-cover grid">
                         <h1 class="w-full text-5xl self-center text-center  object-fill">🔐</h1>
                     </div>
@@ -150,20 +150,25 @@ if (isset($_POST["ganti"])) {
                         <h1 class="text-white font-bold text-3xl text-center mt-3">Ubah Password</h1>
                     </div>
                     <div class="mb-7 w-full mt-5 ">
-                        <label for="" class="text-white font-semibold ">Password Sekarang</label>
-                        <input type="password" value="passwordSekarang" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <label for="passwordOld" class="text-white font-semibold ">Password Sekarang</label>
+                        <input required name="passwordOld" type="password" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                     </div>
                     <div class="mb-7 w-full ">
-                        <label for="" class="text-white font-semibold ">Password Baru</label>
-                        <input type="password" value="" placeholder="Masukkan Password Yang Kuat" class=" w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <label for="password" class="text-white font-semibold ">Password Baru</label>
+                        <input required name="password" type="password" placeholder="Masukkan Password Yang Kuat" class=" w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                     </div>
                     <div class="mb-7 w-full ">
-                        <label for="" class="text-white font-semibold ">Konfirmasi Password</label>
-                        <input type="password" value="" placeholder="Konfirmasi Password" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <label for="password2" class="text-white font-semibold ">Konfirmasi Password</label>
+                        <input required name="password2" type="password" placeholder="Konfirmasi Password" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        
+                        <?php if(isset($err)): ?>
+                            <?php echo $err; ?>
+                        <?php endif; ?>
+
                     </div>
 
                     <div class="w-full">
-                        <button type="submit" name="ganti" class="font-bold text-emerald-200 px-7 py-2  w-full rounded-md bg-gray-700 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border-2 hover:bg-opacity-75 transition border-gray-100">SIMPAN PERUBAHAN</button>
+                        <button type="submit" name="ubahSandi" class="font-bold text-emerald-200 px-7 py-2  w-full rounded-md bg-gray-700 bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20 border-2 hover:bg-opacity-75 transition border-gray-100">SIMPAN PERUBAHAN</button>
                     </div>
                 </form>
                 <!-- FORM UBAH PASSWORD END -->
