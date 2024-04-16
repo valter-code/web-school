@@ -17,7 +17,8 @@ $admin = mysqli_fetch_assoc($result);
 $err = "";
 $succ = "";
 
-//ubah password
+
+//ubah profil
 if(isset($_POST["ubahProfil"])){
     $username = htmlspecialchars($_POST["username"]);
     $email = htmlspecialchars($_POST["email"]);
@@ -39,8 +40,13 @@ if(isset($_POST["ubahProfil"])){
 
     $query = "UPDATE admin SET username_admin = '$username', email_admin = '$email', gambar_admin = '$gambar'";
     mysqli_query($koneksi, $query);
+    $_SESSION["username-admin"] = $username;
+
+    
     if(mysqli_affected_rows($koneksi) > 0){
-        echo "<script>alert('berhasil yey'); document.location.href = 'account.php'</script>";
+        echo "<script>alert('berhasil mengubah profil'); document.location.href = 'account.php'</script>";
+    }else{
+        echo "<script>alert('Gagal mengubah profil'); document.location.href = 'account.php'</script>";
     }
     
 }
@@ -51,16 +57,16 @@ if (isset($_POST["ubahSandi"])) {
     $password = htmlspecialchars($_POST["password"]);
     $password2 = htmlspecialchars($_POST["password2"]);
 
-    if(!password_verify($password, $admin["password_admin"])){
+    if(!password_verify($passwordOld, $admin["password_admin"])){
         $err = "Password lama salah";
     }else{
 
         if(strlen($password) < 3){
-            $err = "panjang";
+            $err = "panjang password harus lebih dari 3";
         }
 
         if($password !== $password2){
-            $err = "Konfirmasi";
+            $err = "Konfirmasi password tidak sesuai";
         }
 
         if(empty($err)){
@@ -68,7 +74,7 @@ if (isset($_POST["ubahSandi"])) {
             $query = "UPDATE admin SET password_admin = '$password' WHERE username_admin = '$username'";
             mysqli_query($koneksi, $query);
             if(mysqli_affected_rows($koneksi) > 0){
-                echo "<script>alert('berhasil')</script>";
+                echo "<script>alert('berhasil mengubah password!')</script>";
             }
         }
     }
@@ -117,6 +123,7 @@ $gambarAdminURL = (file_exists("../src/img-admin/" . $admin["gambar_admin"]) ? $
 
                 <!-- FORM UBAH PROFIL -->
                 <form action="" method="post" enctype="multipart/form-data" class="p-5 bg-zinc-900  rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-75 border border-gray-100">
+                    <input type="hidden" name="id_admin" value="<?php echo $admin["id"] ?>">
                     <div class="absolute -top-12     rotate-12 right-40 h-20 w-20 object-cover grid">
                         <h1 class="w-full text-5xl self-center text-center  object-fill">🗃️</h1>
                     </div>
@@ -151,18 +158,18 @@ $gambarAdminURL = (file_exists("../src/img-admin/" . $admin["gambar_admin"]) ? $
                     </div>
                     <div class="mb-7 w-full mt-5 ">
                         <label for="passwordOld" class="text-white font-semibold ">Password Sekarang</label>
-                        <input required name="passwordOld" type="password" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <input name="passwordOld" type="password" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                     </div>
                     <div class="mb-7 w-full ">
                         <label for="password" class="text-white font-semibold ">Password Baru</label>
-                        <input required name="password" type="password" placeholder="Masukkan Password Yang Kuat" class=" w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <input name="password" type="password" placeholder="Masukkan Password Yang Kuat" class=" w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                     </div>
                     <div class="mb-7 w-full ">
                         <label for="password2" class="text-white font-semibold ">Konfirmasi Password</label>
-                        <input required name="password2" type="password" placeholder="Konfirmasi Password" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
+                        <input name="password2" type="password" placeholder="Konfirmasi Password" class="w-full bg-transparent border-2 mt-[2px]  rounded-lg focus:border-white  text-zinc-200 focus:ring-0 border-zinc-500">
                         
                         <?php if(isset($err)): ?>
-                            <?php echo $err; ?>
+                            <?php echo "<p style='color:red;'>$err</p>" ?>
                         <?php endif; ?>
 
                     </div>
