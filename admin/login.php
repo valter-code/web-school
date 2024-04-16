@@ -23,7 +23,6 @@ if (isset($_POST["login"])) {
         $error = true;
     } elseif (isset($_POST["role"]) && $_POST["role"] == "guru") {
         $username = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["username"]));
-        $_SESSION["username-guru"] = $username;
         $password = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["password"]));
 
         //cek username
@@ -34,6 +33,7 @@ if (isset($_POST["login"])) {
             //cek password
             if (password_verify($password, $row["password_guru"])) {
                 $_SESSION["session-guru"] = true;
+                $_SESSION["username-guru"] = $username;
                 header("Location: ../guru/index.php");
                 exit;
             }
