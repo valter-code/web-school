@@ -38,15 +38,18 @@ if(isset($_POST["ubahProfil"])){
         $gambar = $admin["gambar_admin"];
     }
 
-    $query = "UPDATE admin SET username_admin = '$username', email_admin = '$email', gambar_admin = '$gambar'";
-    mysqli_query($koneksi, $query);
-    $_SESSION["username-admin"] = $username;
 
-    
-    if(mysqli_affected_rows($koneksi) > 0){
-        echo "<script>alert('berhasil mengubah profil'); document.location.href = 'account.php'</script>";
+    $query2 = "SELECT username_admin FROM admin WHERE username_admin = '$username'";
+    $result2 = mysqli_query($koneksi, $query2);
+    //2 karena session usernamenya terpakai
+    if(mysqli_num_rows($result2) == 1){
+        echo "<script>alert('Username admin sudah ada, gagal mengubah profil'); document.location.href = 'account.php'</script>";
+        exit;
     }else{
-        echo "<script>alert('Gagal mengubah profil'); document.location.href = 'account.php'</script>";
+        $query = "UPDATE admin SET username_admin = '$username', email_admin = '$email', gambar_admin = '$gambar' WHERE username_admin = '$id'";
+        $result = mysqli_query($koneksi, $query);
+        $_SESSION["username-admin"] = $username;
+        echo "<script>alert('berhasil mengubah profil!'); document.location.href = 'account.php'</script>";
     }
     
 }
@@ -74,7 +77,7 @@ if (isset($_POST["ubahSandi"])) {
             $query = "UPDATE admin SET password_admin = '$password' WHERE username_admin = '$username'";
             mysqli_query($koneksi, $query);
             if(mysqli_affected_rows($koneksi) > 0){
-                echo "<script>alert('berhasil mengubah password!')</script>";
+                echo "<script>alert('berhasil mengubah password!'); document.location.href = 'account.php'</script>";
             }
         }
     }

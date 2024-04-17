@@ -2,6 +2,16 @@
 require("../koneksi.php");
 session_start();
 
+if(isset($_SESSION["session-admin"])){
+    header("Location:index.php");
+    exit;
+}
+
+if(isset($_SESSION["session-guru"])){
+    header("Location:../guru/index.php");
+    exit;
+}
+
 if (isset($_POST["login"])) {
     if (isset($_POST["role"]) && $_POST["role"] == "admin") {
         $username = htmlspecialchars(mysqli_real_escape_string($koneksi, $_POST["username"]));
