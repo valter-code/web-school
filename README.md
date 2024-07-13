@@ -6,7 +6,7 @@ Project ini dibangun dengan framework Tailwind CSS & PHP Native.
 
 ## Screenshots
 ![Halaman Utama](src/assets/index.png)
-![Dashboard Admin](src/assets/dashboard.png)
+![Dashboard Admin](src/assets/Dashboard.png)
 
 
 ## Akun
