@@ -5,7 +5,7 @@ Web Sekolah dengan Content Management System (CMS)
 Project ini dibangun dengan framework Tailwind CSS & PHP Native.
 
 ## Screenshots
-![Halaman Utama](src/assets/index.png)
+![Halaman Utama](src/assets/utama.png)
 ![Dashboard Admin](src/assets/Dashboard.png)
 
 
